@@ -2,7 +2,7 @@
 require_once 'db.php';
 
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+	session_start();
 }
 
 // Fetch video URL
@@ -14,9 +14,9 @@ $videoUrl = $videoStmt->rowCount() > 0 ? $videoStmt->fetch()['video'] : "default
 $productStmt = $pdo->query("SELECT * FROM products");
 $iphones = [];
 if ($productStmt->rowCount() > 0) {
-    while ($row = $productStmt->fetch()) {
-        $iphones[] = $row;
-    }
+	while ($row = $productStmt->fetch()) {
+		$iphones[] = $row;
+	}
 }
 ?>
 
@@ -128,27 +128,38 @@ if ($productStmt->rowCount() > 0) {
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
 		.banner {
-      vertical-align: middle;
-      display: flex;
-      font-family: 'Calibri', sans-serif !important;
-      background-color: #eee;
-    }
+			vertical-align: middle;
+			display: flex;
+			font-family: 'Calibri', sans-serif !important;
+			background-color: #eee;
+		}
 
-    .mt-100 {
-      margin-top: 100px;
-    }
+		.mt-100 {
+			margin-top: 100px;
+		}
 
-    .carousel .carousel-indicators li {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      text-indent: -99px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      background: #fff;
-      border-radius: 2px;
-    }
+		.carousel .carousel-indicators li {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			text-indent: -99px;
+			cursor: pointer;
+			border: 1px solid #fff;
+			background: #fff;
+			border-radius: 2px;
+		}
+
+		.banner {
+			margin-top: 11%;
+		}
+
+		.carousel-inner img {
+			width: 100vw;
+			height: auto;
+			object-fit: cover;
+		}
 	</style>
 </head>
 
@@ -174,99 +185,42 @@ if ($productStmt->rowCount() > 0) {
 	<?php include 'categoryMap.php'; ?>
 	<!-- Slider -->
 	<div class="banner">
-	<div class="container mt-100">
-    <div class="row">
-      <div class="col-md-8 mr-auto ml-auto">
-        <div class="card card-raised card-carousel">
-          <div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselindicators" data-slide-to="0" class=""></li>
-              <li data-target="#carouselindicators" data-slide-to="1" class="active"></li>
-              <li data-target="#carouselindicators" data-slide-to="2" class=""></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active carousel-item-left">
-                <img class="d-block w-100" src="images/banner-iphone16.png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Dharamshala, Himachal Pradesh, India
-                  </h4>
-                </div>
-              </div>
-              <div class="carousel-item carousel-item-next carousel-item-left">
-                <img class="d-block w-100" src="https://i.imgur.com/l3iUv92.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Manali, Himachal Pradesh, India
-                  </h4>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="https://i.imgur.com/rHCSTM1.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Kerala, Kerala, India
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
-              <i class="fa fa-chevron-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
-              <i class="fa fa-chevron-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- Deal of the week -->
-	<section class="page-section" id="services">
-		<div class="deal_ofthe_week">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6">
-						<div class="deal_ofthe_week_img">
-							<img src="images/iphone-16.png" alt="">
-						</div>
-					</div>
-					<div class="col-lg-6 text-right deal_ofthe_week_col">
-						<div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-							<div class="section_title rainbow">
-								<h2>Deal Of The Week</h2>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 p-0">
+					<div class="card card-raised card-carousel">
+						<div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+							<ol class="carousel-indicators">
+								<li data-target="#carouselindicators" data-slide-to="0" class=""></li>
+								<li data-target="#carouselindicators" data-slide-to="1" class="active"></li>
+								<li data-target="#carouselindicators" data-slide-to="2" class=""></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item active carousel-item-left">
+									<img class="d-block w-100" src="images/iPhone-16-banner-1.png" alt="First slide">
+								</div>
+								<div class="carousel-item carousel-item-next carousel-item-left">
+									<img class="d-block w-100" src="images/iPhone-16-banner-2.jpg" alt="Second slide">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="images/iPhone-16-banner-3.png" alt="Third slide">
+								</div>
 							</div>
-							<ul class="timer">
-								<li class="d-inline-flex flex-column justify-content-center align-items-center">
-									<div id="day" class="timer_num">03</div>
-									<div class="timer_unit">Day</div>
-								</li>
-								<li class="d-inline-flex flex-column justify-content-center align-items-center">
-									<div id="hour" class="timer_num">15</div>
-									<div class="timer_unit">Hours</div>
-								</li>
-								<li class="d-inline-flex flex-column justify-content-center align-items-center">
-									<div id="minute" class="timer_num">45</div>
-									<div class="timer_unit">Mins</div>
-								</li>
-								<li class="d-inline-flex flex-column justify-content-center align-items-center">
-									<div id="second" class="timer_num">23</div>
-									<div class="timer_unit">Sec</div>
-								</li>
-							</ul>
-							<div class="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+							<a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
+								<i class="fa fa-chevron-left"></i>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
+								<i class="fa fa-chevron-right"></i>
+								<span class="sr-only">Next</span>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+	
 	<!-- Benefit -->
 
 	<div class="benefit">
@@ -466,38 +420,38 @@ if ($productStmt->rowCount() > 0) {
 			</div>
 			<div class="row">
 				<div class="col">
-				<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-					<?php foreach ($iphones as $iphone): ?>
-						<?php
-						// Ensure image paths are relative to the public directory
-						$imagePath = $iphone['image1']; 
-						?>
-						<div class="product-item iphone">
-							<div class="product discount product_filter">
-								<div class="product_image">
-									<!-- Link image to single.php with product ID -->
-									<a href="single.php?id=<?php echo $iphone['id']; ?>">
-										<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
-									</a>
-								</div>
-								<div class="favorite favorite_left"></div>
-								<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-									<span>-$20</span>
-								</div>
-								<div class="product_info">
-									<h6 class="product_name">
-										<!-- Link product name to single.php with product ID -->
-										<a href="single.php?id=<?php echo $iphone['id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
-									</h6>
-									<div class="product_price">
-										$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?><span><?php echo number_format($iphone['price'], 2); ?></span>
+					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+						<?php foreach ($iphones as $iphone): ?>
+							<?php
+							// Ensure image paths are relative to the public directory
+							$imagePath = $iphone['image1'];
+							?>
+							<div class="product-item iphone">
+								<div class="product discount product_filter">
+									<div class="product_image">
+										<!-- Link image to single.php with product ID -->
+										<a href="single.php?id=<?php echo $iphone['id']; ?>">
+											<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
+										</a>
+									</div>
+									<div class="favorite favorite_left"></div>
+									<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+										<span>-$20</span>
+									</div>
+									<div class="product_info">
+										<h6 class="product_name">
+											<!-- Link product name to single.php with product ID -->
+											<a href="single.php?id=<?php echo $iphone['id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
+										</h6>
+										<div class="product_price">
+											$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?><span><?php echo number_format($iphone['price'], 2); ?></span>
+										</div>
 									</div>
 								</div>
+								<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
 							</div>
-							<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
-						</div>
-					<?php endforeach; ?>
-				</div>
+						<?php endforeach; ?>
+					</div>
 				</div>
 			</div>
 		</div>
