@@ -146,6 +146,9 @@ if ($productStmt->rowCount() > 0) {
       background: #fff;
       border-radius: 2px;
     }
+	table td {
+        color: black;
+    }
 	</style>
 </head>
 
@@ -388,54 +391,53 @@ if ($productStmt->rowCount() > 0) {
 		</div>
 
 		<div class="table-responsive">
-			<table class="table text-center">
-				<thead>
-					<tr>
-						<th></th>
-						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
-							iPong X
-						</th>
-						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
-							iPhone 15 Pro Max
-						</th>
-						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
-							Samsung Galaxy S24 Ultra
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><img src="Images/cpu.png" width="35px" /></td>
-						<td>Pong Chip X100</td>
-						<td>Apple A17 Pro</td>
-						<td>Snapdragon 8 Gen 3</td>
-					</tr>
-					<tr>
-						<td><img src="Images/ram.png" width="40px" /></td>
-						<td>512GB</td>
-						<td>6GB</td>
-						<td>12GB</td>
-					</tr>
-					<tr>
-						<td><img src="Images/gpu.png" width="40px" /></td>
-						<td>RTX 4090Ti</td>
-						<td>Apple GPU</td>
-						<td>Adreno 750</td>
-					</tr>
-					<tr>
-						<td><img src="Images/screen.png" width="40px" /></td>
-						<td>6.7" Super XDR</td>
-						<td>6.7" OLED</td>
-						<td>6.8" Dynamic AMOLED</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		</div>
-	</section>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
+                    <span style="color: black;">iPong X</span>
+                </th>
+                <th>
+                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
+                    <span style="color: black;">iPhone 15 Pro Max</span>
+                </th>
+                <th>
+                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
+                    <span style="color: black;">Samsung Galaxy S24 Ultra</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="Images/cpu.png" width="35px" /></td>
+                <td style="color: black;">Pong Chip X100</td>
+                <td style="color: black;">Apple A17 Pro</td>
+                <td style="color: black;">Snapdragon 8 Gen 3</td>
+            </tr>
+            <tr>
+                <td><img src="Images/ram.png" width="40px" /></td>
+                <td style="color: black;">512GB</td>
+                <td style="color: black;">6GB</td>
+                <td style="color: black;">12GB</td>
+            </tr>
+            <tr>
+                <td><img src="Images/gpu.png" width="40px" /></td>
+                <td style="color: black;">RTX 4090Ti</td>
+                <td style="color: black;">Apple GPU</td>
+                <td style="color: black;">Adreno 750</td>
+            </tr>
+            <tr>
+                <td><img src="Images/screen.png" width="40px" /></td>
+                <td style="color: black;">6.7" Super XDR</td>
+                <td style="color: black;">6.7" OLED</td>
+                <td style="color: black;">6.8" Dynamic AMOLED</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 
 	<!-- New Arrivals -->
