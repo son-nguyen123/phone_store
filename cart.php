@@ -169,33 +169,33 @@
     <?php require 'db.php'; ?>
 
     <!-- Main Content -->
-        <div class="profile-container">
-            <h2>Giỏ hàng</h2>
+    <div class="profile-container">
+        <h2>Giỏ hàng</h2>
 
-            <table>
-                <tr class="table1">
-                    <th style="width: 5%">STT</th>
-                    <th style="width: 30%">Tên sản phẩm</th>
-                    <th style="width: 20%">Ảnh sản phẩm</th>
-                    <th style="width: 15%">Đơn giá</th>
-                    <th style="width: 10%">Số lượng</th>
-                    <th style="width: 15%">Thành tiền</th>
-                    <th style="width: 5%">Xóa</th>
-                </tr>
+        <table>
+            <tr class="table1">
+                <th style="width: 5%">STT</th>
+                <th style="width: 30%">Tên sản phẩm</th>
+                <th style="width: 20%">Ảnh sản phẩm</th>
+                <th style="width: 15%">Đơn giá</th>
+                <th style="width: 10%">Số lượng</th>
+                <th style="width: 15%">Thành tiền</th>
+                <th style="width: 5%">Xóa</th>
+            </tr>
 
-                <?php
-                // Sample data for products in the cart
-                $products = [
-                    ['name' => 'IPhone 16', 'price' => 22190000, 'quantity' => 1, 'image' => 'shoe1.jpg'],
-                    ['name' => 'IPhone 16 Plus', 'price' => 25490000, 'quantity' => 2, 'image' => 'shoe2.jpg'],
-                    ['name' => 'IPhone 16 Promax', 'price' => 34390000, 'quantity' => 1, 'image' => 'shoe3.jpg'],
-                ];
+            <?php
+            // Sample data for products in the cart
+            $products = [
+                ['name' => 'IPhone 16', 'price' => 22190000, 'quantity' => 1, 'image' => 'shoe1.jpg'],
+                ['name' => 'IPhone 16 Plus', 'price' => 25490000, 'quantity' => 2, 'image' => 'shoe2.jpg'],
+                ['name' => 'IPhone 16 Promax', 'price' => 34390000, 'quantity' => 1, 'image' => 'shoe3.jpg'],
+            ];
 
-                $totalAmount = 0;
-                foreach ($products as $index => $product) {
-                    $subtotal = $product['price'] * $product['quantity'];
-                    $totalAmount += $subtotal;
-                    echo "<tr>
+            $totalAmount = 0;
+            foreach ($products as $index => $product) {
+                $subtotal = $product['price'] * $product['quantity'];
+                $totalAmount += $subtotal;
+                echo "<tr>
                 <td>" . ($index + 1) . "</td>
                 <td>{$product['name']}</td>
                 <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
@@ -204,34 +204,34 @@
                 <td>" . number_format($subtotal, 0, ',', '.') . " đ</td>
                 <td><button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button></td>
             </tr>";
-                }
-                ?>
+            }
+            ?>
 
-                <tr>
-                    <td colspan="5">Tổng tiền</td>
-                    <td class="total"><?php echo number_format($totalAmount, 0, ',', '.') . ' đ'; ?></td>
-                    <td></td>
-                </tr>
-            </table>
+            <tr>
+                <td colspan="5">Tổng tiền</td>
+                <td class="total"><?php echo number_format($totalAmount, 0, ',', '.') . ' đ'; ?></td>
+                <td></td>
+            </tr>
+        </table>
 
-            <form class="profile-form">
+        <form class="profile-form">
 
-                <label class="form-label">Người nhận:</label>
-                <input type="text" name="name" required><br><br>
+            <label class="form-label">Người nhận:</label>
+            <input type="text" name="name" required><br><br>
 
-                <label class="form-label">Điện thoại:</label>
-                <input type="text" name="phone" required><br><br>
+            <label class="form-label">Điện thoại:</label>
+            <input type="text" name="phone" required><br><br>
 
-                <label class="form-label">Địa chỉ:</label>
-                <input type="text" name="address" required><br><br>
+            <label class="form-label">Địa chỉ:</label>
+            <input type="text" name="address" required><br><br>
 
-                <label class="form-label">Ghi chú:</label>
-                <textarea name="notes"></textarea><br><br>
+            <label class="form-label">Ghi chú:</label>
+            <textarea name="notes"></textarea><br><br>
 
 
-                <button class="order" type="submit">Đặt hàng</button>
-            </form>
-        </div>
+            <button class="order" type="submit">Đặt hàng</button>
+        </form>
+    </div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
