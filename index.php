@@ -33,6 +33,7 @@ if ($productStmt->rowCount() > 0) {
 	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="icon" type="image/x-icon" href="Favicon.ico" />
 	<link href="c:\Users\Lenovo\OneDrive\Attachments\startbootstrap-agency-gh-pages\startbootstrap-agency-gh-pages">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
@@ -118,6 +119,12 @@ if ($productStmt->rowCount() > 0) {
 		.navbar-nav .nav-link:hover {
 			color: blue;
 		}
+
+		.rainbow {
+			background: linear-gradient(to right, #0090f7, #ba62fc, #f2416b);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 	</style>
 </head>
 
@@ -140,11 +147,23 @@ if ($productStmt->rowCount() > 0) {
 	</nav>
 
 	<?php include 'web_sections/navbar.php'; ?>
-	<h2 style="color:white">h</h2>
-	<h2 style="color:white">h</h2>
-	<h2 style="color:white">h</h2>
 	<?php include 'categoryMap.php'; ?>
 	<!-- Slider -->
+
+	<div class="main_slider" style="background-image:url(images/banner-iphone16.png)">
+		<div class="container fill_height">
+			<div class="row align-items-center fill_height">
+				<div class="col">
+					<div class="main_slider_content">
+						<h6 style="color: white;">Có những thứ không nói</h6>
+						<h6 style="color: rgb(231, 20, 20);">Không có nghĩa</h6>
+						<h2 style="color: white;">Nó không vĩ đại</h2>
+						<div class="red_button shop_now_button"><a href="#">shop now</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Deal of the week -->
 	<section class="page-section" id="services">
@@ -158,7 +177,7 @@ if ($productStmt->rowCount() > 0) {
 					</div>
 					<div class="col-lg-6 text-right deal_ofthe_week_col">
 						<div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-							<div class="section_title">
+							<div class="section_title rainbow">
 								<h2>Deal Of The Week</h2>
 							</div>
 							<ul class="timer">
@@ -232,11 +251,11 @@ if ($productStmt->rowCount() > 0) {
 	</div>
 
 	<!-- Portfolio Grid-->
-	<section class="page-section bg-light" id="portfolio">
+	<section class="page-section bg-light" style="padding-top:20px; margin-top:20px;" id="portfolio">
 		<div class="container" style="margin-top: 30px;">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">Sản phẩm vừa mới ra mắt</h2>
-				<h3 class="section-subheading text-muted">IPHONE 16 PRO</h3>
+				<h2 class="section-heading text-uppercase rainbow">Sản phẩm vừa mới ra mắt</h2>
+				<h3 class="section-subheading text-muted ">IPHONE 16 PRO</h3>
 			</div>
 		</div>
 
@@ -248,21 +267,20 @@ if ($productStmt->rowCount() > 0) {
 						<iframe
 							width="100%"
 							height="100%"
-							src="<?= htmlspecialchars($videoUrl) ?>"
+							src="images/Introducing-iPhone 16-Pro .mp4"
 							title="Iphone Video"
 							allowfullscreen>
 						</iframe>
 					</div>
 				</div>
 			</section>
-
 		</main>
 	</section>
 	<!--test-->
 
 	<div class="container" style="margin-top: 30px;">
 		<div class="text-center">
-			<h2 class="section-heading text-uppercase">Tính Năng</h2>
+			<h2 class="section-heading text-uppercase rainbow">Tính Năng</h2>
 		</div>
 	</div>
 
@@ -305,7 +323,7 @@ if ($productStmt->rowCount() > 0) {
 	<section class="page-section bg-light" id="about">
 		<div class="container" style="margin-top: 1px;">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">Flagship</h2>
+				<h2 class="section-heading text-uppercase rainbow">Flagship</h2>
 				<h3 class="section-subheading text-muted">So Sánh Giữa Các Hãng </h3>
 			</div>
 		</div>
