@@ -2,37 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Settings</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Colo Shop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="LoginStyle.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="icon" type="image/x-icon" href="Favicon.ico" />
     <link rel="icon" href="icon.png" type="image/png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        body {
+            flex-direction: column;
+            background-color: #f2f2f2;
             font-family: Arial, sans-serif;
         }
-
         body,
         html {
-            background-color: #fff;
             color: #fff;
             height: 100%;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10%;
-            margin-bottom: 10%;
+            margin-top: ;
+            margin-bottom: ;
             width: 100%;
         }
 
         .profile-container {
+            margin-top: 430px;
+            margin-bottom: 30px;
             background-color: #fff;
             padding: 30px;
             border-radius: 8px;
@@ -133,7 +146,12 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <?php include 'web_sections/navbar.php'; ?>
+    <!--Test-->
+    <?php require 'db.php'; ?>
 
+    <!-- Main Content -->
     <div class="profile-container">
         <div class="profile-avatar">
             <img src="images/sonnguyen.png" alt="Profile Avatar">
@@ -162,6 +180,9 @@
     </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
