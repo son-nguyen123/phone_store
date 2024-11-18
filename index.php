@@ -125,27 +125,32 @@ if ($productStmt->rowCount() > 0) {
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
 		.banner {
-      vertical-align: middle;
-      display: flex;
-      font-family: 'Calibri', sans-serif !important;
-      background-color: #eee;
-    }
+			vertical-align: middle;
+			display: flex;
+			font-family: 'Calibri', sans-serif !important;
+			background-color: #eee;
+		}
 
-    .mt-100 {
-      margin-top: 100px;
-    }
+		.mt-100 {
+			margin-top: 100px;
+		}
 
-    .carousel .carousel-indicators li {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      text-indent: -99px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      background: #fff;
-      border-radius: 2px;
-    }
+		.carousel .carousel-indicators li {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			text-indent: -99px;
+			cursor: pointer;
+			border: 1px solid #fff;
+			background: #fff;
+			border-radius: 2px;
+		}
+
+		table td {
+			color: black;
+		}
 	</style>
 </head>
 
@@ -171,59 +176,59 @@ if ($productStmt->rowCount() > 0) {
 	<?php include 'categoryMap.php'; ?>
 	<!-- Slider -->
 	<div class="banner">
-	<div class="container mt-100">
-    <div class="row">
-      <div class="col-md-8 mr-auto ml-auto">
-        <div class="card card-raised card-carousel">
-          <div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselindicators" data-slide-to="0" class=""></li>
-              <li data-target="#carouselindicators" data-slide-to="1" class="active"></li>
-              <li data-target="#carouselindicators" data-slide-to="2" class=""></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active carousel-item-left">
-                <img class="d-block w-100" src="images/banner-iphone16.png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Dharamshala, Himachal Pradesh, India
-                  </h4>
-                </div>
-              </div>
-              <div class="carousel-item carousel-item-next carousel-item-left">
-                <img class="d-block w-100" src="https://i.imgur.com/l3iUv92.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Manali, Himachal Pradesh, India
-                  </h4>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="https://i.imgur.com/rHCSTM1.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>
-                    <i class="fa fa-map-marker"></i>
-                    Kerala, Kerala, India
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
-              <i class="fa fa-chevron-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
-              <i class="fa fa-chevron-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="container mt-100">
+			<div class="row">
+				<div class="col-md-8 mr-auto ml-auto">
+					<div class="card card-raised card-carousel">
+						<div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+							<ol class="carousel-indicators">
+								<li data-target="#carouselindicators" data-slide-to="0" class=""></li>
+								<li data-target="#carouselindicators" data-slide-to="1" class="active"></li>
+								<li data-target="#carouselindicators" data-slide-to="2" class=""></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item active carousel-item-left">
+									<img class="d-block w-100" src="images/banner-iphone16.png" alt="First slide">
+									<div class="carousel-caption d-none d-md-block">
+										<h4>
+											<i class="fa fa-map-marker"></i>
+											Dharamshala, Himachal Pradesh, India
+										</h4>
+									</div>
+								</div>
+								<div class="carousel-item carousel-item-next carousel-item-left">
+									<img class="d-block w-100" src="https://i.imgur.com/l3iUv92.jpg" alt="Second slide">
+									<div class="carousel-caption d-none d-md-block">
+										<h4>
+											<i class="fa fa-map-marker"></i>
+											Manali, Himachal Pradesh, India
+										</h4>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="https://i.imgur.com/rHCSTM1.jpg" alt="Third slide">
+									<div class="carousel-caption d-none d-md-block">
+										<h4>
+											<i class="fa fa-map-marker"></i>
+											Kerala, Kerala, India
+										</h4>
+									</div>
+								</div>
+							</div>
+							<a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
+								<i class="fa fa-chevron-left"></i>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
+								<i class="fa fa-chevron-right"></i>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Deal of the week -->
 	<section class="page-section" id="services">
 		<div class="deal_ofthe_week">
@@ -393,432 +398,431 @@ if ($productStmt->rowCount() > 0) {
 					<tr>
 						<th></th>
 						<th>
-							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
-							iPong X
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="300px" width="auto" /><br />
+							<span style="color: black;">iPong X</span>
 						</th>
 						<th>
-							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
-							iPhone 15 Pro Max
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="300px" width="auto" /><br />
+							<span style="color: black;">iPhone 15 Pro Max</span>
 						</th>
 						<th>
-							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
-							Samsung Galaxy S24 Ultra
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="300px" width="auto" /><br />
+							<span style="color: black;">Samsung Galaxy S24 Ultra</span>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td><img src="Images/cpu.png" width="35px" /></td>
-						<td>Pong Chip X100</td>
-						<td>Apple A17 Pro</td>
-						<td>Snapdragon 8 Gen 3</td>
+						<td style="color: black;">Pong Chip X100</td>
+						<td style="color: black;">Apple A17 Pro</td>
+						<td style="color: black;">Snapdragon 8 Gen 3</td>
 					</tr>
 					<tr>
 						<td><img src="Images/ram.png" width="40px" /></td>
-						<td>512GB</td>
-						<td>6GB</td>
-						<td>12GB</td>
+						<td style="color: black;">512GB</td>
+						<td style="color: black;">6GB</td>
+						<td style="color: black;">12GB</td>
 					</tr>
 					<tr>
 						<td><img src="Images/gpu.png" width="40px" /></td>
-						<td>RTX 4090Ti</td>
-						<td>Apple GPU</td>
-						<td>Adreno 750</td>
+						<td style="color: black;">RTX 4090Ti</td>
+						<td style="color: black;">Apple GPU</td>
+						<td style="color: black;">Adreno 750</td>
 					</tr>
 					<tr>
 						<td><img src="Images/screen.png" width="40px" /></td>
-						<td>6.7" Super XDR</td>
-						<td>6.7" OLED</td>
-						<td>6.8" Dynamic AMOLED</td>
+						<td style="color: black;">6.7" Super XDR</td>
+						<td style="color: black;">6.7" OLED</td>
+						<td style="color: black;">6.8" Dynamic AMOLED</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		</div>
-	</section>
-
-
-	<!-- New Arrivals -->
-
-	<div class="new_arrivals">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="section_title new_arrivals_title">
-						<h2>Products</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col text-center">
-					<div class="new_arrivals_sorting">
-						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".iphone">Iphone</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".samsung">Samsung</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".xiaomi">Xiaomi</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-
-
-					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-						<?php foreach ($iphone as $iphones): ?>
-							<?php $imagePath = str_replace("C:\\xampp\\htdocs", "", $iphones["image1"]); ?>
-							<div class="product-item iphone">
-								<div class="product discount product_filter">
-									<div class="product_image">
-										<!-- Link image to single.php with product ID -->
-										<a href="single.php?id=<?php echo $iphones['id']; ?>">
-											<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphones['name']); ?>" width="100" height="auto">
-										</a>
-									</div>
-									<div class="favorite favorite_left"></div>
-									<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-										<span>-$20</span>
-									</div>
-									<div class="product_info">
-										<h6 class="product_name">
-											<!-- Link product name to single.php with product ID -->
-											<a href="single.php?id=<?php echo $iphones['id']; ?>"><?php echo htmlspecialchars($iphones['name']); ?></a>
-										</h6>
-										<div class="product_price">$<?php echo $iphones['original_price'] * (1 - 0.20); ?><span><?php echo $iphones['original_price']; ?></span></div>
-									</div>
-								</div>
-								<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
-							</div>
-						<?php endforeach; ?>
-					</div>
-				</div>
-			</div>
-		</div>
 
 
 
-		<!-- Best Sellers -->
+		<!-- New Arrivals -->
 
-		<div class="best_sellers">
+		<div class="new_arrivals">
 			<div class="container">
 				<div class="row">
 					<div class="col text-center">
 						<div class="section_title new_arrivals_title">
-							<h2>Best Sellers</h2>
+							<h2>Products</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row align-items-center">
+					<div class="col text-center">
+						<div class="new_arrivals_sorting">
+							<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".iphone">Iphone</li>
+								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".samsung">Samsung</li>
+								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".xiaomi">Xiaomi</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						<div class="product_slider_container">
-							<div class="owl-carousel owl-theme product_slider">
 
-								<!-- Slide 1 -->
 
-								<div class="owl-item product_slider_item">
-									<div class="product-item">
-										<div class="product discount">
-											<div class="product_image">
-												<img src="images/product_1.png" alt="">
-											</div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$200</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-												<div class="product_price">$520.00<span>$590.00</span></div>
-											</div>
+						<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+							<?php foreach ($iphone as $iphones): ?>
+								<?php $imagePath = str_replace("C:\\xampp\\htdocs", "", $iphones["image1"]); ?>
+								<div class="product-item iphone">
+									<div class="product discount product_filter">
+										<div class="product_image">
+											<!-- Link image to single.php with product ID -->
+											<a href="single.php?id=<?php echo $iphones['id']; ?>">
+												<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphones['name']); ?>" width="100" height="auto">
+											</a>
+										</div>
+										<div class="favorite favorite_left"></div>
+										<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+											<span>-$20</span>
+										</div>
+										<div class="product_info">
+											<h6 class="product_name">
+												<!-- Link product name to single.php with product ID -->
+												<a href="single.php?id=<?php echo $iphones['id']; ?>"><?php echo htmlspecialchars($iphones['name']); ?></a>
+											</h6>
+											<div class="product_price">$<?php echo $iphones['original_price'] * (1 - 0.20); ?><span><?php echo $iphones['original_price']; ?></span></div>
 										</div>
 									</div>
+									<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
 								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+			</div>
 
-								<!-- Slide 2 -->
 
-								<div class="owl-item product_slider_item">
-									<div class="product-item iphone">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_2.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-												<div class="product_price">$610.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
 
-								<!-- Slide 3 -->
+			<!-- Best Sellers -->
 
-								<div class="owl-item product_slider_item">
-									<div class="product-item iphone">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_3.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-												<div class="product_price">$120.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 4 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item accessories">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_4.png" alt="">
-											</div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-												<div class="product_price">$410.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 5 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item iphone men">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_5.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-												<div class="product_price">$180.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 6 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item accessories">
-										<div class="product discount">
-											<div class="product_image">
-												<img src="images/product_6.png" alt="">
-											</div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-												<div class="product_price">$520.00<span>$590.00</span></div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 7 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item iphone">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_7.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-												<div class="product_price">$610.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 8 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item accessories">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_8.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-												<div class="product_price">$120.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 9 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item men">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_9.png" alt="">
-											</div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-												<div class="product_price">$410.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slide 10 -->
-
-								<div class="owl-item product_slider_item">
-									<div class="product-item men">
-										<div class="product">
-											<div class="product_image">
-												<img src="images/product_10.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-												<div class="product_price">$180.00</div>
-											</div>
-										</div>
-									</div>
-								</div>
+			<div class="best_sellers">
+				<div class="container">
+					<div class="row">
+						<div class="col text-center">
+							<div class="section_title new_arrivals_title">
+								<h2>Best Sellers</h2>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="product_slider_container">
+								<div class="owl-carousel owl-theme product_slider">
 
-							<!-- Slider Navigation -->
+									<!-- Slide 1 -->
 
-							<div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
-								<i class="fa fa-chevron-left" aria-hidden="true"></i>
-							</div>
-							<div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
-								<i class="fa fa-chevron-right" aria-hidden="true"></i>
+									<div class="owl-item product_slider_item">
+										<div class="product-item">
+											<div class="product discount">
+												<div class="product_image">
+													<img src="images/product_1.png" alt="">
+												</div>
+												<div class="favorite favorite_left"></div>
+												<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$200</span></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+													<div class="product_price">$520.00<span>$590.00</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 2 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item iphone">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_2.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+													<div class="product_price">$610.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 3 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item iphone">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_3.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
+													<div class="product_price">$120.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 4 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item accessories">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_4.png" alt="">
+												</div>
+												<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+												<div class="favorite favorite_left"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+													<div class="product_price">$410.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 5 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item iphone men">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_5.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+													<div class="product_price">$180.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 6 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item accessories">
+											<div class="product discount">
+												<div class="product_image">
+													<img src="images/product_6.png" alt="">
+												</div>
+												<div class="favorite favorite_left"></div>
+												<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+													<div class="product_price">$520.00<span>$590.00</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 7 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item iphone">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_7.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+													<div class="product_price">$610.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 8 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item accessories">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_8.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
+													<div class="product_price">$120.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 9 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item men">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_9.png" alt="">
+												</div>
+												<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+												<div class="favorite favorite_left"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+													<div class="product_price">$410.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Slide 10 -->
+
+									<div class="owl-item product_slider_item">
+										<div class="product-item men">
+											<div class="product">
+												<div class="product_image">
+													<img src="images/product_10.png" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+													<div class="product_price">$180.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Slider Navigation -->
+
+								<div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+									<i class="fa fa-chevron-left" aria-hidden="true"></i>
+								</div>
+								<div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+									<i class="fa fa-chevron-right" aria-hidden="true"></i>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Blogs -->
+			<!-- Blogs -->
 
-		<div class="blogs">
-			<div class="container">
-				<div class="row">
-					<div class="col text-center">
-						<div class="section_title">
-							<h2>Latest Blogs</h2>
+			<div class="blogs">
+				<div class="container">
+					<div class="row">
+						<div class="col text-center">
+							<div class="section_title">
+								<h2>Latest Blogs</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row blogs_container">
+						<div class="col-lg-4 blog_item_col">
+							<div class="blog_item">
+								<div class="blog_background" style="background-image:url(images/blog_1.jpg)"></div>
+								<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+									<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+									<span class="blog_meta">by admin | dec 01, 2017</span>
+									<a class="blog_more" href="#">Read more</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 blog_item_col">
+							<div class="blog_item">
+								<div class="blog_background" style="background-image:url(images/blog_2.jpg)"></div>
+								<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+									<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+									<span class="blog_meta">by admin | dec 01, 2017</span>
+									<a class="blog_more" href="#">Read more</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 blog_item_col">
+							<div class="blog_item">
+								<div class="blog_background" style="background-image:url(images/blog_3.jpg)"></div>
+								<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+									<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+									<span class="blog_meta">by admin | dec 01, 2017</span>
+									<a class="blog_more" href="#">Read more</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row blogs_container">
-					<div class="col-lg-4 blog_item_col">
-						<div class="blog_item">
-							<div class="blog_background" style="background-image:url(images/blog_1.jpg)"></div>
-							<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-								<h4 class="blog_title">Here are the trends I see coming this fall</h4>
-								<span class="blog_meta">by admin | dec 01, 2017</span>
-								<a class="blog_more" href="#">Read more</a>
+			</div>
+
+			<!-- Newsletter -->
+
+			<div class="newsletter">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+								<h4>Newsletter</h4>
+								<p>Subscribe to our newsletter and get 20% off your first purchase</p>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4 blog_item_col">
-						<div class="blog_item">
-							<div class="blog_background" style="background-image:url(images/blog_2.jpg)"></div>
-							<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-								<h4 class="blog_title">Here are the trends I see coming this fall</h4>
-								<span class="blog_meta">by admin | dec 01, 2017</span>
-								<a class="blog_more" href="#">Read more</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 blog_item_col">
-						<div class="blog_item">
-							<div class="blog_background" style="background-image:url(images/blog_3.jpg)"></div>
-							<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-								<h4 class="blog_title">Here are the trends I see coming this fall</h4>
-								<span class="blog_meta">by admin | dec 01, 2017</span>
-								<a class="blog_more" href="#">Read more</a>
-							</div>
+						<div class="col-lg-6">
+							<form action="post">
+								<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+									<input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+									<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Footer -->
+
+			<?php include 'web_sections/footer.php'; ?>
+
 		</div>
-
-		<!-- Newsletter -->
-
-		<div class="newsletter">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-							<h4>Newsletter</h4>
-							<p>Subscribe to our newsletter and get 20% off your first purchase</p>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<form action="post">
-							<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-								<input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Footer -->
-
-		<?php include 'web_sections/footer.php'; ?>
-
-	</div>
-	<!-- Include scripts -->
-	<script src="js/owl.carousel.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('.owl-carousel').owlCarousel({
-				loop: true,
-				nav: true,
-				responsive: {
-					0: {
-						items: 1
-					},
-					768: {
-						items: 3
-					},
-					1024: {
-						items: 5
+		<!-- Include scripts -->
+		<script src="js/owl.carousel.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('.owl-carousel').owlCarousel({
+					loop: true,
+					nav: true,
+					responsive: {
+						0: {
+							items: 1
+						},
+						768: {
+							items: 3
+						},
+						1024: {
+							items: 5
+						}
 					}
-				}
+				});
 			});
-		});
-	</script>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="styles/bootstrap4/popper.js"></script>
-	<script src="styles/bootstrap4/bootstrap.min.js"></script>
-	<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-	<script src="plugins/easing/easing.js"></script>
-	<script src="js/custom.js"></script>
-	<script>
-		const wrapper = document.querySelector('.carousel-wrapper');
-		let currentIndex = 0;
+		</script>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="styles/bootstrap4/popper.js"></script>
+		<script src="styles/bootstrap4/bootstrap.min.js"></script>
+		<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+		<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+		<script src="plugins/easing/easing.js"></script>
+		<script src="js/custom.js"></script>
+		<script>
+			const wrapper = document.querySelector('.carousel-wrapper');
+			let currentIndex = 0;
 
-		document.querySelector('.carousel-control.left').onclick = () => {
-			currentIndex = (currentIndex > 0) ? currentIndex - 1 : 3;
-			wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-		};
+			document.querySelector('.carousel-control.left').onclick = () => {
+				currentIndex = (currentIndex > 0) ? currentIndex - 1 : 3;
+				wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+			};
 
-		document.querySelector('.carousel-control.right').onclick = () => {
-			currentIndex = (currentIndex < 3) ? currentIndex + 1 : 0;
-			wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-		};
-	</script>
+			document.querySelector('.carousel-control.right').onclick = () => {
+				currentIndex = (currentIndex < 3) ? currentIndex + 1 : 0;
+				wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+			};
+		</script>
 </body>
 
 </html>
