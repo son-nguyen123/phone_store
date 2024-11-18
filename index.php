@@ -125,6 +125,27 @@ if ($productStmt->rowCount() > 0) {
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+		.banner {
+      vertical-align: middle;
+      display: flex;
+      font-family: 'Calibri', sans-serif !important;
+      background-color: #eee;
+    }
+
+    .mt-100 {
+      margin-top: 100px;
+    }
+
+    .carousel .carousel-indicators li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      text-indent: -99px;
+      cursor: pointer;
+      border: 1px solid #fff;
+      background: #fff;
+      border-radius: 2px;
+    }
 	</style>
 </head>
 
@@ -149,22 +170,60 @@ if ($productStmt->rowCount() > 0) {
 	<?php include 'web_sections/navbar.php'; ?>
 	<?php include 'categoryMap.php'; ?>
 	<!-- Slider -->
-
-	<div class="main_slider" style="background-image:url(images/banner-iphone16.png)">
-		<div class="container fill_height">
-			<div class="row align-items-center fill_height">
-				<div class="col">
-					<div class="main_slider_content">
-						<h6 style="color: white;">Có những thứ không nói</h6>
-						<h6 style="color: rgb(231, 20, 20);">Không có nghĩa</h6>
-						<h2 style="color: white;">Nó không vĩ đại</h2>
-						<div class="red_button shop_now_button"><a href="#">shop now</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<div class="banner">
+	<div class="container mt-100">
+    <div class="row">
+      <div class="col-md-8 mr-auto ml-auto">
+        <div class="card card-raised card-carousel">
+          <div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselindicators" data-slide-to="0" class=""></li>
+              <li data-target="#carouselindicators" data-slide-to="1" class="active"></li>
+              <li data-target="#carouselindicators" data-slide-to="2" class=""></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active carousel-item-left">
+                <img class="d-block w-100" src="images/banner-iphone16.png" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h4>
+                    <i class="fa fa-map-marker"></i>
+                    Dharamshala, Himachal Pradesh, India
+                  </h4>
+                </div>
+              </div>
+              <div class="carousel-item carousel-item-next carousel-item-left">
+                <img class="d-block w-100" src="https://i.imgur.com/l3iUv92.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h4>
+                    <i class="fa fa-map-marker"></i>
+                    Manali, Himachal Pradesh, India
+                  </h4>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="https://i.imgur.com/rHCSTM1.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h4>
+                    <i class="fa fa-map-marker"></i>
+                    Kerala, Kerala, India
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
+              <i class="fa fa-chevron-left"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
+              <i class="fa fa-chevron-right"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 	<!-- Deal of the week -->
 	<section class="page-section" id="services">
 		<div class="deal_ofthe_week">
