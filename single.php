@@ -1,10 +1,24 @@
 <?php
-require_once 'db.php';
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "phone_store";
 
+// Create a new mysqli connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Example query to fetch product data
 $sql = "SELECT * FROM iphone WHERE id = 1";  // Adjust ID to fetch the specific product
-$result = $pdo->query($sql);
+$result = $conn->query($sql);
 
-$product = $result->rowCount() > 0 ? $result->fetch() : null;
+// Fetch product data if available
+$product = $result->num_rows > 0 ? $result->fetch_assoc() : null;
 ?>
 
 <!DOCTYPE html>
