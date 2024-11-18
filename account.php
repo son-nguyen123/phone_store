@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
     $username = htmlspecialchars($user['name'] ?? 'User');
 }
 ?>
-
+<!-- My 
 <!DOCTYPE html>
 <html lang="en">
 <head>
