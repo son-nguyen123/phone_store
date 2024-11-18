@@ -163,12 +163,9 @@
 </head>
 
 <body>
-    <!-- Navbar -->
     <?php include 'web_sections/navbar.php'; ?>
-    <!--Test-->
     <?php require 'db.php'; ?>
 
-    <!-- Main Content -->
     <div class="profile-container">
         <h2>Giỏ hàng</h2>
 
@@ -184,7 +181,6 @@
             </tr>
 
             <?php
-            // Sample data for products in the cart
             $products = [
                 ['name' => 'IPhone 16', 'price' => 22190000, 'quantity' => 1, 'image' => 'shoe1.jpg'],
                 ['name' => 'IPhone 16 Plus', 'price' => 25490000, 'quantity' => 2, 'image' => 'shoe2.jpg'],
@@ -196,14 +192,14 @@
                 $subtotal = $product['price'] * $product['quantity'];
                 $totalAmount += $subtotal;
                 echo "<tr>
-                <td>" . ($index + 1) . "</td>
-                <td>{$product['name']}</td>
-                <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
-                <td class='total'>" . number_format($product['price'], 0, ',', '.') . " đ</td>
-                <td><input class='number' type='number' value='{$product['quantity']}' min='1'></td>
-                <td>" . number_format($subtotal, 0, ',', '.') . " đ</td>
-                <td><button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button></td>
-            </tr>";
+                    <td>" . ($index + 1) . "</td>
+                    <td>{$product['name']}</td>
+                    <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
+                    <td class='total'>" . number_format($product['price'], 0, ',', '.') . " đ</td>
+                    <td><input class='number' type='number' value='{$product['quantity']}' min='1'></td>
+                    <td>" . number_format($subtotal, 0, ',', '.') . " đ</td>
+                    <td><button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button></td>
+                </tr>";
             }
             ?>
 
@@ -215,7 +211,6 @@
         </table>
 
         <form class="profile-form">
-
             <label class="form-label">Người nhận:</label>
             <input type="text" name="name" required><br><br>
 
@@ -228,14 +223,11 @@
             <label class="form-label">Ghi chú:</label>
             <textarea name="notes"></textarea><br><br>
 
-
             <button class="order" type="submit">Đặt hàng</button>
         </form>
     </div>
 
-    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
