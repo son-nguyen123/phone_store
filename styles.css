@@ -1,0 +1,51 @@
+.banner-carousel {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: fit-content;
+}
+
+.banner-item {
+    min-width: 100%;
+    height: 250px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.banner-category {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.carousel-control {
+    font-size: 2rem;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.carousel-control.left {
+    left: 10px;
+}
+
+.carousel-control.right {
+    right: 10px;
+}
