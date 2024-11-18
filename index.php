@@ -393,15 +393,15 @@ if ($productStmt->rowCount() > 0) {
 					<tr>
 						<th></th>
 						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
 							iPong X
 						</th>
 						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
 							iPhone 15 Pro Max
 						</th>
 						<th>
-							<img src="iPhone\iphone_15.jpg" height="155px" /><br />
+							<img src="images/iPhone-16-and-iPhone-16-Plus-PNG.png" height="155px" /><br />
 							Samsung Galaxy S24 Ultra
 						</th>
 					</tr>
