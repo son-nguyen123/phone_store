@@ -2,18 +2,21 @@
 require_once 'db.php';
 
 if (session_status() == PHP_SESSION_NONE) {
-	session_start();
+    session_start();
 }
 
-$videoStmt = $pdo->query("SELECT video FROM iphone WHERE id = 1");
+// Fetch video URL
+$videoStmt = $pdo->prepare("SELECT video FROM iphone WHERE id = ?");
+$videoStmt->execute([1]);
 $videoUrl = $videoStmt->rowCount() > 0 ? $videoStmt->fetch()['video'] : "default_video.mp4";
 
-$productStmt = $pdo->query("SELECT * FROM iphone");
-$iphone = [];
+// Fetch product data
+$productStmt = $pdo->query("SELECT * FROM products");
+$iphones = [];
 if ($productStmt->rowCount() > 0) {
-	while ($row = $productStmt->fetch()) {
-		$iphone[] = $row;
-	}
+    while ($row = $productStmt->fetch()) {
+        $iphones[] = $row;
+    }
 }
 ?>
 
@@ -463,35 +466,38 @@ if ($productStmt->rowCount() > 0) {
 			</div>
 			<div class="row">
 				<div class="col">
-
-
-					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-						<?php foreach ($iphone as $iphones): ?>
-							<?php $imagePath = str_replace("C:\\xampp\\htdocs", "", $iphones["image1"]); ?>
-							<div class="product-item iphone">
-								<div class="product discount product_filter">
-									<div class="product_image">
-										<!-- Link image to single.php with product ID -->
-										<a href="single.php?id=<?php echo $iphones['id']; ?>">
-											<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphones['name']); ?>" width="100" height="auto">
-										</a>
-									</div>
-									<div class="favorite favorite_left"></div>
-									<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-										<span>-$20</span>
-									</div>
-									<div class="product_info">
-										<h6 class="product_name">
-											<!-- Link product name to single.php with product ID -->
-											<a href="single.php?id=<?php echo $iphones['id']; ?>"><?php echo htmlspecialchars($iphones['name']); ?></a>
-										</h6>
-										<div class="product_price">$<?php echo $iphones['original_price'] * (1 - 0.20); ?><span><?php echo $iphones['original_price']; ?></span></div>
+				<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+					<?php foreach ($iphones as $iphone): ?>
+						<?php
+						// Ensure image paths are relative to the public directory
+						$imagePath = $iphone['image1']; 
+						?>
+						<div class="product-item iphone">
+							<div class="product discount product_filter">
+								<div class="product_image">
+									<!-- Link image to single.php with product ID -->
+									<a href="single.php?id=<?php echo $iphone['id']; ?>">
+										<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
+									</a>
+								</div>
+								<div class="favorite favorite_left"></div>
+								<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+									<span>-$20</span>
+								</div>
+								<div class="product_info">
+									<h6 class="product_name">
+										<!-- Link product name to single.php with product ID -->
+										<a href="single.php?id=<?php echo $iphone['id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
+									</h6>
+									<div class="product_price">
+										$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?><span><?php echo number_format($iphone['price'], 2); ?></span>
 									</div>
 								</div>
-								<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
 							</div>
-						<?php endforeach; ?>
-					</div>
+							<div class="red_button add_to_cart_button"><a href="cart.php">add to cart</a></div>
+						</div>
+					<?php endforeach; ?>
+				</div>
 				</div>
 			</div>
 		</div>
