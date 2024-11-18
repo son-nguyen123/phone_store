@@ -3,14 +3,13 @@ include 'db.php';
 
 $username = 'Log in / Sign up';
 if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
     $stmt = $pdo->prepare("SELECT name FROM users WHERE user_id = :user_id");
-    $stmt->execute(['user_id' => $userId]);
+    $stmt->execute(['user_id' => $_SESSION['user_id']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $username = htmlspecialchars($user['name'] ?? 'User');
 }
 ?>
-<!-- My DICK IS BIGGEST
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

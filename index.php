@@ -1,63 +1,21 @@
 <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phone_store";
+require_once 'db.php';
 
-// Create mysqli connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check MySQLi connection
-if ($conn->connect_error) {
-    die("Connection failed (MySQLi): " . $conn->connect_error);
-}
-
-// Optional: Create a PDO connection
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    exit("Connection failed (PDO): " . $e->getMessage());
-}
-
-// Start session (if not started already)
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// --- Fetch video URL from the database ---
-$videoSql = "SELECT video FROM iphone WHERE id = 1"; // Thay id = 1 bằng ID cụ thể
-$videoResult = $conn->query($videoSql);
+$videoStmt = $pdo->query("SELECT video FROM iphone WHERE id = 1");
+$videoUrl = $videoStmt->rowCount() > 0 ? $videoStmt->fetch()['video'] : "default_video.mp4";
 
-$videoUrl = ""; // Biến để lưu URL video
-if ($videoResult->num_rows > 0) {
-    $row = $videoResult->fetch_assoc();
-    $videoUrl = $row['video'];
-} else {
-    $videoUrl = "default_video.mp4"; // Video mặc định nếu không tìm thấy video
-}
-
-// --- Fetch product data from the database ---
-$productSql = "SELECT * FROM iphone";
-$productResult = $conn->query($productSql);
-
-// Array to store the fetched products
+$productStmt = $pdo->query("SELECT * FROM iphone");
 $iphone = [];
-if ($productResult->num_rows > 0) {
-    while ($row = $productResult->fetch_assoc()) {
-        $iphone[] = $row; // Add each product row to the products array
+if ($productStmt->rowCount() > 0) {
+    while ($row = $productStmt->fetch()) {
+        $iphone[] = $row;
     }
 }
-
-// Close the MySQLi connection
-$conn->close();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -153,7 +111,6 @@ $conn->close();
         .navbar-nav .nav-link:hover {
             color: blue;
         }
-}
 </style>
 </head>
 

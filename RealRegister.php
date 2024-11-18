@@ -79,7 +79,7 @@
     <?php include 'web_sections/navbar.php'; ?>
     <!--Test-->
     <?php
-require 'web_sections/db.php';
+require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup'])) {
     $username = trim($_POST['username']);

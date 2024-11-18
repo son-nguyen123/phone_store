@@ -101,10 +101,8 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <?php include 'web_sections/navbar.php'; ?>
-    <?php
-require 'web_sections\db.php';
+<?php include 'web_sections/navbar.php';
+require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['signup'])) {
@@ -120,7 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('Username or email already exists.');</script>";
         } else {
             $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash, date_of_birth) VALUES (:name, :email, :password_hash, :dob)");
-            $success = $stmt->execute(['name' => $username, 'email' => $email, 'password_hash' => $passwordHash, 'dob' => $dob]);
+            $success = $stmt->execute([
+                'name' => $username,
+                'email' => $email,
+                'password_hash' => $passwordHash,
+                'dob' => $dob
+            ]);
             echo "<script>alert('" . ($success ? "Registration successful!" : "Error. Please try again.") . "');</script>";
         }
     }
@@ -133,8 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($user && password_verify($_POST['login-password'], $user['password_hash'])) {
             session_start();
-            
-            // Store only necessary user data in the session
+
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['name'];
             $_SESSION['email'] = $user['email'];

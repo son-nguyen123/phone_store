@@ -1,23 +1,9 @@
 <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phone_store";
-
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    exit("Connection failed (PDO): " . $e->getMessage());
-}
+require_once 'db.php';
 
 session_start();
 $userId = $_SESSION['user_id'] ?? 0;
 
-// Fetch user data from the database
 $stmt = $pdo->prepare("SELECT name, email, date_of_birth, profile_image, address FROM users WHERE user_id = :user_id");
 $stmt->execute(['user_id' => $userId]);
 $user = $stmt->fetch() ?: [
@@ -28,12 +14,10 @@ $user = $stmt->fetch() ?: [
     'address' => ''
 ];
 
-// Save changes to the user profile
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['save-changes'])) {
         $newUsername = $_POST['username'] ?? $user['name'];
 
-        // Check if the new username already exists for a different user
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE name = :name AND user_id != :user_id");
         $stmt->execute(['name' => $newUsername, 'user_id' => $userId]);
         $usernameExists = $stmt->fetchColumn();
@@ -44,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $uploadDir = 'profile_images/';
             $oldProfileImage = $user['profile_image'];
 
-            // Handle profile image upload
             if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
                 if ($oldProfileImage != 'default.jpg' && file_exists($oldProfileImage)) {
                     unlink($oldProfileImage);
@@ -65,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
                     $_SESSION['profile_image'] = $profileImagePath;
                 } else {
-                    echo "Error uploading file.";
+                    echo '<div class="alert alert-danger">Error uploading file.</div>';
                 }
             } else {
                 $stmt = $pdo->prepare("UPDATE users SET name = :name, date_of_birth = :dob, address = :address WHERE user_id = :user_id");
@@ -77,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            echo "<script>window.location.href = window.location.href;</script>";
+            echo "<script>window.location.reload();</script>";
             exit();
         }
     }
@@ -88,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>window.location.href = 'index.php';</script>";
         exit();
     }
-         
 }
 ?>
 
