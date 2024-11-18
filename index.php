@@ -365,25 +365,25 @@ if ($productStmt->rowCount() > 0) {
         </thead>
         <tbody>
             <tr>
-                <td><img src="Images/cpu.png" width="35px" /></td>
+                <td><img src="Images/cpu.png" width="30px" /></td>
                 <td style="color: black;">Pong Chip X100</td>
                 <td style="color: black;">Apple A17 Pro</td>
                 <td style="color: black;">Snapdragon 8 Gen 3</td>
             </tr>
             <tr>
-                <td><img src="Images/ram.png" width="40px" /></td>
+                <td><img src="Images/stack-2.png" width="30px" /></td>
                 <td style="color: black;">512GB</td>
                 <td style="color: black;">6GB</td>
                 <td style="color: black;">12GB</td>
             </tr>
             <tr>
-                <td><img src="Images/gpu.png" width="40px" /></td>
+                <td><img src="Images/cpu-2.png" width="30px" /></td>
                 <td style="color: black;">RTX 4090Ti</td>
                 <td style="color: black;">Apple GPU</td>
                 <td style="color: black;">Adreno 750</td>
             </tr>
             <tr>
-                <td><img src="Images/screen.png" width="40px" /></td>
+                <td><img src="Images/device-tablet.png" width="30px" /></td>
                 <td style="color: black;">6.7" Super XDR</td>
                 <td style="color: black;">6.7" OLED</td>
                 <td style="color: black;">6.8" Dynamic AMOLED</td>
