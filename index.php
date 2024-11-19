@@ -306,48 +306,70 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 	</div>
 
 	<section id="capabilities" class="py-5">
-		<div class="container">
-
-
-			<div class="container row d-flex justify-content-center">
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+		<div class="container position-relative">
+			<!-- Scrollable Row -->
+			<div id="scrollContainer" class="d-flex overflow-hidden" style="scroll-behavior: smooth;">
+				<!-- Item 1 -->
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat; min-width: 300px;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Bướm joshi</h3>
 						<p class="mb-0">Far enough to see the damn Galaxy.</p>
 					</div>
 				</div>
-
-				<div class="container row d-flex justify-content-center">
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<!-- Item 2 -->
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat; min-width: 300px;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Bướm joshi</h3>
 						<p class="mb-0">Far enough to see the damn Galaxy.</p>
 					</div>
 				</div>
-
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<!-- Item 3 -->
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat; min-width: 300px;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Super CPU</h3>
 						<p class="mb-0">Strong enough to grind Genshin Impact with your fat ass.</p>
 					</div>
 				</div>
-
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<!-- Item 4 -->
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat; min-width: 300px;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>10000000mAh Battery</h3>
 						<p class="mb-0">Last longer than you parents.</p>
 					</div>
 				</div>
-
-				<div class="boxRect position-relative" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<!-- Item 5 -->
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat; min-width: 300px;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Biodegradable</h3>
 						<p class="mb-0">It will explodes in anytime to kill you and save the environment.</p>
 					</div>
 				</div>
 			</div>
+			<!-- Left and Right Buttons -->
+			<button id="scrollLeft" class="btn btn-primary position-absolute top-50 start-0 translate-middle-y">
+				&#9664;
+			</button>
+			<button id="scrollRight" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y">
+				&#9654;
+			</button>
 		</div>
 	</section>
+
+	<script>
+		// JavaScript for Scrolling
+		const scrollContainer = document.getElementById('scrollContainer');
+		const scrollLeft = document.getElementById('scrollLeft');
+		const scrollRight = document.getElementById('scrollRight');
+
+		scrollLeft.addEventListener('click', () => {
+			scrollContainer.scrollLeft -= 300; // Adjust scroll distance as needed
+		});
+
+		scrollRight.addEventListener('click', () => {
+			scrollContainer.scrollLeft += 300; // Adjust scroll distance as needed
+		});
+	</script>
+
 	<!--test-->
 	<section class="page-section bg-light" id="about">
 		<div class="container" style="margin-top: 1px;">
