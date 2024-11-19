@@ -308,28 +308,36 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 
 
 			<div class="container row d-flex justify-content-center">
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/Galaxy.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
-						<h3></h3>
+						<h3>Bướm joshi</h3>
 						<p class="mb-0">Far enough to see the damn Galaxy.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/Genshin.jpeg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="container row d-flex justify-content-center">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
+						<h3>Bướm joshi</h3>
+						<p class="mb-0">Far enough to see the damn Galaxy.</p>
+					</div>
+				</div>
+
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Super CPU</h3>
 						<p class="mb-0">Strong enough to grind Genshin Impact with your fat ass.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative me-2" style="background-image: url('Images/1000mAh.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>10000000mAh Battery</h3>
 						<p class="mb-0">Last longer than you parents.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative" style="background-image: url('Images/Plants.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative" style="background-image: url('Images/iphone_15.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Biodegradable</h3>
 						<p class="mb-0">It will explodes in anytime to kill you and save the environment.</p>
