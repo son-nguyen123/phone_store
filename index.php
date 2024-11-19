@@ -1,23 +1,11 @@
 <?php
-require_once 'db.php';
+include 'db.php';
+session_start();
 
-if (session_status() == PHP_SESSION_NONE) {
-	session_start();
-}
-
-// Fetch video URL
-$videoStmt = $pdo->prepare("SELECT video FROM iphone WHERE id = ?");
-$videoStmt->execute([1]);
-$videoUrl = $videoStmt->rowCount() > 0 ? $videoStmt->fetch()['video'] : "default_video.mp4";
-
-// Fetch product data
 $productStmt = $pdo->query("SELECT * FROM products");
-$iphones = [];
-if ($productStmt->rowCount() > 0) {
-	while ($row = $productStmt->fetch()) {
-		$iphones[] = $row;
-	}
-}
+$iphones = $productStmt->fetchAll();
+
+echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +128,6 @@ if ($productStmt->rowCount() > 0) {
 			margin-top: 100px;
 		}
 
-<<<<<<< Updated upstream
 		.carousel .carousel-indicators li {
 			display: inline-block;
 			width: 10px;
@@ -161,7 +148,6 @@ if ($productStmt->rowCount() > 0) {
 			height: auto;
 			object-fit: cover;
 		}
-=======
     .carousel .carousel-indicators li {
       display: inline-block;
       width: 10px;
@@ -177,7 +163,6 @@ if ($productStmt->rowCount() > 0) {
     }
 
 
->>>>>>> Stashed changes
 	</style>
 </head>
 
@@ -354,7 +339,6 @@ if ($productStmt->rowCount() > 0) {
 		</div>
 	</section>
 	<!--test-->
-<<<<<<< Updated upstream
 	<section class="page-section bg-light" id="about">
 		<div class="container" style="margin-top: 1px;">
 			<div class="text-center">
@@ -365,15 +349,12 @@ if ($productStmt->rowCount() > 0) {
 
 		<div class="table-responsive">
 		<table class="table text-center">
-=======
 	<div class="table-responsive">
     <table class="table text-center">
->>>>>>> Stashed changes
         <thead>
             <tr>
                 <th></th>
                 <th>
-<<<<<<< Updated upstream
                     <img src="iPhone/ip16.png" height="300px" width="auto" /><br />
                     <span style="color: black;">iPong X</span>
                 </th>
@@ -383,58 +364,35 @@ if ($productStmt->rowCount() > 0) {
                 </th>
                 <th>
                     <img src="iPhone/ip16.png" height="300px" width="auto" /><br />
-=======
-                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
-                    <span style="color: black;">iPong X</span>
-                </th>
-                <th>
-                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
-                    <span style="color: black;">iPhone 15 Pro Max</span>
-                </th>
-                <th>
-                    <img src="iPhone/iphone_15.jpg" height="300px" width="auto" /><br />
->>>>>>> Stashed changes
                     <span style="color: black;">Samsung Galaxy S24 Ultra</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-<<<<<<< Updated upstream
                 <td><img src="Images/cpu.png" width="30px" /></td>
-=======
                 <td><img src="Images/cpu.png" width="35px" /></td>
->>>>>>> Stashed changes
                 <td style="color: black;">Pong Chip X100</td>
                 <td style="color: black;">Apple A17 Pro</td>
                 <td style="color: black;">Snapdragon 8 Gen 3</td>
             </tr>
             <tr>
-<<<<<<< Updated upstream
                 <td><img src="Images/stack-2.png" width="30px" /></td>
-=======
                 <td><img src="Images/ram.png" width="40px" /></td>
->>>>>>> Stashed changes
                 <td style="color: black;">512GB</td>
                 <td style="color: black;">6GB</td>
                 <td style="color: black;">12GB</td>
             </tr>
             <tr>
-<<<<<<< Updated upstream
                 <td><img src="Images/cpu-2.png" width="30px" /></td>
-=======
                 <td><img src="Images/gpu.png" width="40px" /></td>
->>>>>>> Stashed changes
                 <td style="color: black;">RTX 4090Ti</td>
                 <td style="color: black;">Apple GPU</td>
                 <td style="color: black;">Adreno 750</td>
             </tr>
             <tr>
-<<<<<<< Updated upstream
                 <td><img src="Images/device-tablet.png" width="30px" /></td>
-=======
                 <td><img src="Images/screen.png" width="40px" /></td>
->>>>>>> Stashed changes
                 <td style="color: black;">6.7" Super XDR</td>
                 <td style="color: black;">6.7" OLED</td>
                 <td style="color: black;">6.8" Dynamic AMOLED</td>
@@ -442,11 +400,8 @@ if ($productStmt->rowCount() > 0) {
         </tbody>
     </table>
 </div>
-<<<<<<< Updated upstream
 		</div>
 	</section>
-=======
->>>>>>> Stashed changes
 
 
 	<!-- New Arrivals -->
@@ -474,18 +429,14 @@ if ($productStmt->rowCount() > 0) {
 			</div>
 			<div class="row">
 				<div class="col">
+
 					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
 						<?php foreach ($iphones as $iphone): ?>
-							<?php
-							// Ensure image paths are relative to the public directory
-							$imagePath = $iphone['image1'];
-							?>
 							<div class="product-item iphone">
 								<div class="product discount product_filter">
 									<div class="product_image">
-										<!-- Link image to single.php with product ID -->
-										<a href="single.php?id=<?php echo $iphone['id']; ?>">
-											<img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
+										<a href="single.php?id=<?php echo $iphone['product_id']; ?>">
+											<img src="<?php echo htmlspecialchars($iphone['image']); ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
 										</a>
 									</div>
 									<div class="favorite favorite_left"></div>
@@ -494,11 +445,11 @@ if ($productStmt->rowCount() > 0) {
 									</div>
 									<div class="product_info">
 										<h6 class="product_name">
-											<!-- Link product name to single.php with product ID -->
-											<a href="single.php?id=<?php echo $iphone['id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
+											<a href="single.php?id=<?php echo $iphone['product_id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
 										</h6>
 										<div class="product_price">
-											$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?><span><?php echo number_format($iphone['price'], 2); ?></span>
+											$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?>
+											<span><?php echo number_format($iphone['price'], 2); ?></span>
 										</div>
 									</div>
 								</div>
@@ -506,6 +457,7 @@ if ($productStmt->rowCount() > 0) {
 							</div>
 						<?php endforeach; ?>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -834,5 +786,4 @@ if ($productStmt->rowCount() > 0) {
 		};
 	</script>
 </body>
-
 </html>
