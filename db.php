@@ -1,5 +1,4 @@
 <?php
-
 try {
     $pdo = new PDO("sqlite:phone_store.sqlite", null, null, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -8,5 +7,4 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-
 ?>
