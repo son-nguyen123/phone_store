@@ -1,26 +1,22 @@
 <?php
-include 'db.php';
-session_start();
+require_once 'db.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+
+// Fetch video URL
+$videoStmt = $pdo->prepare("SELECT video FROM iphone WHERE id = ?");
+$videoStmt->execute([1]);
+$videoUrl = $videoStmt->rowCount() > 0 ? $videoStmt->fetch()['video'] : "default_video.mp4";
+
+// Fetch product data
+$productStmt = $pdo->query("SELECT * FROM products");
 $iphones = [];
-
-try {
-    $productStmt = $pdo->query("SELECT * FROM products");
-    if ($productStmt) {
-        while ($row = $productStmt->fetch()) {
-            $row['image'] = str_replace("\\", "/", $row['image']);
-            $iphones[] = $row;
-        }
-        if (empty($iphones)) {
-            echo '<script type="text/javascript">console.log("No products found.");</script>';
-        } else {
-            echo '<script type="text/javascript">console.log(' . json_encode($iphones) . ');</script>';
-        }
-    } else {
-        echo '<script type="text/javascript">console.log("Failed to execute query.");</script>';
-    }
-} catch (Exception $e) {
-    echo '<script type="text/javascript">console.log("Error fetching products: ' . $e->getMessage() . '");</script>';
+if ($productStmt->rowCount() > 0) {
+	while ($row = $productStmt->fetch()) {
+		$iphones[] = $row;
+	}
 }
 ?>
 
@@ -309,28 +305,28 @@ try {
 
 
 			<div class="container row d-flex justify-content-center">
-				<div class="boxRect position-relative me-2" style="background-image: url('images/Galaxy.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/Galaxy.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3></h3>
 						<p class="mb-0">Far enough to see the damn Galaxy.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative me-2" style="background-image: url('images/Genshin.jpeg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/Genshin.jpeg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Super CPU</h3>
 						<p class="mb-0">Strong enough to grind Genshin Impact with your fat ass.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative me-2" style="background-image: url('images/1000mAh.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative me-2" style="background-image: url('Images/1000mAh.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>10000000mAh Battery</h3>
 						<p class="mb-0">Last longer than you parents.</p>
 					</div>
 				</div>
 
-				<div class="boxRect position-relative" style="background-image: url('images/Plants.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+				<div class="boxRect position-relative" style="background-image: url('Images/Plants.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
 					<div class="content position-absolute bottom-0 start-0 p-3 text-white">
 						<h3>Biodegradable</h3>
 						<p class="mb-0">It will explodes in anytime to kill you and save the environment.</p>
@@ -369,25 +365,25 @@ try {
         </thead>
         <tbody>
             <tr>
-                <td><img src="images/cpu.png" width="35px" /></td>
+                <td><img src="Images/cpu.png" width="30px" /></td>
                 <td style="color: black;">Pong Chip X100</td>
                 <td style="color: black;">Apple A17 Pro</td>
                 <td style="color: black;">Snapdragon 8 Gen 3</td>
             </tr>
             <tr>
-                <td><img src="images/ram.png" width="40px" /></td>
+                <td><img src="Images/stack-2.png" width="30px" /></td>
                 <td style="color: black;">512GB</td>
                 <td style="color: black;">6GB</td>
                 <td style="color: black;">12GB</td>
             </tr>
             <tr>
-                <td><img src="images/gpu.png" width="40px" /></td>
+                <td><img src="Images/cpu-2.png" width="30px" /></td>
                 <td style="color: black;">RTX 4090Ti</td>
                 <td style="color: black;">Apple GPU</td>
                 <td style="color: black;">Adreno 750</td>
             </tr>
             <tr>
-                <td><img src="images/screen.png" width="40px" /></td>
+                <td><img src="Images/device-tablet.png" width="30px" /></td>
                 <td style="color: black;">6.7" Super XDR</td>
                 <td style="color: black;">6.7" OLED</td>
                 <td style="color: black;">6.8" Dynamic AMOLED</td>
