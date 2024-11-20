@@ -3,10 +3,28 @@
         <div class="top_nav">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 text-right">
+                    <div class="text-right">
                         <div class="top_nav_right">
-                            <ul class="top_nav_menu">
-                            </ul>
+                            <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+                                <a class="navbar-brand" href="#page-top"></a>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                                        <li class="search-bar nav-item">
+                                            <form action="/search" method="GET">
+                                                <input type="text" name="query" placeholder="Nhập sản phẩm cần tìm">
+                                                <button type="submit" style="margin-top: 2.5%;">
+                                                    <img class="search_img" src="images/search_20px.png">Tìm kiếm
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="#services" style=" padding-bottom: 60%">Services</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#portfolio" style=" padding-bottom: 60%">Portfolio</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#about" style=" padding-bottom: 60%">About</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#team" style=" padding-bottom: 60%">Team</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#contact" style=" padding-bottom: 60%">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>

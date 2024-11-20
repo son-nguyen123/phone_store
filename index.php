@@ -92,7 +92,6 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 		.navbar-nav {
 			list-style: none;
 			padding-bottom: 25%;
-			/* Điều chỉnh khoảng cách phía dưới */
 			margin: 0;
 		}
 
@@ -148,46 +147,28 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			height: auto;
 			object-fit: cover;
 		}
-    .carousel .carousel-indicators li {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      text-indent: -99px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      background: #fff;
-      border-radius: 2px;
-    }
-    table td {
-        color: black;
-    }
 
+		.carousel .carousel-indicators li {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			text-indent: -99px;
+			cursor: pointer;
+			border: 1px solid #fff;
+			background: #fff;
+			border-radius: 2px;
+		}
 
+		table td {
+			color: black;
+		}
+		
 	</style>
 </head>
 
 <body id="page-top">
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-		<div class="container">
-			<a class="navbar-brand" href="#page-top"></a>
-			
-
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				
-				<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#services" style=" padding-bottom: 60%">Services</a></li>
-					<li class="nav-item"><a class="nav-link" href="#portfolio" style=" padding-bottom: 60%">Portfolio</a></li>
-					<li class="nav-item"><a class="nav-link" href="#about" style=" padding-bottom: 60%">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#team" style=" padding-bottom: 60%">Team</a></li>
-					<li class="nav-item"><a class="nav-link" href="#contact" style=" padding-bottom: 60%">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
 	<?php include 'web_sections/navbar.php'; ?>
-	<?php include 'categoryMap.php'; ?>
 	<!-- Slider -->
 	<div class="banner">
 		<div class="container-fluid">
@@ -380,58 +361,58 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 		</div>
 
 		<div class="table-responsive">
-		<table class="table text-center">
-	<div class="table-responsive">
-    <table class="table text-center">
-        <thead>
-            <tr>
-                <th></th>
-                <th>
-                    <img src="iPhone/ip16.png" height="300px" width="auto" /><br />
-                    <span style="color: black;">iPong X</span>
-                </th>
-                <th>
-                    <img src="iPhone/ip16.png" height="300px" width="auto" /><br />
-                    <span style="color: black;">iPhone 15 Pro Max</span>
-                </th>
-                <th>
-                    <img src="iPhone/ip16.png" height="300px" width="auto" /><br />
-                    <span style="color: black;">Samsung Galaxy S24 Ultra</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><img src="Images/cpu.png" width="30px" /></td>
-                <td><img src="Images/cpu.png" width="35px" /></td>
-                <td style="color: black;">Pong Chip X100</td>
-                <td style="color: black;">Apple A17 Pro</td>
-                <td style="color: black;">Snapdragon 8 Gen 3</td>
-            </tr>
-            <tr>
-                <td><img src="Images/stack-2.png" width="30px" /></td>
-                <td><img src="Images/ram.png" width="40px" /></td>
-                <td style="color: black;">512GB</td>
-                <td style="color: black;">6GB</td>
-                <td style="color: black;">12GB</td>
-            </tr>
-            <tr>
-                <td><img src="Images/cpu-2.png" width="30px" /></td>
-                <td><img src="Images/gpu.png" width="40px" /></td>
-                <td style="color: black;">RTX 4090Ti</td>
-                <td style="color: black;">Apple GPU</td>
-                <td style="color: black;">Adreno 750</td>
-            </tr>
-            <tr>
-                <td><img src="Images/device-tablet.png" width="30px" /></td>
-                <td><img src="Images/screen.png" width="40px" /></td>
-                <td style="color: black;">6.7" Super XDR</td>
-                <td style="color: black;">6.7" OLED</td>
-                <td style="color: black;">6.8" Dynamic AMOLED</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+			<table class="table text-center">
+				<div class="table-responsive">
+					<table class="table text-center">
+						<thead>
+							<tr>
+								<th></th>
+								<th>
+									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
+									<span style="color: black;">iPong X</span>
+								</th>
+								<th>
+									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
+									<span style="color: black;">iPhone 15 Pro Max</span>
+								</th>
+								<th>
+									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
+									<span style="color: black;">Samsung Galaxy S24 Ultra</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><img src="Images/cpu.png" width="30px" /></td>
+								<td><img src="Images/cpu.png" width="35px" /></td>
+								<td style="color: black;">Pong Chip X100</td>
+								<td style="color: black;">Apple A17 Pro</td>
+								<td style="color: black;">Snapdragon 8 Gen 3</td>
+							</tr>
+							<tr>
+								<td><img src="Images/stack-2.png" width="30px" /></td>
+								<td><img src="Images/ram.png" width="40px" /></td>
+								<td style="color: black;">512GB</td>
+								<td style="color: black;">6GB</td>
+								<td style="color: black;">12GB</td>
+							</tr>
+							<tr>
+								<td><img src="Images/cpu-2.png" width="30px" /></td>
+								<td><img src="Images/gpu.png" width="40px" /></td>
+								<td style="color: black;">RTX 4090Ti</td>
+								<td style="color: black;">Apple GPU</td>
+								<td style="color: black;">Adreno 750</td>
+							</tr>
+							<tr>
+								<td><img src="Images/device-tablet.png" width="30px" /></td>
+								<td><img src="Images/screen.png" width="40px" /></td>
+								<td style="color: black;">6.7" Super XDR</td>
+								<td style="color: black;">6.7" OLED</td>
+								<td style="color: black;">6.8" Dynamic AMOLED</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 		</div>
 	</section>
 
@@ -818,4 +799,5 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 		};
 	</script>
 </body>
+
 </html>
