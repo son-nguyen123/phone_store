@@ -1,0 +1,453 @@
+<!--newspaper-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Mobile Phones</title>
+    <link rel="stylesheet" href="css/comparison_website.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Home</a> &gt; <a href="#">Mobiles</a> &gt; <a href="#">Phone Finder</a> &gt; Compare Mobile Phones
+        </div>
+        <div class="title">Compare Mobile Phones</div>
+        <div class="nav">
+            <a href="#" class="active">
+                <img src="mobile-icon.png" alt="Mobiles">
+                Mobiles
+            </a>
+            <a href="#">
+                <img src="laptop-icon.png" alt="Laptops">
+                Laptops
+            </a>
+            <a href="#">
+                <img src="tv-icon.png" alt="TV">
+                TV
+            </a>
+            <a href="#">
+                <img src="tablet-icon.png" alt="Tablets">
+                Tablets
+            </a>
+            <a href="#">
+                <img src="smartwatch-icon.png" alt="Smart Watches">
+                Smart Watches
+            </a>
+            <a href="#">
+                <img src="headphones-icon.png" alt="Headphones">
+                Headphones
+            </a>
+            <a href="#">
+                <img src="camera-icon.png" alt="Cameras">
+                Cameras
+            </a>
+            <a href="#">
+                <img src="gaming-icon.png" alt="Gaming Consoles">
+                Gaming Consoles
+            </a>
+        </div>
+        <div class="compare-section">
+            <input type="text" placeholder="Samsung Galaxy S24 FE">
+            <input type="text" placeholder="iPhone 15">
+        </div>
+        <button class="compare-btn">Compare</button>
+    </div>
+     <div class="container">
+        <h1>Smartphone Comparison</h1>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>iPhone 16</th>
+                    <th>Samsung Galaxy S24</th>
+                    <th>Google Pixel 8</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Image</td>
+                    <td><img src="iphone16.jpg" alt="iPhone 16"></td>
+                    <td><img src="galaxy_s24.jpg" alt="Samsung Galaxy S24"></td>
+                    <td><img src="pixel8.jpg" alt="Google Pixel 8"></td>
+                </tr>
+                <tr>
+                    <td>Display</td>
+                    <td class="highlight">6.1-inch OLED, 2000 nits</td>
+                    <td>6.5-inch AMOLED, 1750 nits</td>
+                    <td>6.2-inch OLED, 1600 nits</td>
+                </tr>
+                <tr>
+                    <td>Processor</td>
+                    <td>Apple A18</td>
+                    <td class="highlight">Exynos 2400 / Snapdragon 8 Gen 3</td>
+                    <td>Google Tensor G3</td>
+                </tr>
+                <tr>
+                    <td>Camera</td>
+                    <td>48MP + 12MP Ultra Wide</td>
+                    <td>50MP + 12MP Ultra Wide + 10MP Telephoto</td>
+                    <td class="highlight">50MP + 48MP Ultra Wide + 12MP Telephoto</td>
+                </tr>
+                <tr>
+                    <td>Battery</td>
+                    <td>3,200mAh</td>
+                    <td>4,500mAh</td>
+                    <td class="highlight">4,350mAh</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>$999</td>
+                    <td class="highlight">$899</td>
+                    <td>$849</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="#">View Details</a>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+    
+</body>
+</html>
+<!--sortby-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort By Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .sort-container {
+            display: flex;
+            align-items: center;
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .sort-container span {
+            margin-right: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .sort-options {
+            display: flex;
+            gap: 10px;
+        }
+        .sort-option {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        .sort-option.active {
+            background-color: #f44336;
+            color: #fff;
+            border-color: #f44336;
+        }
+        .sort-option:hover {
+            background-color: #f44336;
+            color: #fff;
+        }
+        .price-dropdown {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .price-dropdown select {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .pagination {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .pagination span {
+            font-size: 14px;
+            color: #f44336;
+            margin-right: 10px;
+        }
+        .pagination button {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pagination button:hover {
+            background-color: #f44336;
+            color: #fff;
+            border-color: #f44336;
+        }
+        .pagination button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="sort-container">
+        <span>Sắp xếp theo</span>
+        <div class="sort-options">
+            <div class="sort-option active">Liên Quan</div>
+            <div class="sort-option">Mới Nhất</div>
+            <div class="sort-option">Bán Chạy</div>
+            <div class="price-dropdown">
+                <select>
+                    <option value="">Giá</option>
+                    <option value="low-high">Thấp đến cao</option>
+                    <option value="high-low">Cao đến thấp</option>
+                </select>
+            </div>
+        </div>
+        <div class="pagination">
+            <span>1/7</span>
+            <button disabled>&lt;</button>
+            <button>&gt;</button>
+        </div>
+    </div>
+</body>
+</html>
+<!--search-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .filter-section {
+            float: left;
+            width: 20%;
+            margin-right: 20px;
+        }
+        .filter-section h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .filter-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .filter-section ul li {
+            margin-bottom: 10px;
+        }
+        .filter-section label {
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+        .filter-section input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .search-results {
+            float: right;
+            width: 75%;
+        }
+        .search-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .categories {
+            display: flex;
+            gap: 20px;
+        }
+        .categories a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #333;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            transition: all 0.2s;
+        }
+        .categories a:hover,
+        .categories a.active {
+            background-color: #f44336;
+            color: #fff;
+        }
+        .shop-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .sort-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .sort-options {
+            display: flex;
+            gap: 10px;
+        }
+        .sort-option {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        .sort-option.active {
+            background-color: #f44336;
+            color: #fff;
+            border-color: #f44336;
+        }
+        .sort-option:hover {
+            background-color: #f44336;
+            color: #fff;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            font-size: 16px;
+            color: #f44336;
+            margin-bottom: 5px;
+        }
+        .product-rating {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="filter-section">
+            <h3>Bộ Lọc Tìm Kiếm</h3>
+            <ul>
+                <li><label><input type="checkbox"> Ốp lưng, bao da</label></li>
+                <li><label><input type="checkbox"> Bảo vệ màn hình</label></li>
+                <li><label><input type="checkbox"> Pin & Cáp sạc</label></li>
+                <li><label><input type="checkbox"> Đế giữ điện thoại</label></li>
+                <li><label><input type="checkbox"> Thêm...</label></li>
+            </ul>
+        </div>
+        <div class="search-results">
+            <div class="search-header">
+                <div class="categories">
+                    <a href="#" class="active">iPhone</a>
+                    <a href="#">iPad</a>
+                    <a href="#">Apple Watch</a>
+                    <a href="#">Mac</a>
+                </div>
+                <div class="shop-info">
+                    <span>Apple Flagship Store | 506 Sản Phẩm</span>
+                </div>
+            </div>
+            <div class="sort-bar">
+                <div class="sort-options">
+                    <div class="sort-option active">Liên Quan</div>
+                    <div class="sort-option">Mới Nhất</div>
+                    <div class="sort-option">Bán Chạy</div>
+                    <div class="sort-option">Giá</div>
+                </div>
+                <div class="pagination">
+                    <span>1/7</span>
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+            <div class="results-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="iPhone 15">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 15</div>
+                        <div class="product-price">₫20,000,000</div>
+                        <div class="product-rating">⭐ 4.9</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="iPhone 14">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 14</div>
+                        <div class="product-price">₫17,000,000</div>
+                        <div class="product-rating">⭐ 4.8</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="iPhone 13">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 13</div>
+                        <div class="product-price">₫14,000,000</div>
+                        <div class="product-rating">⭐ 4.7</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="iPhone 12">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 12</div>
+                        <div class="product-price">₫12,000,000</div>
+                        <div class="product-rating">⭐ 4.6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
