@@ -12,28 +12,21 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 <html lang="en">
 
 <head>
-	<title>Colo Shop</title>
+	<title>SSHOP</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Colo Shop Template">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="icon" type="image/x-icon" href="Favicon.ico" />
-	<link href="c:\Users\Lenovo\OneDrive\Attachments\startbootstrap-agency-gh-pages\startbootstrap-agency-gh-pages">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-	<link rel="stylesheet" href="css/navbar.css">
-	<link rel="stylesheet" href="css/navbar1.css">
-	<link rel="stylesheet" href="css/navbar2.css">
-	<link rel="stylesheet" href="css/navbar3.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 	<style>
 		.variations {
@@ -42,7 +35,6 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			padding: 10px;
 			width: 400px;
 		}
-
 		.boxRect {
 			border: 1px solid #ccc;
 			border-radius: 10px;
@@ -52,24 +44,20 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			height: 450px;
 			transition: width 1s, height 1s;
 		}
-
 		.boxRect:hover {
 			width: 320px;
 			height: 480px;
 		}
-
 		.rainbow-text {
 			background: -webkit-linear-gradient(10deg, red, blue);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
-
 		.video-container {
 			position: relative;
 			width: 100%;
 			padding-top: 56.25%;
 		}
-
 		.video-container iframe {
 			position: absolute;
 			top: 0;
@@ -78,60 +66,23 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			height: 100%;
 			border: none;
 		}
-
 		.spacing-top {
 			margin-top: 50px;
-			/* Adjust value as needed */
 		}
-
-		.navbar-container {
-			position: absolute;
-			top: 10%;
-			/* Adjust this percentage to control vertical position */
-			left: 50%;
-			transform: translateX(-50%);
-		}
-
-
-
-		.navbar-nav {
-			list-style: none;
-			padding-bottom: 25%;
-			margin: 0;
-		}
-
-		.navbar-nav .nav-item {
-			display: inline-block;
-			margin-right: 20px;
-			/* Khoảng cách giữa các item */
-		}
-
-		.navbar-nav .nav-link {
-			text-decoration: none;
-			color: black;
-		}
-
-		.navbar-nav .nav-link:hover {
-			color: blue;
-		}
-
 		.rainbow {
 			background: linear-gradient(to right, #0090f7, #ba62fc, #f2416b);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
-
 		.banner {
 			vertical-align: middle;
 			display: flex;
 			font-family: 'Calibri', sans-serif !important;
 			background-color: #eee;
 		}
-
 		.mt-100 {
 			margin-top: 100px;
 		}
-
 		.carousel .carousel-indicators li {
 			display: inline-block;
 			width: 10px;
@@ -142,39 +93,23 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			background: #fff;
 			border-radius: 2px;
 		}
-
 		.banner {
 			margin-top: 11%;
 		}
-
 		.carousel-inner img {
 			width: 100vw;
 			height: auto;
 			object-fit: cover;
 		}
-
-		.carousel .carousel-indicators li {
-			display: inline-block;
-			width: 10px;
-			height: 10px;
-			text-indent: -99px;
-			cursor: pointer;
-			border: 1px solid #fff;
-			background: #fff;
-			border-radius: 2px;
-		}
-
 		table td {
 			color: black;
 		}
-		
 	</style>
 </head>
 
 <body id="page-top">
-	<!-- Navigation-->
 	<?php include 'web_sections/navbar.php'; ?>
-	<!-- Slider -->
+	
 	<div class="banner">
 		<div class="container-fluid">
 			<div class="row">
@@ -342,21 +277,19 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 	</section>
 
 	<script>
-		// JavaScript for Scrolling
 		const scrollContainer = document.getElementById('scrollContainer');
 		const scrollLeft = document.getElementById('scrollLeft');
 		const scrollRight = document.getElementById('scrollRight');
 
 		scrollLeft.addEventListener('click', () => {
-			scrollContainer.scrollLeft -= 300; // Adjust scroll distance as needed
+			scrollContainer.scrollLeft -= 300;
 		});
 
 		scrollRight.addEventListener('click', () => {
-			scrollContainer.scrollLeft += 300; // Adjust scroll distance as needed
+			scrollContainer.scrollLeft += 300;
 		});
 	</script>
 
-	<!--test-->
 	<section class="page-section bg-light" id="about">
 		<div class="container" style="margin-top: 1px;">
 			<div class="text-center">
@@ -782,13 +715,14 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			});
 		});
 	</script>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="styles/bootstrap4/popper.js"></script>
-	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="js/jquery-3.2.1.min.js"></script> 	
+	<script src="js/custom.js"></script>
 	<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="plugins/easing/easing.js"></script>
-	<script src="js/custom.js"></script>
+
 	<script>
 		const wrapper = document.querySelector('.carousel-wrapper');
 		let currentIndex = 0;
@@ -803,6 +737,6 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 			wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 		};
 	</script>
-</body>
 
+</body>
 </html>
