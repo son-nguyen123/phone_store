@@ -5,6 +5,6 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
 } catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    echo "<script>console.log('Connection failed: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . "');</script>";
 }
 ?>
