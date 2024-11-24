@@ -10,7 +10,7 @@
                                 <div class="collapse navbar-collapse" id="navbarResponsive">
                                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                                         <li class="search-bar nav-item">
-                                            <form action="/search" method="GET">
+                                            <form action="#" method="GET">
                                                 <input type="text" name="query" placeholder="Nhập sản phẩm cần tìm">
                                                 <button type="submit" style="margin-top: 2.5%;">
                                                     <img class="search_img" src="images/search_20px.png">Tìm kiếm
