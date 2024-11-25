@@ -386,7 +386,7 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 							<div class="product-item iphone">
 								<div class="product discount product_filter">
 									<div class="product_image">
-										<a href="single.php?id=<?php echo $iphone['product_id']; ?>">
+										<a href="single.php?product_id=<?php echo $iphone['product_id']; ?>">
 											<img src="<?php echo htmlspecialchars($iphone['image']); ?>" alt="<?php echo htmlspecialchars($iphone['name']); ?>" width="100" height="auto">
 										</a>
 									</div>
@@ -396,7 +396,7 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									</div>
 									<div class="product_info">
 										<h6 class="product_name">
-											<a href="single.php?id=<?php echo $iphone['product_id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
+											<a href="single.php?product_id=<?php echo $iphone['product_id']; ?>"><?php echo htmlspecialchars($iphone['name']); ?></a>
 										</h6>
 										<div class="product_price">
 											$<?php echo number_format($iphone['price'] * (1 - 0.20), 2); ?>
