@@ -153,35 +153,6 @@
             background-color: #212529;
         }
 
-        .navbar-container {
-			position: absolute;
-			top: 10%;
-			/* Adjust this percentage to control vertical position */
-			left: 50%;
-			transform: translateX(-50%);
-		}
-
-		.navbar-nav {
-			list-style: none;
-			padding-bottom: 25%;
-			margin: 0;
-		}
-
-		.navbar-nav .nav-item {
-			display: inline-block;
-			margin-right: 20px;
-			/* Khoảng cách giữa các item */
-		}
-
-		.navbar-nav .nav-link {
-			text-decoration: none;
-			color: black;
-		}
-
-		.navbar-nav .nav-link:hover {
-			color: blue;
-		}
-
         @media (min-width: 768px) {
             .profile-container {
                 padding: 40px;
@@ -192,7 +163,6 @@
 
 <body>
     <?php include 'web_sections/navbar.php'; ?>
-    <?php require 'db.php'; ?>
 
     <div class="cart">
     <div class="profile-container">
