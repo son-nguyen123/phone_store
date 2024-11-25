@@ -1684,3 +1684,8 @@ section
 {
 	color: #fe4c50;
 }
+
+.search-bar input {
+	border: 1px solid #ccc;
+    border-radius: 15px;
+}
