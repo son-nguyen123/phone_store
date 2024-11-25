@@ -3,17 +3,23 @@ include 'db.php';
 
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
-    $query = "SELECT * FROM iphone WHERE id = :product_id";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+} elseif (isset($_GET['id'])) {
+    $product_id = $_GET['id'];
+} else {
+    echo "<script>console.log('No product ID provided');</script>";
+    exit;
+}
 
-    if ($product) {
-        echo "<script>console.log(" . json_encode($product) . ");</script>";
-    } else {
-        echo "<script>console.log('No product found with id: " . $product_id . "');</script>";
-    }
+$query = "SELECT * FROM products WHERE product_id = :product_id";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
+$stmt->execute();
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($product) {
+    echo "<script>console.log(" . json_encode($product) . ");</script>";
+} else {
+    echo "<script>console.log('No product found with id: " . $product_id . "');</script>";
 }
 ?>
 
@@ -47,7 +53,7 @@ if (isset($_GET['product_id'])) {
                     <div class="breadcrumbs d-flex flex-row align-items-center">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>iPhone</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>Products</a></li>
                             <li class="active"><a href="#"><i class="fa fa-angle-right"></i><?php echo htmlspecialchars($product['name'] ?? 'Product'); ?></a></li>
                         </ul>
                     </div>
@@ -61,15 +67,14 @@ if (isset($_GET['product_id'])) {
                             <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
                                 <div class="single_product_thumbnails">
                                     <ul>
-                                        <li><img src="images/<?php echo htmlspecialchars($product['image_thumb1'] ?? 'default-image.jpg'); ?>" data-image="images/<?php echo htmlspecialchars($product['image1'] ?? 'default-image.jpg'); ?>"></li>
-                                        <li><img src="images/<?php echo htmlspecialchars($product['image_thumb2'] ?? 'default-image.jpg'); ?>" data-image="images/<?php echo htmlspecialchars($product['image2'] ?? 'default-image.jpg'); ?>"></li>
-                                        <li><img src="images/<?php echo htmlspecialchars($product['image_thumb3'] ?? 'default-image.jpg'); ?>" data-image="images/<?php echo htmlspecialchars($product['image3'] ?? 'default-image.jpg'); ?>"></li>
+                                        <!-- Updated to use product images -->
+                                        <li><img src="images/<?php echo htmlspecialchars($product['image'] ?? 'default-image.jpg'); ?>" data-image="images/<?php echo htmlspecialchars($product['image'] ?? 'default-image.jpg'); ?>"></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-9 image_col order-lg-2 order-1">
                                 <div class="single_product_image">
-                                    <div class="single_product_image_background" style="background-image:url(images/<?php echo htmlspecialchars($product['image1'] ?? 'default-image.jpg'); ?>)"></div>
+                                    <div class="single_product_image_background" style="background-image:url(images/<?php echo htmlspecialchars($product['image'] ?? 'default-image.jpg'); ?>)"></div>
                                 </div>
                             </div>
                         </div>
@@ -79,14 +84,13 @@ if (isset($_GET['product_id'])) {
                 <div class="col-lg-5">
                     <div class="product_details">
                         <div class="product_details_title">
-                            <h2><?php echo htmlspecialchars($product['name'] ?? 'Product Name'); ?> <?php echo htmlspecialchars($product['storage'] ?? 'N/A'); ?></h2>
+                            <h2><?php echo htmlspecialchars($product['name'] ?? 'Product Name'); ?></h2>
                             <p><?php echo nl2br(htmlspecialchars($product['description'] ?? 'No description available.')); ?></p>
                         </div>
                         <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
                             <span class="ti-truck"></span><span>free delivery</span>
                         </div>
-                        <div class="original_price"><?php echo htmlspecialchars($product['original_price'] ?? '0'); ?> VND</div>
-                        <div class="product_price"><?php echo htmlspecialchars($product['discounted_price'] ?? '0'); ?> VND</div>
+                        <div class="product_price"><?php echo htmlspecialchars($product['price'] ?? '0'); ?> VND</div>
                         <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                             <span>Quantity:</span>
                             <div class="quantity_selector">
@@ -124,20 +128,11 @@ if (isset($_GET['product_id'])) {
                                         <h4>Description</h4>
                                     </div>
                                     <div class="tab_text_block">
-                                        <h2><?php echo htmlspecialchars($product['name_1'] ?? ''); ?></h2>
-                                        <p><?php echo nl2br(htmlspecialchars($product['description_1'] ?? '')); ?></p>
+                                        <h2><?php echo htmlspecialchars($product['name'] ?? ''); ?></h2>
+                                        <p><?php echo nl2br(htmlspecialchars($product['description'] ?? '')); ?></p>
                                     </div>
                                     <div class="tab_image">
-                                        <img src="images/<?php echo htmlspecialchars($product['image_desc1'] ?? 'default-image.jpg'); ?>" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 offset-lg-2 desc_col">
-                                    <div class="tab_image">
-                                        <img src="images/<?php echo htmlspecialchars($product['image_desc2'] ?? 'default-image.jpg'); ?>" alt="">
-                                    </div>
-                                    <div class="tab_text_block">
-                                        <h2><?php echo htmlspecialchars($product['name_3'] ?? ''); ?></h2>
-                                        <p><?php echo nl2br(htmlspecialchars($product['description_3'] ?? '')); ?></p>
+                                        <img src="images/<?php echo htmlspecialchars($product['image'] ?? 'default-image.jpg'); ?>" alt="Product Image">
                                     </div>
                                 </div>
                             </div>
@@ -150,24 +145,10 @@ if (isset($_GET['product_id'])) {
                                         <h4>Additional Information</h4>
                                     </div>
                                     <table>
-                                        <?php if ($product) { ?>
-                                            <tr>
-                                                <th>Screen Size:</th>
-                                                <td><?php echo htmlspecialchars($product['screen_size'] ?? ''); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Screen Technology:</th>
-                                                <td><?php echo htmlspecialchars($product['screen_technology'] ?? ''); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Rear Camera:</th>
-                                                <td><?php echo htmlspecialchars($product['rear_camera'] ?? ''); ?></td>
-                                            </tr>
-                                        <?php } else { ?>
-                                            <tr>
-                                                <td colspan="2">No additional information available.</td>
-                                            </tr>
-                                        <?php } ?>
+                                        <tr>
+                                            <th>Price:</th>
+                                            <td><?php echo htmlspecialchars($product['price'] ?? ''); ?> VND</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
