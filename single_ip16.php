@@ -52,15 +52,15 @@
 							<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
 								<div class="single_product_thumbnails">
 									<ul>
-										<li><img src="images/iphone-16-pro-max-1-thumb.jpg" data-image="images/iphone-16-pro-max-1.jpg"></li>
-										<li class="active"><img src="images/iphone-16-pro-max-2-thumb.jpg" data-image="images/iphone-16-pro-max-2.jpg"></li>
-										<li><img src="images/iphone-16-pro-max-3-thumb.jpg" data-image="images/iphone-16-pro-max-3.jpg"></li>
+										<li><img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-1.png" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-1.png"></li>
+										<li class="active"><img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-7.png" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-7.png"></li>
+										<li><img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-8.png" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-8.png"></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-lg-9 image_col order-lg-2 order-1">
 								<div class="single_product_image">
-									<div class="single_product_image_background" style="background-image:url(images/iphone-16-pro-max-1.jpg)"></div>
+									<div class="single_product_image_background" style="background-image:url(https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-7.png)"></div>
 								</div>
 							</div>
 						</div>
