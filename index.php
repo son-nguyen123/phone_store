@@ -1,6 +1,5 @@
 <?php
 include 'db.php';
-session_start();
 
 $productStmt = $pdo->query("SELECT * FROM products");
 $iphones = $productStmt->fetchAll();
