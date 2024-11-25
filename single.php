@@ -61,7 +61,7 @@ function escape($value) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo escape($product['name']); ?> - Single Product</title>
+    <title><?php echo escape($product['name']); ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
@@ -76,7 +76,10 @@ function escape($value) {
 </head>
 <body>
     <div class="super_container">
-        <?php include 'web_sections/navbar.php'; ?>
+        <?php 
+        include 'web_sections/navbar.php'; 
+        include '_add_to_cart.php'; 
+        ?>
 
         <!-- Product Details Section -->
         <div class="container single_product_container">
@@ -84,7 +87,7 @@ function escape($value) {
                 <div class="col">
                     <div class="breadcrumbs d-flex flex-row align-items-center">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li><a href="#"><i class="fa fa-angle-right"></i> Category</a></li>
                             <li class="active"><a href="#"><i class="fa fa-angle-right"></i><?php echo escape($product['name']); ?></a></li>
                         </ul>
@@ -100,7 +103,7 @@ function escape($value) {
                             <div class="col-lg-3 thumbnails_col">
                                 <div class="single_product_thumbnails">
                                     <ul>
-                                        <li><img src="images/<?php echo escape($product['image_thumb1']); ?>" data-image="images/<?php echo escape($product['image1']); ?>"></li>
+                                        <li><img src="images/<?php echo escape($product['image_thumb1']); ?>" data-image="images/<?php echo escape($product['image']); ?>"></li>
                                         <li><img src="images/<?php echo escape($product['image_thumb2']); ?>" data-image="images/<?php echo escape($product['image2']); ?>"></li>
                                         <li><img src="images/<?php echo escape($product['image_thumb3']); ?>" data-image="images/<?php echo escape($product['image3']); ?>"></li>
                                     </ul>
@@ -131,6 +134,10 @@ function escape($value) {
                         <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
                             <span class="ti-truck"></span><span>Free Delivery</span>
                         </div>
+
+                        
+
+
                     </div>
                 </div>
             </div>
