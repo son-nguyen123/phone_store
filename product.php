@@ -301,6 +301,38 @@
                         <div class="product-rating">⭐ 4.6</div>
                     </div>
                 </div>
+                <div class="product-card">
+                    <img src="images/iphone_15.png" alt="iPhone 15">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 15</div>
+                        <div class="product-price">₫20,000,000</div>
+                        <div class="product-rating">⭐ 4.9</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/iphone_15.png" alt="iPhone 14">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 14</div>
+                        <div class="product-price">₫17,000,000</div>
+                        <div class="product-rating">⭐ 4.8</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/iphone_15.png" alt="iPhone 13">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 13</div>
+                        <div class="product-price">₫14,000,000</div>
+                        <div class="product-rating">⭐ 4.7</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/iphone_15.png" alt="iPhone 12">
+                    <div class="product-info">
+                        <div class="product-title">Apple iPhone 12</div>
+                        <div class="product-price">₫12,000,000</div>
+                        <div class="product-rating">⭐ 4.6</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

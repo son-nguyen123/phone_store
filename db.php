@@ -7,4 +7,6 @@ try {
 } catch (PDOException $e) {
     echo "<script>console.log('Connection failed: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . "');</script>";
 }
+
+session_start();
 ?>
