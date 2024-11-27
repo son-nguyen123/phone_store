@@ -57,7 +57,8 @@ function formatPrice($price) {
 </head>
 <body>
     <div class="super_container">
-        <?php include 'web_sections/navbar.php'; include '_add_to_card.php'?>
+        <?php include 'web_sections/navbar.php';?>
+        <?php include '_add_to_card.php';?>
 
         <div class="container single_product_container">
             <div class="row">
