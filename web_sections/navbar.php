@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-right">
-                    <div class="logo_container" style="text-align: left; padding: 10px;">
+                    <div class="logo_container" style="text-align: left; padding: 10px;margin-left: 0;">
                         <a href="index.php" style="font-family: 'Roboto', sans-serif; font-size: 36px; font-weight: bold; color: #333; text-decoration: none;">SSHOP</a>
                     </div>
                     <nav class="navbar">

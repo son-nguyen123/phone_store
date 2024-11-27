@@ -11,7 +11,7 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 <html lang="en">
 
 <head>
-	<title>SSHOP</title>
+	 <title>SS</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Colo Shop Template">
@@ -306,7 +306,7 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 								<th></th>
 								<th>
 									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
-									<span style="color: black;">iPong X</span>
+									<span style="color: black;">Iphone 16</span>
 								</th>
 								<th>
 									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
@@ -316,15 +316,19 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
 									<span style="color: black;">Samsung Galaxy S24 Ultra</span>
 								</th>
+								<th>
+									<img src="iPhone/ip16.png" height="300px" width="auto" /><br />
+									<span style="color: black;">Samsung Galaxy S24 </span>
+								</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><img src="Images/cpu.png" width="30px" /></td>
-								<td><img src="Images/cpu.png" width="35px" /></td>
-								<td style="color: black;">Pong Chip X100</td>
-								<td style="color: black;">Apple A17 Pro</td>
-								<td style="color: black;">Snapdragon 8 Gen 3</td>
+						<tr>
+								<td><img src="Images/cpu-2.png" width="30px" /></td>
+								<td><img src="Images/gpu.png" width="40px" /></td>
+								<td style="color: black;">RTX 4090Ti</td>
+								<td style="color: black;">Apple GPU</td>
+								<td style="color: black;">Adreno 750</td>
 							</tr>
 							<tr>
 								<td><img src="Images/stack-2.png" width="30px" /></td>
@@ -436,13 +440,13 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item">
 										<div class="product discount">
 											<div class="product_image">
-												<img src="images/product_1.png" alt="">
+												<img src="images\galaxy-s24-plus.png" alt="">
 											</div>
 											<div class="favorite favorite_left"></div>
 											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$200</span></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-												<div class="product_price">$520.00<span>$590.00</span></div>
+												<h6 class="product_name"><a> galaxy S24 Plus</a></h6>
+												<div class="product_price">$999.00<span>$890.00</span></div>
 											</div>
 										</div>
 									</div>
@@ -454,13 +458,13 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item iphone">
 										<div class="product">
 											<div class="product_image">
-												<img src="images/product_2.png" alt="">
+												<img src="images\iphone_15.png" alt="">
 											</div>
 											<div class="favorite"></div>
 											<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-												<div class="product_price">$610.00</div>
+												<h6 class="product_name"><a href="single.html">Iphone 15</a></h6>
+												<div class="product_price">$890.00</div>
 											</div>
 										</div>
 									</div>
@@ -472,12 +476,12 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item iphone">
 										<div class="product">
 											<div class="product_image">
-												<img src="images/product_3.png" alt="">
+												<img src="images\galaxy-s24-ultra.png" alt="">
 											</div>
 											<div class="favorite"></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-												<div class="product_price">$120.00</div>
+												<h6 class="product_name"><a href="single.html">Samsung s24 ultra</a></h6>
+												<div class="product_price">$890.00</div>
 											</div>
 										</div>
 									</div>
@@ -489,13 +493,13 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item accessories">
 										<div class="product">
 											<div class="product_image">
-												<img src="images/product_4.png" alt="">
+												<img src="images\iphone15-pro-max.png" alt="">
 											</div>
 											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
 											<div class="favorite favorite_left"></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-												<div class="product_price">$410.00</div>
+												<h6 class="product_name"><a href="single.html">Iphone 15 Pro Max</a></h6>
+												<div class="product_price">$890.00</div>
 											</div>
 										</div>
 									</div>
@@ -507,11 +511,11 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item iphone men">
 										<div class="product">
 											<div class="product_image">
-												<img src="images/product_5.png" alt="">
+												<img src="images\Galaxy Z Flip6.png" alt="">
 											</div>
 											<div class="favorite"></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+												<h6 class="product_name"><a href="single.html">Galaxy Z Flip 6</a></h6>
 												<div class="product_price">$180.00</div>
 											</div>
 										</div>
@@ -524,12 +528,12 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item accessories">
 										<div class="product discount">
 											<div class="product_image">
-												<img src="images/product_6.png" alt="">
+												<img src="images\iphone15-pro.png" alt="">
 											</div>
 											<div class="favorite favorite_left"></div>
 											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+												<h6 class="product_name"><a href="single.html">Iphone 15 Pro</a></h6>
 												<div class="product_price">$520.00<span>$590.00</span></div>
 											</div>
 										</div>
@@ -542,11 +546,11 @@ echo "<script>console.log(" . json_encode($iphones) . ");</script>";
 									<div class="product-item iphone">
 										<div class="product">
 											<div class="product_image">
-												<img src="images/product_7.png" alt="">
+												<img src="images\Galaxy Z Fold6.png" alt="">
 											</div>
 											<div class="favorite"></div>
 											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+												<h6 class="product_name"><a href="single.html"> Galaxy Z Fold 6</a></h6>
 												<div class="product_price">$610.00</div>
 											</div>
 										</div>
