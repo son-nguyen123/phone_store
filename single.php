@@ -82,7 +82,7 @@ function formatPrice($price) {
                                         <?php
                                         $other_images = explode(' ', $product['other_images']);
                                         foreach ($other_images as $image) {
-                                            echo '<li><img src="images/' . htmlspecialchars($image) . '" data-image="images/' . htmlspecialchars($product['image']) . '"></li>';
+                                            echo '<li><img src="' . htmlspecialchars($image) . '" data-image="' . htmlspecialchars($product['image']) . '"></li>';
                                         }
                                         ?>
                                     </ul>
@@ -90,7 +90,7 @@ function formatPrice($price) {
                             </div>
                             <div class="col-lg-9 image_col order-lg-2 order-1">
                                 <div class="single_product_image">
-                                    <div class="single_product_image_background" style="background-image:url(images/<?php echo htmlspecialchars($product['image']); ?>)"></div>
+                                    <div class="single_product_image_background" style="background-image:url(<?php echo htmlspecialchars($product['image']); ?>)"></div>
                                 </div>
                             </div>
                         </div>
