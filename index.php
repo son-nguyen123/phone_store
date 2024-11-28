@@ -23,85 +23,10 @@ $products = $productStmt->fetchAll();
 	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="icon" type="image/x-icon" href="Favicon.ico" />
 
-	<style>
-		.variations {
-			border: 2px solid #ccc;
-			border-radius: 12px;
-			padding: 10px;
-			width: 400px;
-		}
-		.boxRect {
-			border: 1px solid #ccc;
-			border-radius: 10px;
-			padding: 20px;
-			margin-bottom: 20px;
-			width: 300px;
-			height: 450px;
-			transition: width 1s, height 1s;
-		}
-		.boxRect:hover {
-			width: 320px;
-			height: 480px;
-		}
-		.rainbow-text {
-			background: -webkit-linear-gradient(10deg, red, blue);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-		}
-		.video-container {
-			position: relative;
-			width: 100%;
-			padding-top: 56.25%;
-		}
-		.video-container iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			border: none;
-		}
-		.spacing-top {
-			margin-top: 50px;
-		}
-		.rainbow {
-			background: linear-gradient(to right, #0090f7, #ba62fc, #f2416b);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-		}
-		.banner {
-			vertical-align: middle;
-			display: flex;
-			font-family: 'Calibri', sans-serif !important;
-			background-color: #eee;
-		}
-		.mt-100 {
-			margin-top: 100px;
-		}
-		.carousel .carousel-indicators li {
-			display: inline-block;
-			width: 10px;
-			height: 10px;
-			text-indent: -99px;
-			cursor: pointer;
-			border: 1px solid #fff;
-			background: #fff;
-			border-radius: 2px;
-		}
-		.banner {
-			margin-top: 11%;
-		}
-		.carousel-inner img {
-			width: 100vw;
-			height: auto;
-			object-fit: cover;
-		}
-		table td {
-			color: black;
-		}
-	</style>
+	
 </head>
 
 <body id="page-top">
