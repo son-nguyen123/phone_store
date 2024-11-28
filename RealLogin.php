@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Colo Shop</title>
+    <title>SS Shop</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
@@ -65,75 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="css\login.css">
     <link rel="icon" href="Favicon.ico">
     <link rel="icon" href="icon.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-        }
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-        }
-        .login-container {
-            width: 400px;
-            padding: 40px;
-            background-color: #ffffff;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: center;
-        }
-        .login-container h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .login-container .form-group {
-            text-align: left;
-            margin-bottom: 15px;
-        }
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        .login-container .login-button {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .login-container .login-button:hover {
-            background-color: #2a2a2a;
-        }
-        .login-container .forgot-password,
-        .login-container .register {
-            font-size: 14px;
-            color: #555;
-            display: inline-block;
-            margin-top: 15px;
-        }
-        .login-container .register a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    
+        
 </head>
 
 <body>
