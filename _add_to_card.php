@@ -14,42 +14,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
         $stmt = $pdo->prepare("SELECT cart FROM users WHERE user_id = :userId");
         $stmt->bindParam(':userId', $userId);
         $stmt->execute();
-        $currentCart = $stmt->fetchColumn();
+        $currentCart = $stmt->fetchColumn() ?? ''; // Handle null value
 
-        if ($currentCart) {
-            $items = explode(' ', trim($currentCart));
-            $items[] = trim($cartEntry);
-            $itemCounts = [];
+        $items = explode(' ', trim($currentCart));
+        $itemCounts = [];
 
-            foreach ($items as $item) {
-                if ($item) {
-                    list($itemId, $qty) = explode('-', $item);
-                    $key = "$itemId";
+        foreach ($items as $item) {
+            if ($item) {
+                list($itemId, $qty) = explode('-', $item);
+                $key = "$itemId";
 
-                    if (!isset($itemCounts[$key])) {
-                        $itemCounts[$key] = 0;
-                    }
-                    $itemCounts[$key] += (int)$qty;
+                if (!isset($itemCounts[$key])) {
+                    $itemCounts[$key] = 0;
                 }
+                $itemCounts[$key] += (int)$qty;
             }
-
-            $updatedCart = [];
-            foreach ($itemCounts as $key => $qty) {
-                $updatedCart[] = "$key-$qty";
-            }
-
-            sort($updatedCart);
-            $updatedCartString = implode(' ', $updatedCart);
-        } else {
-            $updatedCartString = trim($cartEntry);
         }
+
+        $itemCounts[$id] = ($itemCounts[$id] ?? 0) + $amount;
+
+        $updatedCart = [];
+        foreach ($itemCounts as $key => $qty) {
+            $updatedCart[] = "$key-$qty";
+        }
+
+        sort($updatedCart);
+        $updatedCartString = implode(' ', $updatedCart);
 
         $stmt = $pdo->prepare("UPDATE users SET cart = :cart WHERE user_id = :userId");
         $stmt->bindParam(':cart', $updatedCartString);
         $stmt->bindParam(':userId', $userId);
 
         if ($stmt->execute()) {
+            echo "<script>alert('Item added to cart successfully!');</script>";
             echo "<script>window.location.href = window.location.href;</script>";
+            exit;
         } else {
             echo "<script>alert('Failed to add item to cart.');</script>";
         }
