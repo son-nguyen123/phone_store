@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 8;
+}
+
+.sidebar {
+    flex: 4;
+}
+
+/* Phần nội dung chính */
+.main-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.meta-info {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.main-content img {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.sidebar-item img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.sidebar-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.sidebar-item a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.headlines {
+    font-size: 20px;
+}

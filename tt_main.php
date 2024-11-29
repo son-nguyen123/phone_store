@@ -125,19 +125,19 @@
             <h2 class="section-title">Tin tức</h2>
             <div class="news">
                 <div class="news-item">
-                    <img src="https://www.ttcenter.com.vn/uploads/images/SA%CC%89N%20PHA%CC%82%CC%89M/Th%E1%BB%A9%20s%C3%A1u%20%C4%91en%20t%E1%BB%91i/black%20friday%20-%20T%26T%20Center.png" alt="Black Friday">
+                    <img src="https://www.ttcenter.com.vn/uploads/article/iphone-16-series-chinh-thuc-ra-mat-co-gi-noi-bat-o-dong-iphone-moi-nay-1725952155.webp" alt="">
                     <div class="news-info">
-                        <h3>THỨ SÁU ĐEN TỐI - SIÊU SALE NGẬP LỐI</h3>
-                        <p><span>25/11/2024</span> | <span>1150 lượt xem</span></p>
-                        <a href="#" class="read-more">Xem thêm →</a>
+                        <h3>Apple công bố thời điểm ra mắt iPhone 16 và hàng loạt sản phẩm ấn tượng</h3>
+                        <p><span>27/08/2024</span> | <span>1150 lượt xem</span></p>
+                        <a href="tt_1.php" class="read-more">Xem thêm →</a>
                     </div>
                 </div>
                 <div class="news-item">
-                    <img src="https://www.ttcenter.com.vn/uploads/images/KHUYE%CC%82%CC%81N%20MA%CC%83I/say-hi-nghe-an-ngan-deal-gia-re-1.jpg" alt="Ngàn Deal Giá Rẻ">
+                    <img src="https://www.ttcenter.com.vn/uploads/article/apple-cong-bo-thoi-diem-ra-mat-iphone-16-va-hang-loat-san-pham-an-tuong-1724753051.jpg" alt="">
                     <div class="news-info">
-                        <h3>SAY HI NGHỆ AN - NGÀN DEAL GIÁ RẺ</h3>
-                        <p><span>23/11/2024</span> | <span>71 lượt xem</span></p>
-                        <a href="#" class="read-more">Xem thêm →</a>
+                        <h3>Apple công bố thời điểm ra mắt iPhone 16 và hàng loạt sản phẩm ấn tượng</h3>
+                        <p><span>10/09/2024</span> | <span>71 lượt xem</span></p>
+                        <a href="tt_2.php" class="read-more">Xem thêm →</a>
                     </div>
                 </div>
                 <!-- Add more news items here -->
