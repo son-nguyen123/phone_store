@@ -22,7 +22,6 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
 </head>
@@ -33,7 +32,7 @@ $products = $productStmt->fetchAll();
     <?php include 'web_sections/benefit.html'; ?>
     <?php include 'web_sections/video.html'; ?>
     <?php include 'web_sections/ability.html'; ?>
-    <?php include 'web_sections/comparation.php'; ?>
+    <?php include 'web_sections/comparison.php'; ?>
 
     <div class="new_arrivals">
         <div class="container">
@@ -63,8 +62,8 @@ $products = $productStmt->fetchAll();
                             <div class="product-item iphone">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
-                                        <a href="single.php?product_id=<?php echo $product['product_id']; ?>">
-                                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="100" height="auto">
+                                        <a href="single.php?product_id=<?= $product['product_id']; ?>">
+                                            <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" width="100" height="auto">
                                         </a>
                                     </div>
                                     <div class="favorite favorite_left"></div>
@@ -73,11 +72,11 @@ $products = $productStmt->fetchAll();
                                     </div>
                                     <div class="product_info">
                                         <h6 class="product_name">
-                                            <a href="single.php?product_id=<?php echo $product['product_id']; ?>"><?php echo htmlspecialchars($product['name']); ?></a>
+                                            <a href="single.php?product_id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['name']); ?></a>
                                         </h6>
                                         <div class="product_price">
-                                            $<?php echo number_format($product['price'] * (1 - 0.20), 2); ?>
-                                            <span><?php echo number_format($product['price'], 2); ?></span>
+                                            $<?= number_format($product['price'] * 0.80, 2); ?>
+                                            <span><?= number_format($product['price'], 2); ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +104,7 @@ $products = $productStmt->fetchAll();
                 <?php for ($i = 1; $i <= 3; $i++): ?>
                     <div class="col-lg-4 blog_item_col">
                         <div class="blog_item">
-                            <div class="blog_background" style="background-image:url(images/blog_<?php echo $i; ?>.jpg)"></div>
+                            <div class="blog_background" style="background-image:url(images/blog_<?= $i; ?>.jpg)"></div>
                             <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
                                 <h4 class="blog_title">Here are the trends I see coming this fall</h4>
                                 <span class="blog_meta">by admin | Dec 01, 2017</span>
@@ -141,6 +140,7 @@ $products = $productStmt->fetchAll();
 
     <?php include 'web_sections/footer.php'; ?>
 
+    <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -157,11 +157,9 @@ $products = $productStmt->fetchAll();
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/custom.js"></script>
     <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
     <script src="plugins/easing/easing.js"></script>
+    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 
     <script>
         const wrapper = document.querySelector('.carousel-wrapper');
