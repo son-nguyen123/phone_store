@@ -25,7 +25,7 @@ $products = $productStmt->fetchAll();
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="icon" type="image/x-icon" href="Favicon.ico" />
-
+	 
 	
 </head>
 <!--navbar.php -->
@@ -41,7 +41,7 @@ $products = $productStmt->fetchAll();
 
 	<?php include 'web_sections\ability.html'; ?>
 <!--comparation-->
-	<?php include 'web_sections\comparation.html'; ?>
+	<?php include 'web_sections\comparation.php'; ?>
 
 	<!-- New Arrivals -->
 
