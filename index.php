@@ -28,18 +28,19 @@ $products = $productStmt->fetchAll();
 
 	
 </head>
+<!--navbar.php -->
 <?php include 'web_sections/navbar.php'; ?>
 <body id="page-top">
-	
+<!--banner -->
 <?php include 'web_sections\banner.html'; ?>
-
+<!--benefit -->
 	<?php include 'web_sections\benefit.html'; ?>
-	<!-- Portfolio Grid-->
+	<!-- video-->
 	<?php include 'web_sections\video.html'; ?>
-	<!--test-->
+	<!--ability-->
 
 	<?php include 'web_sections\ability.html'; ?>
-
+<!--comparation-->
 	<?php include 'web_sections\comparation.html'; ?>
 
 	<!-- New Arrivals -->
