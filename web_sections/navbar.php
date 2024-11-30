@@ -32,7 +32,7 @@
                                 </div>
                             </li>
                             <li>
-                                <?php if (isset($_SESSION['username'])): ?>
+                                <?php if (isset($_SESSION['user_id'])): ?>
                                     <a href="logged1.php">
                                         <i class="fa fa-user" aria-hidden="true"></i> <?php echo htmlspecialchars($_SESSION['username']); ?>
                                     </a>

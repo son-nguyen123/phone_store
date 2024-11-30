@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($_POST['login-password'], $user['password_hash'])) {
-            session_start();
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['name'];
             $_SESSION['email'] = $user['email'];
