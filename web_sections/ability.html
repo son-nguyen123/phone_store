@@ -44,26 +44,26 @@
                 </div>
             </div>
         </div>
-        <!-- Left and Right Buttons -->
-        <button id="scrollLeft" class="btn btn-primary position-absolute top-50 start-0 translate-middle-y">
-            &#9664;
-        </button>
-        <button id="scrollRight" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y">
-            &#9654;
-        </button>
-    </div>
+        <button id="scrollLeft" class="btn position-absolute top-50 start-0 translate-middle-y" 
+        style="background-color: gray; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+    &#9664;
+</button>
+<button id="scrollRight" class="btn position-absolute top-50 end-0 translate-middle-y" 
+        style="background-color: gray; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+    &#9654;
+</button>
 </section>
 
 <script>
-    const scrollContainer = document.getElementById('scrollContainer');
-    const scrollLeft = document.getElementById('scrollLeft');
-    const scrollRight = document.getElementById('scrollRight');
+const scrollContainer = document.getElementById('scrollContainer');
+const scrollLeft = document.getElementById('scrollLeft');
+const scrollRight = document.getElementById('scrollRight');
 
-    scrollLeft.addEventListener('click', () => {
-        scrollContainer.scrollLeft -= 300;
-    });
+scrollLeft.addEventListener('click', () => {
+    scrollContainer.scrollLeft -= 300;
+});
 
-    scrollRight.addEventListener('click', () => {
-        scrollContainer.scrollLeft += 300;
-    });
+scrollRight.addEventListener('click', () => {
+    scrollContainer.scrollLeft += 300;
+});
 </script>

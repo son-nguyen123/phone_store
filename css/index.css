@@ -73,3 +73,17 @@
 table td {
     color: black;
 }
+#scrollLeft,
+    #scrollRight {
+        background-color: gray; /* Màu xám cho nút */
+        color: white; /* Màu chữ */
+        border: none; /* Bỏ viền */
+        padding: 10px 20px; /* Tùy chỉnh khoảng cách bên trong */
+        cursor: pointer; /* Thay đổi con trỏ khi hover */
+        border-radius: 5px; /* Tạo bo tròn góc */
+    }
+
+    #scrollLeft:hover,
+    #scrollRight:hover {
+        background-color: darkgray; /* Màu xám đậm hơn khi hover */
+    }

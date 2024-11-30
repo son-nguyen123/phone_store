@@ -19,7 +19,7 @@
             color: #333;
         }
 
-        .container {
+        .containerr {
             display: flex;
             justify-content: space-between;
             margin: 20px;
@@ -120,7 +120,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="containerr">
         <div class="content">
             <h2 class="section-title">Tin tức</h2>
             <div class="news">

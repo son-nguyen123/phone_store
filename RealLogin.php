@@ -65,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css\login.css">
     <link rel="icon" href="Favicon.ico">
     <link rel="icon" href="icon.png" type="image/png">
@@ -75,7 +77,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 <?php include 'web_sections/navbar.php'; ?>
-
+<div class="newsletter">
+        <div class="container">
+          
+        </div>
+    </div>
+    <div class="newsletter">
+        <div class="container">
+          
+        </div>
+    </div>
+    
 <!-- Main Content -->
 <div class="main-content">
     <div class="login-container">
@@ -99,7 +111,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
-
+<div class="newsletter">
+        
+    </div>
+<?php include 'web_sections/footer.php'; ?>
 <!-- Scripts -->
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
