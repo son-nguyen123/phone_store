@@ -1,29 +1,52 @@
+<?php
+include 'db.php';
+
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+
+    $stmt = $pdo->prepare("SELECT cart FROM users WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $cartItems = $stmt->fetchColumn();
+
+    if ($cartItems) {
+        $itemsArray = explode(' ', trim($cartItems));
+        $cart = array_map(function($item) {
+            list($itemId, $quantity) = explode('-', $item);
+            return [
+                'item_id' => $itemId,
+                'quantity' => (int)$quantity
+            ];
+        }, $itemsArray);
+    } else {
+        echo "No cart items found.";
+    }
+} else {
+    echo "User is not logged in.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Colo Shop</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colo Shop</title>
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="LoginStyle.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-    <link rel="icon" type="image/x-icon" href="Favicon.ico" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/responsive.css">
     <link rel="icon" href="icon.png" type="image/png">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             flex-direction: column;
@@ -34,11 +57,9 @@
         .cart {
             color: #fff;
             height: 100%;
-            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
         }
 
         .profile-container {
@@ -60,8 +81,7 @@
             color: white;
         }
 
-        th,
-        td {
+        th, td {
             padding: 8px;
             text-align: center;
             border: 1px solid #ddd;
@@ -133,7 +153,6 @@
             background-color: #fff;
             color: #444;
             border: 1px solid #ccc;
-            cursor: pointer;
         }
 
         .order {
@@ -165,69 +184,71 @@
     <?php include 'web_sections/navbar.php'; ?>
 
     <div class="cart">
-    <div class="profile-container">
-        <h2>Giỏ hàng</h2>
+        <div class="profile-container">
+            <h2>Giỏ hàng</h2>
 
-        <table>
-            <tr class="table1">
-                <th style="width: 5%">STT</th>
-                <th style="width: 30%">Tên sản phẩm</th>
-                <th style="width: 20%">Ảnh sản phẩm</th>
-                <th style="width: 15%">Đơn giá</th>
-                <th style="width: 10%">Số lượng</th>
-                <th style="width: 15%">Thành tiền</th>
-                <th style="width: 5%">Xóa</th>
-            </tr>
+            <table>
+                <tr class="table1">
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Xóa</th>
+                </tr>
 
-            <?php
-            $products = [
-                ['name' => 'IPhone 16', 'price' => 22190000, 'quantity' => 1, 'image' => 'shoe1.jpg'],
-                ['name' => 'IPhone 16 Plus', 'price' => 25490000, 'quantity' => 2, 'image' => 'shoe2.jpg'],
-                ['name' => 'IPhone 16 Promax', 'price' => 34390000, 'quantity' => 1, 'image' => 'shoe3.jpg'],
-            ];
+                <?php
+                $totalAmount = 0;
 
-            $totalAmount = 0;
-            foreach ($products as $index => $product) {
-                $subtotal = $product['price'] * $product['quantity'];
-                $totalAmount += $subtotal;
-                echo "<tr>
-                    <td>" . ($index + 1) . "</td>
-                    <td>{$product['name']}</td>
-                    <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
-                    <td class='total'>" . number_format($product['price'], 0, ',', '.') . " đ</td>
-                    <td><input class='number' type='number' value='{$product['quantity']}' min='1'></td>
-                    <td>" . number_format($subtotal, 0, ',', '.') . " đ</td>
-                    <td><button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button></td>
-                </tr>";
-            }
-            ?>
+                foreach ($cart as $index => $cartItem) {
+                    $stmt = $pdo->prepare("SELECT product_id, name, price, image FROM products WHERE product_id = :product_id");
+                    $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            <tr>
-                <td colspan="5">Tổng tiền</td>
-                <td class="total"><?php echo number_format($totalAmount, 0, ',', '.') . ' đ'; ?></td>
-                <td></td>
-            </tr>
-        </table>
+                    if ($product) {
+                        $subtotal = $product['price'] * $cartItem['quantity'];
+                        $totalAmount += $subtotal;
 
-        <form class="profile-form">
-            <label class="form-label">Người nhận:</label>
-            <input type="text" name="name" required><br><br>
+                        echo "<tr>
+                            <td>" . ($index + 1) . "</td>
+                            <td>{$product['name']}</td>
+                            <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
+                            <td class='total'>" . number_format($product['price'], 0, ',', '.') . " USD</td>
+                            <td><input class='number' type='number' value='{$cartItem['quantity']}' min='1'></td>
+                            <td>" . number_format($subtotal, 0, ',', '.') . " USD</td>
+                            <td><button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button></td>
+                        </tr>";
+                    }
+                }
+                ?>
 
-            <label class="form-label">Điện thoại:</label>
-            <input type="text" name="phone" required><br><br>
+                <tr>
+                    <td colspan="5">Tổng tiền</td>
+                    <td class="total"><?php echo number_format($totalAmount, 0, ',', '.') . ' USD'; ?></td>
+                    <td></td>
+                </tr>
+            </table>
 
-            <label class="form-label">Địa chỉ:</label>
-            <input type="text" name="address" required><br><br>
+            <form class="profile-form">
+                <label>Người nhận:</label>
+                <input type="text" name="name" required>
 
-            <label class="form-label">Ghi chú:</label>
-            <textarea name="notes"></textarea><br><br>
+                <label>Điện thoại:</label>
+                <input type="text" name="phone" required>
 
-            <button class="order" type="submit">Đặt hàng</button>
-        </form>
-    </div>
+                <label>Địa chỉ:</label>
+                <input type="text" name="address" required>
+
+                <label>Ghi chú:</label>
+                <textarea name="notes"></textarea>
+
+                <button class="order" type="submit">Đặt hàng</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

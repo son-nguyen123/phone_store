@@ -1,15 +1,13 @@
 <?php
 include 'db.php';
 
-$productId = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 1;
+$productId = (int)($_GET['product_id'] ?? 1);
 
 $query = "SELECT * FROM products WHERE product_id = :productId";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
 $stmt->execute();
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$product = $product ?: [
+$product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
     'name' => 'Product',
     'storage' => 'N/A',
     'description' => 'No description available.',
@@ -36,13 +34,13 @@ function formatPrice($price) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Single Product</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Single Product</title>
     <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
-    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
@@ -57,8 +55,8 @@ function formatPrice($price) {
 </head>
 <body>
     <div class="super_container">
-        <?php include 'web_sections/navbar.php';?>
-        <?php include '_add_to_card.php';?>
+        <?php include 'web_sections/navbar.php'; ?>
+        <?php include '_add_to_card.php'; ?>
 
         <div class="container single_product_container">
             <div class="row">
@@ -80,18 +78,15 @@ function formatPrice($price) {
                             <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
                                 <div class="single_product_thumbnails">
                                     <ul>
-                                        <?php
-                                        $other_images = explode(' ', $product['other_images']);
-                                        foreach ($other_images as $image) {
-                                            echo '<li><img src="' . htmlspecialchars($image) . '" data-image="' . htmlspecialchars($product['image']) . '"></li>';
-                                        }
-                                        ?>
+                                        <?php foreach (explode(' ', $product['other_images']) as $image): ?>
+                                            <li><img src="<?= htmlspecialchars($image) ?>" data-image="<?= htmlspecialchars($product['image']) ?>"></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-9 image_col order-lg-2 order-1">
                                 <div class="single_product_image">
-                                    <div class="single_product_image_background" style="background-image:url(<?php echo htmlspecialchars($product['image']); ?>)"></div>
+                                    <div class="single_product_image_background" style="background-image:url(<?= htmlspecialchars($product['image']) ?>)"></div>
                                 </div>
                             </div>
                         </div>
@@ -101,14 +96,14 @@ function formatPrice($price) {
                 <div class="col-lg-5">
                     <div class="product_details">
                         <div class="product_details_title">
-                            <h2><?php echo htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
-                            <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+                            <h2><?= htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
+                            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
                         </div>
                         <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
                             <span class="ti-truck"></span><span>free delivery</span>
                         </div>
-                        <div class="original_price"><?php echo formatPrice($product['price']); ?></div>
-                        <div class="product_price"><?php echo formatPrice($product['discount']); ?></div>
+                        <div class="original_price"><?= formatPrice($product['price']) ?></div>
+                        <div class="product_price"><?= formatPrice($product['discount']) ?></div>
                         <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                             <span>Quantity:</span>
                             <div class="quantity_selector">
@@ -118,7 +113,8 @@ function formatPrice($price) {
                             </div>
 
                             <form method="POST" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
+                                <input type="hidden" name="id" value="<?= $product['product_id'] ?>">
+                                <input type="hidden" id="quantity_input" name="quantity" value="1">
                                 <button type="submit" class="red_button add_to_cart_button" style="border: none; color: inherit; cursor: pointer;">
                                     Add to Cart
                                 </button>
@@ -148,7 +144,7 @@ function formatPrice($price) {
                     <div class="col">
                         <div id="tab_1" class="tab_container active">
                             <div class="row">
-                                <div class="long_description"><?php echo $product['long_description']; ?></div>
+                                <div class="long_description"><?= $product['long_description'] ?></div>
                             </div>
                         </div>
 
@@ -159,18 +155,11 @@ function formatPrice($price) {
                                         <h4>Additional Information</h4>
                                     </div>
                                     <table>
-                                        <?php if ($product) { ?>
-                                            <tr><th>Screen Size:</th><td><?php echo htmlspecialchars($product['screen_size']); ?></td></tr>
-                                            <tr><th>Screen Technology:</th><td><?php echo htmlspecialchars($product['screen_technology']); ?></td></tr>
-                                            <tr><th>Rear Camera:</th><td><?php echo htmlspecialchars($product['rear_camera']); ?></td></tr>
-                                            <tr><th>Front Camera:</th><td><?php echo htmlspecialchars($product['front_camera']); ?></td></tr>
-                                            <tr><th>Chipset:</th><td><?php echo htmlspecialchars($product['chipset']); ?></td></tr>
-                                            <tr><th>Internal Memory:</th><td><?php echo htmlspecialchars($product['internal_memory']); ?></td></tr>
-                                            <tr><th>SIM Type:</th><td><?php echo htmlspecialchars($product['sim_type']); ?></td></tr>
-                                            <tr><th>Screen Resolution:</th><td><?php echo htmlspecialchars($product['screen_resolution']); ?></td></tr>
-                                        <?php } else { ?>
-                                            <tr><td colspan="2">No additional information available.</td></tr>
-                                        <?php } ?>
+                                        <?php foreach ($product as $key => $value): ?>
+                                            <?php if (in_array($key, ['screen_size', 'screen_technology', 'rear_camera', 'front_camera', 'chipset', 'internal_memory', 'sim_type', 'screen_resolution'])): ?>
+                                                <tr><th><?= ucfirst(str_replace('_', ' ', $key)) ?>:</th><td><?= htmlspecialchars($value) ?></td></tr>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </table>
                                 </div>
                             </div>
@@ -203,6 +192,30 @@ function formatPrice($price) {
                     document.getElementById(activeTab).classList.add("active");
                     tab.classList.add("active");
                 });
+            });
+
+            const quantityValueElement = document.getElementById("quantity_value");
+            const minusButton = document.querySelector(".minus");
+            const plusButton = document.querySelector(".plus");
+            let quantity = 1;
+
+            minusButton.addEventListener("click", function () {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityValueElement.textContent = quantity;
+                }
+            });
+
+            plusButton.addEventListener("click", function () {
+                quantity++;
+                quantityValueElement.textContent = quantity;
+            });
+
+            const addToCartForm = document.querySelector("form");
+            const quantityInput = document.getElementById("quantity_input");
+
+            addToCartForm.addEventListener("submit", function () {
+                quantityInput.value = quantity;
             });
         });
     </script>

@@ -51,31 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title>SS Shop</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="LoginStyle.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-    <link rel="stylesheet" type="text/css" href="css\login.css">
-    <link rel="icon" href="Favicon.ico">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="icon.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-        
 </head>
-
 <body>
 <?php include 'web_sections/navbar.php'; ?>
 
-<!-- Main Content -->
 <div class="main-content">
     <div class="login-container">
         <h2>Login</h2>
@@ -99,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
