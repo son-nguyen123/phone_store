@@ -15,18 +15,14 @@ $products = $productStmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SS</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
 </head>
 
 <body id="page-top">
@@ -36,26 +32,23 @@ $products = $productStmt->fetchAll();
     <?php include 'web_sections/video.html'; ?>
     <?php include 'web_sections/ability.html'; ?>
     <?php include 'web_sections/comparison.php'; ?>
+    <?php include '_add_to_card.php'; ?>
 
     <div class="new_arrivals">
         <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="section_title new_arrivals_title">
-                        <h2>Products</h2>
-                    </div>
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class="new_arrivals_title">Products</h2>
                 </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col text-center">
-                    <div class="new_arrivals_sorting">
-                        <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                            <li class="grid_sorting_button button active" data-filter="*">All</li>
-                            <li class="grid_sorting_button button" data-filter=".iphone">Iphone</li>
-                            <li class="grid_sorting_button button" data-filter=".samsung">Samsung</li>
-                            <li class="grid_sorting_button button" data-filter=".xiaomi">Xiaomi</li>
-                        </ul>
-                    </div>
+                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                        <li class="grid_sorting_button button active" data-filter="*">All</li>
+                        <li class="grid_sorting_button button" data-filter=".iphone">Iphone</li>
+                        <li class="grid_sorting_button button" data-filter=".samsung">Samsung</li>
+                        <li class="grid_sorting_button button" data-filter=".xiaomi">Xiaomi</li>
+                    </ul>
                 </div>
             </div>
             <div class="row">
@@ -83,7 +76,15 @@ $products = $productStmt->fetchAll();
                                         </div>
                                     </div>
                                 </div>
-                                <div class="red_button add_to_cart_button"><a href="cart.php">Add to cart</a></div>
+                                <div class="red_button add_to_cart_button">
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="id" value="<?= $product['product_id']; ?>">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" style="border: none; color: inherit; cursor: pointer; background: transparent; width: 100%; height: 100%; text-align: center;">
+                                            Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -96,11 +97,9 @@ $products = $productStmt->fetchAll();
 
     <div class="blogs">
         <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="section_title">
-                        <h2>Latest Blogs</h2>
-                    </div>
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Latest Blogs</h2>
                 </div>
             </div>
             <div class="row blogs_container">
@@ -123,15 +122,13 @@ $products = $productStmt->fetchAll();
     <div class="newsletter">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-                        <h4>Newsletter</h4>
-                        <p>Subscribe to our newsletter and get 20% off your first purchase</p>
-                    </div>
+                <div class="col-lg-6 text-center text-lg-left">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter and get 20% off your first purchase</p>
                 </div>
                 <div class="col-lg-6">
                     <form action="post">
-                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <div class="newsletter_form d-flex flex-md-row flex-column align-items-center justify-content-lg-end justify-content-center">
                             <input id="newsletter_email" type="email" placeholder="Your email" required>
                             <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300">Subscribe</button>
                         </div>
@@ -158,26 +155,10 @@ $products = $productStmt->fetchAll();
             });
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
     <script src="plugins/easing/easing.js"></script>
-    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-
-    <script>
-        const wrapper = document.querySelector('.carousel-wrapper');
-        let currentIndex = 0;
-
-        document.querySelector('.carousel-control.left').onclick = () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : 3;
-            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
-
-        document.querySelector('.carousel-control.right').onclick = () => {
-            currentIndex = (currentIndex < 3) ? currentIndex + 1 : 0;
-            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
-    </script>
+    <script src="scrolledPosition.js"></script>
 </body>
 
 </html>

@@ -1,1 +1,1 @@
-# phone_store
+### This project is just full of shits to be honest. I gooned so much and got no fun. Why? Because these 2 motherfuckers ask for quality works while paying no money.
