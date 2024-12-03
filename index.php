@@ -22,6 +22,7 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
 </head>
 

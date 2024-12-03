@@ -50,5 +50,6 @@ $result = $pdo->query($query);
                 ?>
             </tbody>
         </table>
+        <?php include 'add_compar_pro.php'; ?>
     </div>
 </section>
