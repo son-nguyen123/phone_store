@@ -1,9 +1,5 @@
-
-<!-- Nút "Xem thêm" -->
-<button id="toggleButtonCustom" class="compareBtnCustom">Xem thêm</button>
-
-<!-- Giao diện A -->
-<div id="interfaceACustom">
+<!-- Giao diện A: Smartphone Comparison -->
+<div id="interfaceACustom" style="display: block;">
     <div class="containerCustom">
         <div class="breadcrumbCustom">
             <a href="#">Home</a> &gt; <a href="#">Mobiles</a> &gt; <a href="#">Phone Finder</a> &gt; Compare Mobile Phones
@@ -32,150 +28,69 @@
         </div>
         <button id="compareBtn" class="compareBtnCustom" style="background-color: black; color: white;">Compare</button>
     </div>
-    <div class="containerCustom">
-        <h1>Smartphone Comparison</h1>
-        <table class="comparisonTableCustom">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Product 1</th>
-                    <th>Product 2</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="buttonContainerCustom">
-            <a href="#">View Details</a>
-            <a href="#">Buy Now</a>
-        </div>
-    </div>
-</div>
+    <h1>Smartphone Comparison</h1>
+    <table class="comparisonTableCustom">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Product 1</th>
+                <th>Product 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Name</td><td><?= htmlspecialchars($product1['name'] ?? 'N/A') ?></td><td><?= htmlspecialchars($product2['name'] ?? 'N/A') ?></td></tr>
+            <tr><td>Screen Size</td><td><?= htmlspecialchars($product1['screen_size'] ?? 'N/A') ?></td><td><?= htmlspecialchars($product2['screen_size'] ?? 'N/A') ?></td></tr>
+            <tr><td>Chipset</td><td><?= htmlspecialchars($product1['chipset'] ?? 'N/A') ?></td><td><?= htmlspecialchars($product2['chipset'] ?? 'N/A') ?></td></tr>
+            <tr><td>Price</td><td><?= number_format($product1['price'] ?? 0) ?> VND</td><td><?= number_format($product2['price'] ?? 0) ?> VND</td></tr>
+        </tbody>
+    </table>
 
 <script>
-    
-    // Hiển thị/ẩn giao diện A
-    const toggleButtonCustom = document.getElementById('toggleButtonCustom');
-    const interfaceACustom = document.getElementById('interfaceACustom');
-
-    toggleButtonCustom.addEventListener('click', () => {
-        if (interfaceACustom.style.display === 'none' || interfaceACustom.style.display === '') {
-            interfaceACustom.style.display = 'block'; // Hiện giao diện A
-            toggleButtonCustom.textContent = 'Ẩn';
-        } else {
-            interfaceACustom.style.display = 'none'; // Ẩn giao diện A
-            toggleButtonCustom.textContent = 'Xem thêm';
-        }
-    });
-
+    document.addEventListener('DOMContentLoaded', () => {
+    // Hàm tìm kiếm sản phẩm
     function searchComponents(inputId, dropdownId) {
-        const searchQuery = document.getElementById(inputId).value.trim();
-        const searchDropdown = document.getElementById(dropdownId);
+        const query = document.getElementById(inputId).value;
 
-        if (searchQuery.length > 0) {
-            searchDropdown.style.display = 'block';
-
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", `_search.php?search=${encodeURIComponent(searchQuery)}`, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        let output = response.length === 0 ? 
-                            "<div class='dropdown-item' disabled>No results found</div>" : 
-                            response.map(product => `
-                            <div class='dropdown-item' onclick='selectProduct("${inputId}", "${product.name}")'>
-                                <img src='${product.image}' alt='${product.name}' style='width: 60px; height: 60px; margin-right: 10px;'>
-                                <div>
-                                    <strong>${product.name}</strong>
-                                    <span>${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</span>
-                                </div>
-                            </div>`).join('');
-                        searchDropdown.innerHTML = output;
-                    } catch (error) {
-                        console.error("Error parsing JSON:", error);
-                        searchDropdown.innerHTML = "<div class='dropdown-item' disabled>Invalid response from server</div>";
-                    }
-                }
-            };
-            xhr.send();
-        } else {
-            searchDropdown.style.display = 'none';
-        }
-    }
-
-    function selectProduct(inputId, productName) {
-        const inputElement = document.getElementById(inputId);
-        inputElement.value = productName;
-        const searchDropdown = document.getElementById(inputId.replace('Query', 'Dropdown'));
-        searchDropdown.style.display = 'none';
-    }
-
-    document.getElementById('compareBtn').addEventListener('click', () => {
-        const product1Name = document.getElementById('searchQuery1').value.trim();
-        const product2Name = document.getElementById('searchQuery2').value.trim();
-
-        if (!product1Name || !product2Name) {
-            alert('Vui lòng chọn hai sản phẩm để so sánh!');
+        if (query.length < 2) {
+            document.getElementById(dropdownId).innerHTML = '';
             return;
         }
 
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "compare_products.php", true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        fetch(`search_and_compare.php?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const dropdown = document.getElementById(dropdownId);
+                dropdown.innerHTML = '';
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                try {
-                    const response = JSON.parse(xhr.responseText);
-
-                    if (response.success) {
-                        updateComparisonTable(response.products);
-                    } else {
-                        alert('Không tìm thấy sản phẩm hoặc có lỗi xảy ra!');
-                    }
-                } catch (error) {
-                    console.error("Error parsing response JSON:", error);
-                    alert('Có lỗi xảy ra trong quá trình xử lý!');
-                }
-            }
-        };
-
-        xhr.send(JSON.stringify({ product1: product1Name, product2: product2Name }));
-    });
-
-    function updateComparisonTable(products) {
-        const comparisonTable = document.querySelector('.comparisonTableCustom tbody');
-        comparisonTable.innerHTML = ''; 
-
-        const featureKeys = [
-            'image', 'screen_size', 'screen_technology', 'rear_camera', 
-            'front_camera', 'chipset', 'internal_memory', 'sim_type', 
-            'screen_resolution'
-        ];
-
-        featureKeys.forEach((key) => {
-            const row = document.createElement('tr');
-
-            const featureCell = document.createElement('td');
-            featureCell.textContent = key === 'image' ? 'Feature' : key.replace('_', ' ').toUpperCase();
-            row.appendChild(featureCell);
-
-            products.forEach(product => {
-                const productCell = document.createElement('td');
-                if (key === 'image') {
-                    const img = document.createElement('img');
-                    img.src = product[key];
-                    img.alt = product.name;
-                    img.style.width = '60px';
-                    img.style.height = '60px';
-                    productCell.appendChild(img);
-                } else {
-                    productCell.textContent = product[key] || 'N/A';
-                }
-                row.appendChild(productCell);
+                data.forEach(product => {
+                    const div = document.createElement('div');
+                    div.textContent = product.name;
+                    div.dataset.productId = product.product_id;
+                    div.style.cursor = 'pointer';
+                    div.addEventListener('click', () => {
+                        document.getElementById(inputId).value = product.name;
+                        dropdown.innerHTML = '';
+                        dropdown.dataset.selectedId = product.product_id;
+                    });
+                    dropdown.appendChild(div);
+                });
             });
-
-            comparisonTable.appendChild(row);
-        });
     }
+
+    // Hàm điều hướng đến trang so sánh khi nhấn "Compare"
+    document.getElementById('compareBtn').addEventListener('click', () => {
+        const dropdown1 = document.getElementById('searchDropdown1');
+        const dropdown2 = document.getElementById('searchDropdown2');
+
+        const product1Id = dropdown1.dataset.selectedId || '';
+        const product2Id = dropdown2.dataset.selectedId || '';
+
+        if (product1Id && product2Id) {
+            window.location.href = `compare.php?product1_id=${product1Id}&product2_id=${product2Id}`;
+        } else {
+            alert('Vui lòng chọn cả hai sản phẩm để so sánh!');
+        }
+    });
+});
+
 </script>

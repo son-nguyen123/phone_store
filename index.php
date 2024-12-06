@@ -1,3 +1,4 @@
+
 <?php
 include 'db.php';
 
@@ -24,6 +25,10 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
+    <style>
+        .comparisonTableCustom { width: 100%; border-collapse: collapse; }
+        .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }
+    </style>
 </head>
 
 <body id="page-top">
@@ -96,29 +101,7 @@ $products = $productStmt->fetchAll();
 
     <?php include 'web_sections/bestseller.php'; ?>
 
-    <div class="blogs">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h2>Latest Blogs</h2>
-                </div>
-            </div>
-            <div class="row blogs_container">
-                <?php for ($i = 1; $i <= 3; $i++): ?>
-                    <div class="col-lg-4 blog_item_col">
-                        <div class="blog_item">
-                            <div class="blog_background" style="background-image:url(images/blog_<?= $i; ?>.jpg)"></div>
-                            <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-                                <h4 class="blog_title">Here are the trends I see coming this fall</h4>
-                                <span class="blog_meta">by admin | Dec 01, 2017</span>
-                                <a class="blog_more" href="#">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endfor; ?>
-            </div>
-        </div>
-    </div>
+    <?php include 'web_sections/news.php'; ?>
 
     <div class="newsletter">
         <div class="container">

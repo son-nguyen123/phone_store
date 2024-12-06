@@ -1,15 +1,35 @@
+header hoản hảo
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
     <title>Bài viết</title>
-    <link rel="stylesheet" href="style_tt.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> 1
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css"> 1
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css"> 1
+    <link rel="stylesheet" href="styles/main_styles.css"> 1
+    <link rel="stylesheet" href="styles/responsive.css"> 1
+    <link rel="stylesheet" href="css/index.css"> 1
+    <link rel="stylesheet" href="css/footer.css"> 1
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/comparison_website.css"> 1
+    <link rel="icon" href="Favicon.ico" type="image/x-icon"> 1
+    <style>
+    
+
+
+    </style>
 </head>
 
 <body>
-    <div class="container">
+
+<?php include 'web_sections/navbar.php'; ?>
+    <div class="containershort">
         <!-- Phần bài viết chính -->
         <div class="main-content">
             <h1>Apple công bố thời điểm ra mắt iPhone 16 và hàng loạt sản phẩm ấn tượng</h1>
@@ -25,7 +45,7 @@
                 <br><br>
                 Như thường lệ, các dòng iPhone mới luôn được Apple ra mắt vào tháng 9 và năm nay cũng không ngoại lệ, sự kiện này sẽ được diễn ra vào vào 10h sáng 9/9 (giờ Mỹ), tức 0h ngày 10/9 (giờ Việt Nam). Với thông điệp “It's Glowtime”, những sản phẩm được ra mắt trong sự kiện này có thể bao gồm iPhone 16, AirPods 4 và loạt Apple Watch mới.
             </p>
-            <img src="https://www.ttcenter.com.vn/uploads/images/TIN%20TU%CC%9B%CC%81C/Tin%20co%CC%82ng%20nghe%CC%A3%CC%82/iPhone%2016/a1-3186-1724688134%20(1)%20(1).jpg" alt="Apple Event">
+            <img src="images/newspaper1.jpg" alt="Apple Event">
             <p>
                 Cũng giống như sự trình làng của iPhone 14, iPhone 15, màn ra mắt của iPhone 16 cũng sẽ được ghi hình và phát trực tiếp trên internet để các tín đồ công nghệ có thể theo dõi. Tại trụ sở Apple, giới truyền thông, báo chí sẽ được mời đến để trải nghiệm thực tế các sản phẩm mới để có những đánh giá khách quan nhất.
                 <br><br>
@@ -37,7 +57,7 @@
                 <br><br>
                 Về dòng iPhone 16 Pro và 16 Pro Max có thể trang bị con chip cao cấp hơn là chip A18 Pro, kích thước màn hình được tăng lên lần lượt 6,3 và 6,9 inch. Dự kiến thiết bị sẽ được bổ sung nút Capture và khả năng zoom 5x trên iPhone 16 Pro. Đồn đoán rằng, 2 bản iPhone cao cấp này sẽ có những tùy chọn màu như titan đen, titan tự nhiên, titan trắng và titan đồng.
             </p>
-            <img src="https://www.ttcenter.com.vn/uploads/images/TIN%20TU%CC%9B%CC%81C/Tin%20co%CC%82ng%20nghe%CC%A3%CC%82/iPhone%2016/apple-cong-bo-thoi-diem-ra-mat-iphone-16-2.jpg" alt="">
+            <img src="images/newspaper1.jpg" alt="">
             <p>
                 Một điểm nổi bật về phần mềm trên dòng iPhone 16 mới là Apple Intelligence. Bộ công cụ trí tuệ nhân tạo (AI) mang đến hàng loạt tính năng tiện lợi như xóa vật thể khỏi ảnh, ghi âm cuộc gọi, cải tiến Siri và tích hợp cả ChatGPT. Tuy nhiên, nhiều khả năng những tính năng này sẽ không được tích hợp sẵn trên iPhone 16 lên kệ, mà sẽ có ở bản cập nhật iOS sau.
                 <br><br>
