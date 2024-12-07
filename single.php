@@ -51,6 +51,12 @@ function formatPrice($price) {
     <style>
         .tab_container { display: none; }
         .tab_container.active { display: block; }
+        .long_description img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
     </style>
 </head>
 <body>
@@ -126,7 +132,7 @@ function formatPrice($price) {
                 </div>
             </div>
         </div>
-
+<!--this code includes tab description-->
         <div class="tabs_section_container">
             <div class="container">
                 <div class="row">
@@ -140,6 +146,7 @@ function formatPrice($price) {
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col">
                         <div id="tab_1" class="tab_container active">
@@ -177,7 +184,7 @@ function formatPrice($price) {
             </div>
         </div>
     </div>
-
+<!--end-->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const tabs = document.querySelectorAll(".tab");

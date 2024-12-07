@@ -1,21 +1,35 @@
-
 <?php
 include 'db.php';
 
-$productStmt = $pdo->query("SELECT * FROM products");
+// Lấy giá trị sắp xếp và lọc từ URL
+$order = isset($_GET['order']) ? $_GET['order'] : '';
+$brand_filter = isset($_GET['brand']) ? $_GET['brand'] : '';
+
+// Xử lý lọc theo brand
+if ($brand_filter) {
+    $productStmt = $pdo->prepare("SELECT * FROM products WHERE brand = :brand");
+    $productStmt->execute(['brand' => $brand_filter]);
+} elseif ($order == 'low-high') {
+    $productStmt = $pdo->query("SELECT * FROM products ORDER BY price ASC");
+} elseif ($order == 'high-low') {
+    $productStmt = $pdo->query("SELECT * FROM products ORDER BY price DESC");
+} else {
+    // Nếu không có sắp xếp và lọc, lấy tất cả sản phẩm
+    $productStmt = $pdo->query("SELECT * FROM products");
+}
+
 $products = $productStmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SS</title>
 
+    <!-- Thêm các liên kết CSS và JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -23,6 +37,7 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sortby.css">
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <style>
@@ -30,7 +45,6 @@ $products = $productStmt->fetchAll();
         .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }
     </style>
 </head>
-
 <body id="page-top">
     <?php include 'web_sections/navbar.php'; ?>
     <?php include 'web_sections/banner.html'; ?>
@@ -41,27 +55,35 @@ $products = $productStmt->fetchAll();
     <?php include '_add_to_card.php'; ?>
 
     <div class="new_arrivals">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h2 class="new_arrivals_title">Products</h2>
+        <div class="container" style="margin-top: 1px;">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase rainbow">Products</h2>
+            </div>
+
+            <div class="sort-container">
+                <span>Sắp xếp theo</span>
+                <div class="sort-options">
+                    <a href="?order=" class="sort-option <?= $order == '' ? 'active' : '' ?>">All</a>
+                    <a href="?order=low-high" class="sort-option <?= $order == 'low-high' ? 'active' : '' ?>">Thấp đến cao</a>
+                    <a href="?order=high-low" class="sort-option <?= $order == 'high-low' ? 'active' : '' ?>">Cao đến thấp</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-center">
-                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                        <li class="grid_sorting_button button active" data-filter="*">All</li>
-                        <li class="grid_sorting_button button" data-filter=".iphone">Iphone</li>
-                        <li class="grid_sorting_button button" data-filter=".samsung">Samsung</li>
-                        <li class="grid_sorting_button button" data-filter=".xiaomi">Xiaomi</li>
-                    </ul>
+
+            <div class="sort-container">
+                <span>Chọn thương hiệu</span>
+                <div class="sort-options">
+                    <a href="?brand=" class="sort-option <?= $brand_filter == '' ? 'active' : '' ?>">All</a>
+                    <a href="?brand=apple" class="sort-option <?= $brand_filter == 'apple' ? 'active' : '' ?>">Apple</a>
+                    <a href="?brand=samsung" class="sort-option <?= $brand_filter == 'samsung' ? 'active' : '' ?>">Samsung</a>
+                    <a href="?brand=xiaomi" class="sort-option <?= $brand_filter == 'xiaomi' ? 'active' : '' ?>">Xiaomi</a>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
                         <?php foreach ($products as $product): ?>
-                            <div class="product-item iphone">
+                            <div class="product-item <?= strtolower($product['brand']); ?>">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
                                         <a href="single.php?product_id=<?= $product['product_id']; ?>">
@@ -98,7 +120,6 @@ $products = $productStmt->fetchAll();
             </div>
         </div>
     </div>
-
     <?php include 'web_sections/bestseller.php'; ?>
 
     <?php include 'web_sections/news.php'; ?>

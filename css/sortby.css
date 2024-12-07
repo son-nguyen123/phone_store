@@ -1,0 +1,82 @@
+.fromsize {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+.sort-container {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.sort-container span {
+    margin-right: 20px;
+    font-size: 14px;
+    color: #666;
+}
+.sort-options {
+    display: flex;
+    gap: 10px;
+}
+.sort-option {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+.sort-option.active {
+    background-color: #f44336;
+    color: #fff;
+    border-color: #f44336;
+}
+.sort-option:hover {
+    background-color: #f44336;
+    color: #fff;
+}
+.price-dropdown {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.price-dropdown select {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.pagination span {
+    font-size: 14px;
+    color: #f44336;
+    margin-right: 10px;
+}
+.pagination button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.pagination button:hover {
+    background-color: #f44336;
+    color: #fff;
+    border-color: #f44336;
+}
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
