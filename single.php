@@ -1,14 +1,14 @@
-
 <?php
 include 'db.php';
 
 $productId = (int)($_GET['product_id'] ?? 1);
 
+// Truy vấn sản phẩm
 $query = "SELECT * FROM products WHERE product_id = :productId";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
 $stmt->execute();
-$product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
+$product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [ 
     'name' => 'Product',
     'storage' => 'N/A',
     'description' => 'No description available.',
@@ -27,10 +27,39 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
     'screen_resolution' => ''
 ];
 
+// Hàm định dạng giá
 function formatPrice($price) {
     return number_format($price) . ' VND';
 }
+
+// Xử lý yêu cầu POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
+    $commentText = trim($_POST['comment_text']);
+    if (!empty($commentText) && isset($_SESSION['user_id'])) {
+        $insertStmt = $pdo->prepare("INSERT INTO comments (user_id, product_id, product_table, content, time) VALUES (:user_id, :product_id, :product_table, :content, DATETIME('now'))");
+        $insertStmt->execute([
+            'user_id' => $_SESSION['user_id'],
+            'product_id' => $productId,
+            'product_table' => 'products',
+            'content' => $commentText
+        ]);
+        header("Location: {$_SERVER['PHP_SELF']}?product_id=$productId");
+        exit;
+    }
+}
+
+// Truy vấn danh sách bình luận
+$commentStmt = $pdo->prepare("
+    SELECT comments.content, comments.time, users.name, users.profile_image
+    FROM comments 
+    JOIN users ON comments.user_id = users.user_id
+    WHERE comments.product_id = :product_id AND comments.product_table = 'products'
+    ORDER BY comments.comment_id DESC
+");
+$commentStmt->execute(['product_id' => $productId]);
+$comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,68 +90,55 @@ function formatPrice($price) {
         }
        
 
-.comment-section {
-    width: 80%;
-    margin: 0 auto;
-    background-color: white;
+        .comment-section {
+    background-color: #f9f9f9;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.comment-form {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.comment-form input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    margin-right: 10px;
-}
-
-.comment-form button {
-    padding: 10px 20px;
-    background-color: #ff4500;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.comment {
-    display: flex;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #fafafa;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 15px;
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
-.comment-content {
-    flex-grow: 1;
+.comment-form button {
+    float: right;
+    padding: 8px 16px;
 }
 
-.comment-content .username {
+.comment-list .comment-item {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.comment-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.comment-author {
     font-weight: bold;
     color: #333;
 }
 
-.comment-content .text {
-    color: #555;
-    margin-top: 5px;
+.comment-time {
+    font-size: 12px;
+    color: #999;
 }
 
+.comment-content {
+    margin-top: 8px;
+    color: #555;
+}
     </style>
 </head>
 <body>
@@ -239,22 +255,46 @@ function formatPrice($price) {
                         </div>
 
                         <div id="tab_3" class="tab_container">
-                            <div class="row">
-                                <div class="col">
-                                    <h4>Reviews</h4>
-                                    <div class="comment-section">
-    <form method="post" action="single.php">
-        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']); ?>">
-        <div class="comment-form">
-            <input type="text" name="comment_text" id="comment_text" placeholder="Viết bình luận..." required />
-            <button type="submit" name="comment">Gửi</button>
+    <div class="row">
+        <div class="col">
+            <h4>Reviews</h4>
+            <div class="comment-section">
+                <!-- Nếu người dùng đã đăng nhập -->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <form method="post" action="">
+                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId); ?>">
+                        <div class="comment-form mb-4">
+                            <textarea name="comment_text" id="comment_text" rows="3" class="form-control" placeholder="Viết bình luận..." required></textarea>
+                            <button type="submit" name="comment" class="btn btn-primary mt-2">Gửi</button>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <p><a href="RealLogin.php">Đăng nhập</a> để bình luận.</p>
+                <?php endif; ?>
+
+                <!-- Hiển thị danh sách bình luận -->
+                <?php if (!empty($comments)): ?>
+                    <ul class="comment-list list-unstyled">
+                        <?php foreach ($comments as $comment): ?>
+                            <li class="media my-3 p-3 rounded comment-item">
+                                <img src="<?= htmlspecialchars($comment['profile_image']) ?>" alt="<?= htmlspecialchars($comment['name']) ?>" class="mr-3 rounded-circle comment-avatar">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 comment-author"><?= htmlspecialchars($comment['name']) ?>
+                                        <small class="text-muted comment-time"><?= date("F j, Y, g:i a", strtotime($comment['time'])) ?></small>
+                                    </h5>
+                                    <p class="comment-content"><?= htmlspecialchars($comment['content']) ?></p>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
+                <?php endif; ?>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
 
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
