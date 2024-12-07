@@ -1,3 +1,4 @@
+
 <?php
 include 'db.php';
 
@@ -48,6 +49,7 @@ function formatPrice($price) {
     <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="styles/single_styles.css">
     <link rel="stylesheet" href="styles/single_responsive.css">
+    
     <style>
         .tab_container { display: none; }
         .tab_container.active { display: block; }
@@ -57,6 +59,70 @@ function formatPrice($price) {
             margin-right: auto;
             
         }
+       
+
+.comment-section {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.comment-form input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.comment-content {
+    flex-grow: 1;
+}
+
+.comment-content .username {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-content .text {
+    color: #555;
+    margin-top: 5px;
+}
+
     </style>
 </head>
 <body>
@@ -176,6 +242,16 @@ function formatPrice($price) {
                             <div class="row">
                                 <div class="col">
                                     <h4>Reviews</h4>
+                                    <div class="comment-section">
+    <form method="post" action="single.php">
+        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']); ?>">
+        <div class="comment-form">
+            <input type="text" name="comment_text" id="comment_text" placeholder="Viết bình luận..." required />
+            <button type="submit" name="comment">Gửi</button>
+        </div>
+    </form>
+</div>
+
                                 </div>
                             </div>
                         </div>

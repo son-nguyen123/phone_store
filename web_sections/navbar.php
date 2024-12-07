@@ -18,37 +18,44 @@
                             <li><a href="lienhe.php">Liên Hệ</a></li>
                         </ul>
                         <ul class="navbar_user">
-                            <li class="search-bar">
-                                <button id="searchBtn" class="search-btn">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                                <div class="search-container">
-                                    <input
-                                        type="text"
-                                        id="searchQuery"
-                                        placeholder="Nhập sản phẩm cần tìm"
-                                        onkeyup="searchComponents()">
-                                    <div id="searchDropdown" class="dropdown-results"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <?php if (isset($_SESSION['user_id'])): ?>
-                                    <a href="logged1.php">
-                                        <i class="fa fa-user" aria-hidden="true"></i> <?php echo htmlspecialchars($_SESSION['username']); ?>
-                                    </a>
-                                <?php else: ?>
-                                    <a href="RealLogin.php">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                    </a>
-                                <?php endif; ?>
-                            </li>
-                            <li class="checkout">
-                                <a href="cart.php">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <span id="checkout_items" class="checkout_items"></span>
-                                </a>
-                            </li>
-                        </ul>
+    <li class="search-bar">
+        <button id="searchBtn" class="search-btn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        <div class="search-container">
+            <input
+                type="text"
+                id="searchQuery"
+                placeholder="Nhập sản phẩm cần tìm"
+                onkeyup="searchComponents()">
+            <div id="searchDropdown" class="dropdown-results"></div>
+        </div>
+    </li>
+    <li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="logged1.php">
+                <!-- Hiển thị ảnh đại diện nếu có trong session -->
+                <?php if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])): ?>
+                    <img src="<?= htmlspecialchars($_SESSION['profile_image']); ?>" alt="User Avatar" class="user-avatar">
+                <?php else: ?>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                <?php endif; ?>
+                <?php echo htmlspecialchars($_SESSION['username']); ?>
+            </a>
+        <?php else: ?>
+            <a href="RealLogin.php">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+        <?php endif; ?>
+    </li>
+    <li class="checkout">
+        <a href="cart.php">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span id="checkout_items" class="checkout_items"></span>
+        </a>
+    </li>
+</ul>
+
                     </nav>
                 </div>
             </div>
@@ -198,6 +205,12 @@
             font-size: 14px;
         }
     }
+    .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
 </style>
 
 <script>

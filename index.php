@@ -40,6 +40,7 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="css/sortby.css">
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/navbar.css">
     <style>
         .comparisonTableCustom { width: 100%; border-collapse: collapse; }
         .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }
