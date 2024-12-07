@@ -73,6 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($user['name']); ?>'s Profile</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sortby.css">
+    <link rel="stylesheet" href="css/comparison_website.css">
+    <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
         body, html { height: 100%; display: flex; justify-content: center; align-items: center; background-color: #fff; }
@@ -90,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+<?php include 'web_sections/navbar.php'; ?>
     <div class="profile-container">
         <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
         <form class="profile-form" method="post" enctype="multipart/form-data">
@@ -107,5 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
     </div>
+    
 </body>
 </html>
