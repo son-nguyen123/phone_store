@@ -4,20 +4,49 @@ include 'db.php';
 // Lấy giá trị sắp xếp và lọc từ URL
 $order = isset($_GET['order']) ? $_GET['order'] : '';
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : '';
+$min_price = isset($_GET['min_price']) ? (float)$_GET['min_price'] : null;
+$max_price = isset($_GET['max_price']) ? (float)$_GET['max_price'] : null;
 
-// Xử lý lọc theo brand
+// Khởi tạo câu lệnh cơ sở
+$query = "SELECT * FROM products WHERE 1";
+
+// Lọc theo thương hiệu
 if ($brand_filter) {
-    $productStmt = $pdo->prepare("SELECT * FROM products WHERE brand = :brand");
-    $productStmt->execute(['brand' => $brand_filter]);
-} elseif ($order == 'low-high') {
-    $productStmt = $pdo->query("SELECT * FROM products ORDER BY price ASC");
-} elseif ($order == 'high-low') {
-    $productStmt = $pdo->query("SELECT * FROM products ORDER BY price DESC");
-} else {
-    // Nếu không có sắp xếp và lọc, lấy tất cả sản phẩm
-    $productStmt = $pdo->query("SELECT * FROM products");
+    $query .= " AND brand = :brand";
 }
 
+// Lọc theo giá
+if ($min_price !== null && $max_price !== null) {
+    $query .= " AND (price * 0.80) BETWEEN :min_price AND :max_price";
+} elseif ($min_price !== null) {
+    $query .= " AND (price * 0.80) >= :min_price";
+} elseif ($max_price !== null) {
+    $query .= " AND (price * 0.80) <= :max_price";
+}
+
+// Xử lý sắp xếp
+if ($order == 'low-high') {
+    $query .= " ORDER BY price ASC";
+} elseif ($order == 'high-low') {
+    $query .= " ORDER BY price DESC";
+}
+
+// Chuẩn bị câu lệnh
+$productStmt = $pdo->prepare($query);
+
+// Gán giá trị cho các tham số
+if ($brand_filter) {
+    $productStmt->bindParam(':brand', $brand_filter, PDO::PARAM_STR);
+}
+if ($min_price !== null) {
+    $productStmt->bindParam(':min_price', $min_price, PDO::PARAM_INT);
+}
+if ($max_price !== null) {
+    $productStmt->bindParam(':max_price', $max_price, PDO::PARAM_INT);
+}
+
+// Thực thi truy vấn
+$productStmt->execute();
 $products = $productStmt->fetchAll();
 ?>
 
@@ -44,14 +73,24 @@ $products = $productStmt->fetchAll();
     <style>
         .comparisonTableCustom { width: 100%; border-collapse: collapse; }
         .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }
+        /* Đảm bảo chữ ẩn đi và chỉ hiện khi hover */
+.boxRect .content {
+    opacity: 0; /* Ẩn nội dung */
+    transition: opacity 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động khi hiển thị */
+}
+
+.boxRect:hover .content {
+    opacity: 1; /* Hiển thị chữ khi hover */
+}
+
     </style>
 </head>
 <body id="page-top">
     <?php include 'web_sections/navbar.php'; ?>
     <?php include 'web_sections/banner.html'; ?>
     <?php include 'web_sections/benefit.html'; ?>
-    <?php include 'web_sections/video.html'; ?>
-    <?php include 'web_sections/ability.html'; ?>
+    <?php include 'web_sections/video.php'; ?>
+    <?php include 'web_sections/ability.php'; ?>
     <?php include 'web_sections/comparison.php'; ?>
     <?php include '_add_to_card.php'; ?>
 
@@ -80,6 +119,18 @@ $products = $productStmt->fetchAll();
                 </div>
             </div>
 
+            <div class="sort-container">
+                <span>Lọc theo giá</span>
+                <form method="GET" class="price-filter-form">
+                    <div class="d-flex">
+                        <input type="number" name="min_price" placeholder="Min Price" value="<?= isset($min_price) ? $min_price : ''; ?>" class="form-control">
+                        <span>-</span>
+                        <input type="number" name="max_price" placeholder="Max Price" value="<?= isset($max_price) ? $max_price : ''; ?>" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Apply</button>
+                </form>
+            </div>
+
             <div class="row">
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
@@ -100,8 +151,8 @@ $products = $productStmt->fetchAll();
                                             <a href="single.php?product_id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['name']); ?></a>
                                         </h6>
                                         <div class="product_price">
-                                            $<?= number_format($product['price'] * 0.80, 2); ?>
-                                            <span><?= number_format($product['price'], 2); ?></span>
+                                            <?= number_format($product['price'] * 0.80, 0, ',', '.'); ?> VNĐ
+                                            <span><?= number_format($product['price'], 0, ',', '.'); ?> VNĐ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,6 +172,7 @@ $products = $productStmt->fetchAll();
             </div>
         </div>
     </div>
+
     <?php include 'web_sections/bestseller.php'; ?>
 
     <?php include 'web_sections/news.php'; ?>
@@ -166,5 +218,4 @@ $products = $productStmt->fetchAll();
     <script src="plugins/easing/easing.js"></script>
     <script src="scrolledPosition.js"></script>
 </body>
-
 </html>
