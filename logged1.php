@@ -84,23 +84,125 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body, html { height: 100%; display: flex; justify-content: center; align-items: center; background-color: #fff; }
-        .profile-container { background-color: #ffcf99; padding: 30px; border-radius: 8px; max-width: 600px; width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-        .profile-avatar { display: flex; justify-content: center; margin-bottom: 20px; }
-        .profile-avatar img { width: 100px; height: 100px; border-radius: 50%; }
-        .profile-form label { font-size: 0.9em; color: #444; margin-top: 10px; display: block; }
-        .profile-form input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; background-color: #fff3e6; color: #444; }
-        .save-changes-button, .sign-out-button { width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        .save-changes-button { background-color: #fd7e14; color: #fff; }
-        .save-changes-button:hover { background-color: #fd9d4e; }
-        .sign-out-button { background-color: #c00; color: #fff; }
-        .sign-out-button:hover { background-color: #dc3545; }
+        body {
+            background-color: #f2f2f2;  
+        }
+
+        .sanh {
+            color: #fff;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-container {
+            margin-top: 130px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profile-form,
+        .change-password {
+            margin-bottom: 20px;
+        }
+
+        .profile-form label,
+        .change-password label {
+            font-size: 1.1em;
+            color: black;
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .profile-form input,
+        .change-password input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #444;
+            font-size: 1em;
+            border: 1px solid #ccc;
+        }
+
+        .profile-form input[type="file"] {
+            padding: 4px;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .save-changes-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .save-changes-button:hover {
+            background-color: #212529;
+        }
+
+        .sign-out-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .sign-out-button:hover {
+            background-color: #212529;
+        }
+
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .profile-container {
+                padding: 40px;
+            }
+        }
     </style>
 </head>
 
 <body>
 <?php include 'web_sections/navbar.php'; ?>
+<div class="sanh">
     <div class="profile-container">
         <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
         <form class="profile-form" method="post" enctype="multipart/form-data">
@@ -118,6 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
     </div>
-    
+    </div>
 </body>
 </html>

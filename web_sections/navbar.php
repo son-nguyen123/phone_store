@@ -8,13 +8,10 @@
                     </div>
                     <nav class="navbar">
                         <ul class="navbar_menu">
-                            <li><a href="index.php">Cửa Hàng</a></li>
                             <li><a href="iphone.php">Iphone</a></li>
                             <li><a href="samsung.php">Samsung</a></li>
                             <li><a href="xiaomi.php">Xiaomi</a></li>
-                            <li><a href="realmes.php">Realmes</a></li>
-                            <li><a href="phukien.php">Phụ Kiện</a></li>
-                            <li><a href="hotro.php">Hổ Trợ</a></li>
+                            <li><a href="hotro.php">Hỗ Trợ</a></li>
                             <li><a href="lienhe.php">Liên Hệ</a></li>
                         </ul>
                         <ul class="navbar_user">
