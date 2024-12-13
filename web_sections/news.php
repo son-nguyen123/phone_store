@@ -12,7 +12,12 @@
             echo '<div class="blog_background" style="background-image:url(' . htmlspecialchars($blog['image_news']) . '); background-size: cover; background-position: center;"></div>';
             echo '<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">';
             echo '<h4 class="blog_title">' . htmlspecialchars($blog['news']) . '</h4>'; // Display the blog title
-            echo '<span class="blog_meta">by admin | Dec 01, 2017</span>'; // Adjust date and author dynamically if available in DB
+            
+            // Format and display the author and time dynamically
+            $time = new DateTime($blog['time']);
+            $formattedTime = $time->format('M d, Y'); // Format time as 'Month Day, Year'
+            echo '<span class="blog_meta">by ' . htmlspecialchars($blog['author']) . ' | ' . $formattedTime . '</span>'; // Adjust date and author dynamically
+            
             echo '<a class="blog_more" href="blog.php?id=' . urlencode($blog['id']) . '">Read more</a>';
             echo '</div></div></div>';
         }

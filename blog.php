@@ -18,6 +18,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     die("ID bài viết không hợp lệ.");
 }
+
+// Lấy tiêu đề bài báo để hiển thị trên thẻ <title>
+$title = htmlspecialchars($blog['news']);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
-    <title><?= htmlspecialchars($blog['news']) ?></title>
+    <title><?= $title ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -43,22 +46,28 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <div class="containershort">
         <!-- Phần bài viết chính -->
         <div class="main-content">
-            <h1><?= htmlspecialchars($blog['news']) ?></h1>
+            <h1 style="text-align: center;"><?= htmlspecialchars($blog['news']) ?></h1>
             <div class="meta-info">
-                <span>Ngày đăng: 27/08/2024</span> <!-- Bạn có thể thêm cột ngày đăng vào bảng nếu cần -->
-                <span>Tác giả: Vĩnh Sanh</span> <!-- Tương tự, thêm cột tác giả nếu cần -->
-                <span>👁️ 579 lượt xem</span> <!-- Có thể thêm cột lượt xem và cập nhật nếu cần -->
+                <span>Ngày đăng: <?= htmlspecialchars($blog['time']) ?></span>
+                <span>Tác giả: <?= htmlspecialchars($blog['author']) ?></span>
             </div>
-            <p>
-                <!-- Nội dung bài viết -->
-                Sau bao ngày chờ đợi, Apple đã chính thức công bố thời điểm ra mắt iPhone 16.
-            </p>
-            <img src="<?= htmlspecialchars($blog['image_news']) ?>" alt="Main Image" class="img-fluid">
-            <p>
-                <!-- Thêm nội dung tiếp theo -->
-                Đây là nội dung minh họa cho bài viết.
-            </p>
-            <img src="<?= htmlspecialchars($blog['others_image_news']) ?>" alt="Other Image" class="img-fluid">
+
+            <!-- Hiển thị các hình ảnh và văn bản bổ sung từ others_image_news -->
+            <?php
+            $otherImages = json_decode($blog['others_image_news'], true);
+            if ($otherImages && is_array($otherImages)):
+                foreach ($otherImages as $item):
+            ?>
+                <div class="other-image-section">
+                    <img src="<?= htmlspecialchars($item['image']) ?>" alt="Other Image" class="img-fluid">
+                    <p><?= htmlspecialchars($item['text']) ?></p>
+                </div>
+            <?php
+                endforeach;
+            else:
+                echo "<p>Không có hình ảnh bổ sung nào để hiển thị.</p>";
+            endif;
+            ?>
         </div>
 
         <!-- Phần cột bên phải -->
@@ -73,7 +82,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             ?>
                 <div class="sidebar-item">
                     <img src="<?= htmlspecialchars($relatedBlog['image_news']) ?>" alt="Image" class="img-fluid">
-                    <a href="blog.php?id=<?= htmlspecialchars($relatedBlog['id']) ?>">
+                    <a href="blog.php?id=<?= urlencode($relatedBlog['id']) ?>">
                         <?= htmlspecialchars($relatedBlog['news']) ?>
                     </a>
                 </div>
