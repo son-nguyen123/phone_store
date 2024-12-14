@@ -68,24 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($user['name']); ?>'s Profile</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/sortby.css">
-    <link rel="stylesheet" href="css/comparison_website.css">
-    <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <style>
         body {
-            background-color: #f2f2f2;  
+            background-color: #f2f2f2;
         }
 
         .sanh {
@@ -201,25 +196,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<?php include 'web_sections/navbar.php'; ?>
-<div class="sanh">
-    <div class="profile-container">
-        <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
-        <form class="profile-form" method="post" enctype="multipart/form-data">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" value="<?= htmlspecialchars($user['name']); ?>" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" readonly>
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" value="<?= htmlspecialchars($user['date_of_birth']); ?>">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']); ?>">
-            <label for="profile-image">Select an image (JPG, PNG)</label>
-            <input type="file" id="profile-image" name="profile_image" accept=".jpg, .jpeg, .png">
-            <button type="submit" class="save-changes-button" name="save-changes">Save Changes</button>
-        </form>
-        <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
-    </div>
+    <?php include 'web_sections/navbar.php'; ?>
+    <div class="sanh">
+        <div class="profile-container">
+            <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
+            <form class="profile-form" method="post" enctype="multipart/form-data">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="<?= htmlspecialchars($user['name']); ?>" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" readonly>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" value="<?= htmlspecialchars($user['date_of_birth']); ?>">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']); ?>">
+                <label for="profile-image">Select an image (JPG, PNG)</label>
+                <input type="file" id="profile-image" name="profile_image" accept=".jpg, .jpeg, .png">
+                <button type="submit" class="save-changes-button" name="save-changes">Save Changes</button>
+            </form>
+            <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
+        </div>
     </div>
 </body>
+
 </html>
