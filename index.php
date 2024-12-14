@@ -83,6 +83,7 @@ $products = $productStmt->fetchAll();
     opacity: 1; /* Hiển thị chữ khi hover */
 }
 
+
     </style>
 </head>
 <body id="page-top">

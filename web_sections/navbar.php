@@ -1,62 +1,64 @@
 <header class="header trans_500">
-    <div class="main_nav_container">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-right">
-                    <div class="logo_container" style="text-align: left; padding: 10px;margin-left: 0;">
-                        <a href="index.php" style="font-family: 'Roboto', sans-serif; font-size: 36px; font-weight: bold; color: #333; text-decoration: none;">SSHOP</a>
+    <div class="main_nav_container" style="margin-right: 20px;>
+        <div class="container" >
+            <div class="row align-items-center" >
+                <!-- Logo và menu bên trái -->
+                <div class="col-lg-6" >
+                    <div class="logo_container">
+                    <a href="index.php" class="logo" style="margin-left: 100px; font-size: 32px;">SSHOP</a>
+
                     </div>
-                    <nav class="navbar">
+                    
+                    <nav class="navbar" style=" margin-left: 20px; ">
                         <ul class="navbar_menu">
                             <li><a href="index.php">Cửa Hàng</a></li>
-                            <li><a href="iphone.php">Iphone</a></li>
-                            <li><a href="samsung.php">Samsung</a></li>
-                            <li><a href="xiaomi.php">Xiaomi</a></li>
-                            <li><a href="realmes.php">Realmes</a></li>
-                            <li><a href="phukien.php">Phụ Kiện</a></li>
-                            <li><a href="hotro.php">Hổ Trợ</a></li>
-                            <li><a href="lienhe.php">Liên Hệ</a></li>
+                            <li><a href="iphone.php">Sản phẩm</a></li>
+                            <li><a href="samsung.php">Tin tức</a></li>
+                            <li><a href="xiaomi.php">Liên hệ</a></li>
+                            <li><a href="realmes.php">Về Chúng Tôi</a></li>
                         </ul>
-                        <ul class="navbar_user">
-    <li class="search-bar">
-        <button id="searchBtn" class="search-btn">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-        <div class="search-container">
-            <input
-                type="text"
-                id="searchQuery"
-                placeholder="Nhập sản phẩm cần tìm"
-                onkeyup="searchComponents()">
-            <div id="searchDropdown" class="dropdown-results"></div>
-        </div>
-    </li>
-    <li>
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="logged1.php">
-                <!-- Hiển thị ảnh đại diện nếu có trong session -->
-                <?php if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])): ?>
-                    <img src="<?= htmlspecialchars($_SESSION['profile_image']); ?>" alt="User Avatar" class="user-avatar">
-                <?php else: ?>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                <?php endif; ?>
-                <?php echo htmlspecialchars($_SESSION['username']); ?>
-            </a>
-        <?php else: ?>
-            <a href="RealLogin.php">
-                <i class="fa fa-user" aria-hidden="true"></i>
-            </a>
-        <?php endif; ?>
-    </li>
-    <li class="checkout">
-        <a href="cart.php">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <span id="checkout_items" class="checkout_items"></span>
-        </a>
-    </li>
-</ul>
-
                     </nav>
+                </div>
+
+                <!-- Tìm kiếm và giỏ hàng bên phải -->
+                <div class="col-lg-6 d-flex justify-content-end align-items-center">
+                    <div class="search-bar" style="margin-right: 10px;">
+                        <button id="searchBtn" class="search-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <div class="search-container">
+                            <input
+                                type="text"
+                                id="searchQuery"
+                                placeholder="Nhập sản phẩm cần tìm"
+                                onkeyup="searchComponents()">
+                            <div id="searchDropdown" class="dropdown-results"></div>
+                        </div>
+                    </div>
+                    <ul class="navbar_user" style="margin-right: 120px;">
+                        <li>
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a href="logged1.php">
+                                    <?php if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])): ?>
+                                        <img src="<?= htmlspecialchars($_SESSION['profile_image']); ?>" alt="User Avatar" class="user-avatar">
+                                    <?php else: ?>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    <?php endif; ?>
+                                    <?php echo htmlspecialchars($_SESSION['username']); ?>
+                                </a>
+                            <?php else: ?>
+                                <a href="RealLogin.php">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </a>
+                            <?php endif; ?>
+                        </li>
+                        <li class="checkout" style="margin-left: 30px;">
+                            <a href="cart.php">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span id="checkout_items" class="checkout_items"></span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

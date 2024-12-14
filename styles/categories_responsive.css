@@ -93,7 +93,7 @@
 	}
 	.navbar_menu
 	{
-		display: none;
+		display: fleblock;
 	}
 	.hamburger_container
 	{

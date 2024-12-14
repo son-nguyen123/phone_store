@@ -1,0 +1,27 @@
+.navbar_menu {
+    text-align: left; /* Căn chỉnh các mục menu sang trái */
+    padding: 0; /* Loại bỏ khoảng cách thừa (nếu có) */
+    margin: 0;
+}
+
+.navbar_menu li {
+    display: inline-block; /* Hiển thị các mục trên cùng một hàng */
+}
+
+.navbar_menu li a {
+    display: block;
+    color: #1e1e27;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 20px;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.navbar_menu li a:hover {
+    color: #b5aec4;
+}
