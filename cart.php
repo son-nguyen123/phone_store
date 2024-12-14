@@ -27,6 +27,7 @@ if (isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,25 +45,196 @@ if (isset($_SESSION['user_id'])) {
     <link rel="icon" href="icon.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        body { flex-direction: column; background-color: #f2f2f2; font-family: Arial, sans-serif; }
-        .cart { color: #fff; height: 100%; display: flex; justify-content: center; align-items: center; }
-        .profile-container { width: 80%; padding: 20px; border: 2px solid #ddd; border-radius: 8px; background-color: white; margin-top: 50%; margin-bottom: 3%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-        table { width: 100%; border-collapse: collapse; background-color: #adb3b8; margin-bottom: 5%; color: white; }
-        th, td { padding: 8px; text-align: center; border: 1px solid #ddd; }
-        .total { font-weight: bold; color: #40ff00; }
-        h2 { text-align: center; margin-bottom: 3%; font-size: 50px; }
-        .form-label { display: inline-block; width: 100%; font-weight: bold; }
-        .table1 { background-color: #6c757d; }
-        .number { width: 40px; }
-        .delete-button { background-color: red; border: none; border-radius: 4px; padding: 3px; color: white; }
-        .delete-button:hover { background-color: #ff8080; }
-        .profile-form label { font-size: 1.1em; color: black; margin-top: 10px; display: block; font-weight: bold; }
-        .profile-form input, .profile-form textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; background-color: #fff; color: #444; font-size: 1em; border: 1px solid #ccc; }
-        .order { width: 100%; padding: 12px; margin-top: 20px; border: none; border-radius: 4px; background-color: #3a3a3a; color: #fff; font-weight: bold; cursor: pointer; font-size: 1em; }
-        .order:hover { background-color: #212529; }
-        @media (min-width: 768px) { .profile-container { padding: 40px; } }
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .cart {
+            color: #fff;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            width: 100%;
+        }
+
+        .profile-container {
+            width: 80%;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            margin-top: 450px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #adb3b8;
+            margin-bottom: 5%;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .total {
+            font-weight: bold;
+            color: #40ff00;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .form-label {
+            display: inline-block;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .table1 {
+            background-color: #6c757d;
+        }
+
+        .number {
+            width: 40px;
+        }
+
+        .profile-form label {
+            font-size: 1.1em;
+            color: black;
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .profile-form input,
+        .profile-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #444;
+            font-size: 1em;
+            border: 1px solid #ccc;
+        }
+
+        .order {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .order:hover {
+            background-color: #212529;
+        }
+
+        .thanh {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .delivery-status {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .status-step p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .status-step .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #d3d3d3;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-step.completed .dot {
+            background-color: #4caf50;
+        }
+
+        .status-step .dot.checked {
+            width: 16px;
+            height: 16px;
+            background-color: #4caf50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-step .dot.checked::after {
+            content: "✔";
+            color: white;
+            font-size: 10px;
+        }
+
+        .status-line-1 {
+            flex: 1;
+            height: 2px;
+            background-color: #4caf50;
+            margin-left: -50px;
+            margin-right: -14px;
+            margin-top: 0px;
+            margin-bottom: 45px;
+        }
+
+        .status-line-2 {
+            flex: 1;
+            height: 2px;
+            background-color: #4caf50;
+            margin-left: -14px;
+            margin-right: -12px;
+            margin-top: 0px;
+            margin-bottom: 45px;
+        }
+
+        .status-step.completed+ {
+            background-color: #4caf50;
+        }
+
+        @media (min-width: 768px) {
+            .profile-container {
+                padding: 40px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <?php include 'web_sections/navbar.php'; ?>
 
@@ -82,19 +254,19 @@ if (isset($_SESSION['user_id'])) {
                 </tr>
 
                 <?php
-                    $totalAmount = 0;
+                $totalAmount = 0;
 
-                    foreach ($cart as $index => $cartItem) {
-                        $stmt = $pdo->prepare("SELECT product_id, name, price, image FROM products WHERE product_id = :product_id");
-                        $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
-                        $stmt->execute();
-                        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+                foreach ($cart as $index => $cartItem) {
+                    $stmt = $pdo->prepare("SELECT product_id, name, price, image FROM products WHERE product_id = :product_id");
+                    $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                        if ($product) {
-                            $subtotal = $product['price'] * $cartItem['quantity'];
-                            $totalAmount += $subtotal;
+                    if ($product) {
+                        $subtotal = $product['price'] * $cartItem['quantity'];
+                        $totalAmount += $subtotal;
 
-                            echo "<tr>
+                        echo "<tr>
                                 <td>" . ($index + 1) . "</td>
                                 <td>{$product['name']}</td>
                                 <td><img src='{$product['image']}' alt='Product Image' width='50'></td>
@@ -108,8 +280,8 @@ if (isset($_SESSION['user_id'])) {
                                     <button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button>
                                 </td>
                             </tr>";
-                        }
                     }
+                }
                 ?>
 
                 <tr>
@@ -132,6 +304,27 @@ if (isset($_SESSION['user_id'])) {
                 <label>Ghi chú:</label>
                 <textarea name="notes"></textarea>
 
+                <div class="thanh">
+                    <div class="delivery-status">
+                        <div class="status-bar">
+                            <div class="status-step completed">
+                                <span class="dot checked"></span>
+                                <p>Thông tin khách hàng</p>
+                            </div>
+                            <div class="status-line-1"></div>
+                            <div class="status-step completed">
+                                <span class="dot"></span>
+                                <p>Thanh toán</p>
+                            </div>
+                            <div class="status-line-2"></div>
+                            <div class="status-step completed">
+                                <span class="dot"></span>
+                                <p>Vận chuyển</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <button class="order" type="submit">Đặt hàng</button>
             </form>
         </div>
@@ -146,7 +339,9 @@ if (isset($_SESSION['user_id'])) {
             $.ajax({
                 url: '_remove_from_cart.php',
                 type: 'POST',
-                data: { product_id: productId },
+                data: {
+                    product_id: productId
+                },
                 success: function(response) {
                     if (response === 'success') {
                         row.remove();
@@ -170,7 +365,10 @@ if (isset($_SESSION['user_id'])) {
             $.ajax({
                 url: '_update_cart.php',
                 type: 'POST',
-                data: { product_id: productId, quantity: newQuantity },
+                data: {
+                    product_id: productId,
+                    quantity: newQuantity
+                },
                 success: function(response) {
                     if (response === 'success') {
                         var price = parseFloat(row.querySelector('.total').innerText.replace(' USD', '').replace(',', ''));
@@ -200,4 +398,5 @@ if (isset($_SESSION['user_id'])) {
         }
     </script>
 </body>
+
 </html>

@@ -68,56 +68,154 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($user['name']); ?>'s Profile</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/sortby.css">
-    <link rel="stylesheet" href="css/comparison_website.css">
-    <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body, html { height: 100%; display: flex; justify-content: center; align-items: center; background-color: #fff; }
-        .profile-container { background-color: #ffcf99; padding: 30px; border-radius: 8px; max-width: 600px; width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-        .profile-avatar { display: flex; justify-content: center; margin-bottom: 20px; }
-        .profile-avatar img { width: 100px; height: 100px; border-radius: 50%; }
-        .profile-form label { font-size: 0.9em; color: #444; margin-top: 10px; display: block; }
-        .profile-form input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; background-color: #fff3e6; color: #444; }
-        .save-changes-button, .sign-out-button { width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        .save-changes-button { background-color: #fd7e14; color: #fff; }
-        .save-changes-button:hover { background-color: #fd9d4e; }
-        .sign-out-button { background-color: #c00; color: #fff; }
-        .sign-out-button:hover { background-color: #dc3545; }
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .sanh {
+            color: #fff;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-container {
+            margin-top: 130px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profile-form,
+        .change-password {
+            margin-bottom: 20px;
+        }
+
+        .profile-form label,
+        .change-password label {
+            font-size: 1.1em;
+            color: black;
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .profile-form input,
+        .change-password input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #444;
+            font-size: 1em;
+            border: 1px solid #ccc;
+        }
+
+        .profile-form input[type="file"] {
+            padding: 4px;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .save-changes-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .save-changes-button:hover {
+            background-color: #212529;
+        }
+
+        .sign-out-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .sign-out-button:hover {
+            background-color: #212529;
+        }
+
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .profile-container {
+                padding: 40px;
+            }
+        }
     </style>
 </head>
 
 <body>
-<?php include 'web_sections/navbar.php'; ?>
-    <div class="profile-container">
-        <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
-        <form class="profile-form" method="post" enctype="multipart/form-data">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" value="<?= htmlspecialchars($user['name']); ?>" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" readonly>
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" value="<?= htmlspecialchars($user['date_of_birth']); ?>">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']); ?>">
-            <label for="profile-image">Select an image (JPG, PNG)</label>
-            <input type="file" id="profile-image" name="profile_image" accept=".jpg, .jpeg, .png">
-            <button type="submit" class="save-changes-button" name="save-changes">Save Changes</button>
-        </form>
-        <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
+    <?php include 'web_sections/navbar.php'; ?>
+    <div class="sanh">
+        <div class="profile-container">
+            <div class="profile-avatar"><img src="<?= htmlspecialchars($user['profile_image']); ?>" alt="Profile Avatar"></div>
+            <form class="profile-form" method="post" enctype="multipart/form-data">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="<?= htmlspecialchars($user['name']); ?>" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" readonly>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" value="<?= htmlspecialchars($user['date_of_birth']); ?>">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']); ?>">
+                <label for="profile-image">Select an image (JPG, PNG)</label>
+                <input type="file" id="profile-image" name="profile_image" accept=".jpg, .jpeg, .png">
+                <button type="submit" class="save-changes-button" name="save-changes">Save Changes</button>
+            </form>
+            <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
+        </div>
     </div>
-    
 </body>
+
 </html>

@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>SS Shop</title>
     <meta charset="utf-8">
@@ -57,71 +58,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="LoginStyle.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css\login.css">
-    <link rel="icon" href="Favicon.ico">
-    <link rel="icon" href="icon.png" type="image/png">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-        
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+    </style>
+
 </head>
 
 <body>
-<?php include 'web_sections/navbar.php'; ?>
-<div class="newsletter">
+    <?php include 'web_sections/navbar.php'; ?>
+    <div class="newsletter">
         <div class="container">
-          
+
         </div>
     </div>
     <div class="newsletter">
         <div class="container">
-          
+
         </div>
     </div>
-    
-<!-- Main Content -->
-<div class="main-content">
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="POST">
-            <div class="form-group">
-                <label for="login-username-email">Username/Email</label>
-                <input type="text" class="form-control" id="login-username-email" name="login-username-email" placeholder="Enter username or email" required>
-            </div>
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password" required>
-            </div>
-            <button type="submit" name="login" class="login-button">Login</button>
-            <div class="forgot-password">
-                <a href="forgot_password.php">Forgot password?</a>
-            </div>
-            <div class="register">
-                <p>Don’t have an account? <a href="RealRegister.php">Sign up now</a></p>
-            </div>
-        </form>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="login-username-email">Username/Email</label>
+                    <input type="text" class="form-control" id="login-username-email" name="login-username-email" placeholder="Enter username or email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit" name="login" class="login-button">Login</button>
+                <div class="forgot-password">
+                    <a href="forgot_password.php">Forgot password?</a>
+                </div>
+                <div class="register">
+                    <p>Don’t have an account? <a href="RealRegister.php">Sign up now</a></p>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<div class="newsletter">
-        
+    <div class="newsletter">
+
     </div>
-<?php include 'web_sections/footer.php'; ?>
-<!-- Scripts -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="js/custom.js"></script>
+    <?php include 'web_sections/footer.php'; ?>
+    <!-- Scripts -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="styles/bootstrap4/popper.js"></script>
+    <script src="styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="plugins/easing/easing.js"></script>
+    <script src="js/custom.js"></script>
 </body>
+
 </html>
