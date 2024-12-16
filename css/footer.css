@@ -91,3 +91,50 @@
         width: 100%;
       }
     }
+    .social-links a {
+      display: inline-block; /* Make the links align horizontally */
+      margin: 10px; /* Add space between the icons */
+  }
+  
+  .social-links .social-icon {
+      width: 40px; /* Set the width of the icons */
+      height: 40px; /* Set the height of the icons */
+      border-radius: 50%; /* Make the image circular */
+      object-fit: cover; /* Ensure the image is properly cropped to fit the circle */
+      transition: transform 0.3s ease; /* Add a smooth transition for hover effect */
+  }
+  
+  .social-links .social-icon:hover {
+      transform: scale(1.1); /* Enlarge the icon slightly on hover */
+  }
+  .faa:hover {
+			opacity: 0.9;
+		}
+
+		.faa-linkedin {
+			background: #007bb5;
+			color: white;
+		}
+
+		.faa-pinterest {
+			background: #cb2027;
+			color: white;
+		}
+
+		.faa-reddit {
+			background: #ff5700;
+			color: white;
+		}
+
+		.faa {
+			padding: 20px;
+			font-size: 40px;
+			width: 60px;
+			text-decoration: none;
+			margin: 5px 80px;
+		}
+
+		h1 {
+			color: green;
+		}
+  

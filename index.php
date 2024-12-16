@@ -70,6 +70,7 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         .comparisonTableCustom { width: 100%; border-collapse: collapse; }
         .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }

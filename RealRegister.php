@@ -1,4 +1,57 @@
-RealRegister
+<?php
+require 'db.php'; // Kết nối cơ sở dữ liệu
+session_start(); // Bắt đầu session
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
+    // Lấy dữ liệu từ biểu mẫu
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['retype-password'];
+    $dob = $_POST['dob'];
+
+    // Kiểm tra các trường bắt buộc
+    if (empty($username) || empty($email) || empty($password) || empty($dob)) {
+        echo "<script>alert('All fields are required.');</script>";
+    } elseif ($password !== $confirmPassword) {
+        echo "<script>alert('Passwords do not match.');</script>";
+    } else {
+        try {
+            // Kiểm tra xem username hoặc email đã tồn tại chưa
+            $stmt = $pdo->prepare("SELECT user_id FROM users WHERE name = :username OR email = :email");
+            $stmt->execute(['username' => $username, 'email' => $email]);
+
+            if ($stmt->rowCount() > 0) {
+                echo "<script>alert('Username or email already exists.');</script>";
+            } else {
+                // Mã hóa mật khẩu
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+                // Thực hiện thêm người dùng mới
+                $stmt = $pdo->prepare("
+                    INSERT INTO users (name, email, password_hash, date_of_birth, profile_image, cart, address) 
+                    VALUES (:name, :email, :password_hash, :dob, 'default.jpg', '', '')
+                ");
+                $success = $stmt->execute([
+                    'name' => $username,
+                    'email' => $email,
+                    'password_hash' => $passwordHash,
+                    'dob' => $dob,
+                ]);
+
+                if ($success) {
+                    echo "<script>alert('Registration successful!'); window.location.href='RealLogin.php';</script>";
+                } else {
+                    echo "<script>alert('Error. Please try again.');</script>";
+                }
+            }
+        } catch (PDOException $e) {
+            echo "<script>alert('Database error: " . $e->getMessage() . "');</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,39 +125,6 @@ RealRegister
 </head>
 <body>
     <?php include 'web_sections/navbar.php'; ?>
-    <?php
-    require 'db.php';
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup'])) {
-        $username = trim($_POST['username']);
-        $email = trim($_POST['email']);
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['retype-password'];
-        $dob = $_POST['dob'];
-
-        if (empty($username) || empty($email) || empty($password) || empty($dob)) {
-            echo "<script>alert('All fields are required.');</script>";
-        } elseif ($password !== $confirmPassword) {
-            echo "<script>alert('Passwords do not match.');</script>";
-        } else {
-            $stmt = $pdo->prepare("SELECT user_id FROM users WHERE name = :username OR email = :email");
-            $stmt->execute(['username' => $username, 'email' => $email]);
-
-            if ($stmt->rowCount() > 0) {
-                echo "<script>alert('Username or email already exists.');</script>";
-            } else {
-                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash, date_of_birth, profile_image) 
-                                       VALUES (:name, :email, :password_hash, :dob, 'default.jpg')");
-                if ($stmt->execute(['name' => $username, 'email' => $email, 'password_hash' => $passwordHash, 'dob' => $dob])) {
-                    echo "<script>alert('Registration successful!'); window.location.href='RealLogin.php';</script>";
-                } else {
-                    echo "<script>alert('Error. Please try again.');</script>";
-                }
-            }
-        }
-    }
-    ?>
     <div class="main-content">
         <div class="register-container">
             <h2>Register</h2>
@@ -129,7 +149,7 @@ RealRegister
                     <label for="signup-dob">Date of Birth</label>
                     <input type="date" class="form-control" id="signup-dob" name="dob" required>
                 </div>
-                <button class="button">Sign Up</button>
+                <button class="button" name="signup">Sign Up</button>
             </form>
         </div>
     </div>
