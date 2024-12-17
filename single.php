@@ -3,16 +3,20 @@ include 'db.php';
 
 $productId = (int)($_GET['product_id'] ?? 1);
 
+// Truy vấn sản phẩm
+// Khởi tạo câu lệnh cơ sở
+$query = "SELECT * FROM products WHERE 1";
 $query = "SELECT * FROM products WHERE product_id = :productId";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
 $stmt->execute();
-$product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
+$product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [ 
     'name' => 'Product',
     'storage' => 'N/A',
     'description' => 'No description available.',
-    'price' => 0,
-    'discount' => 0,
+    'price' => null, // Đặt null làm mặc định
+    'sale_price' => null, // Đặt null làm mặc định
+    'sale_percent' => null, // Đặt null làm mặc định
     'image' => 'default-image.jpg',
     'other_images' => 'default-image.jpg',
     'long_description' => '',
@@ -26,10 +30,39 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
     'screen_resolution' => ''
 ];
 
+// Hàm định dạng giá
 function formatPrice($price) {
-    return number_format($price) . ' VND';
+    if ($price === null || $price === '') {
+        return 'N/A'; // Giá trị mặc định nếu giá trị không hợp lệ
+    }
+    return number_format((float)$price, 0, ',', '.') . ' VND';
 }
 
+// Xử lý logic hiển thị giá
+function renderPriceDetails($product) {
+    $price = $product['price'] ?? null;
+    $sale_price = $product['sale_price'] ?? null;
+    $sale_percent = $product['sale_percent'] ?? null;
+
+    if ($price !== null) {
+        if ($sale_price !== null) {
+            // Có cả price và sale_price
+            return '<div class="original_price">' . formatPrice($price) . '</div>' .
+                   '<div class="product_price">' . formatPrice($sale_price) . '</div>';
+        } elseif ($sale_percent !== null) {
+            // Có price và sale_percent
+            $discounted_price = $price - ($price * $sale_percent / 100);
+            return '<div class="original_price">' . formatPrice($price) . '</div>' .
+                   '<div class="product_price">' . formatPrice($discounted_price) . '</div>';
+        } else {
+            // Chỉ có price
+            return '<div class="product_price">' . formatPrice($price) . '</div>';
+        }
+    }
+    return '<div class="product_price">Price not available</div>'; // Trường hợp không có giá
+}
+
+// Truy vấn danh sách bình luận
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
     $commentText = trim($_POST['comment_text']);
     if (!empty($commentText) && isset($_SESSION['user_id'])) {
@@ -45,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
     }
 }
 
+// Truy vấn danh sách bình luận
 $commentStmt = $pdo->prepare("
     SELECT comments.content, comments.time, users.name, users.profile_image
     FROM comments 
@@ -55,6 +89,7 @@ $commentStmt = $pdo->prepare("
 $commentStmt->execute(['product_id' => $productId]);
 $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +108,7 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="styles/single_styles.css">
     <link rel="stylesheet" href="styles/single_responsive.css">
+    
     <style>
         .tab_container { display: none; }
         .tab_container.active { display: block; }
@@ -80,60 +116,89 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
             display: block;
             margin-left: auto;
             margin-right: auto;
+            
         }
+       
 
         .comment-section {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .comment-form textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
 
-        .comment-form button {
-            float: right;
-            padding: 8px 16px;
-        }
+.comment-form button {
+    float: right;
+    padding: 8px 16px;
+}
 
-        .comment-list .comment-item {
-            display: flex;
-            align-items: flex-start;
-            background: #fff;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-        }
+.comment-list .comment-item {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+}
 
-        .comment-avatar {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-        }
+.comment-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
 
-        .comment-author {
-            font-weight: bold;
-            color: #333;
-        }
+.comment-author {
+    font-weight: bold;
+    color: #333;
+}
 
-        .comment-time {
-            font-size: 12px;
-            color: #999;
-        }
+.comment-time {
+    font-size: 12px;
+    color: #999;
+}
 
-        .comment-content {
-            margin-top: 8px;
-            color: #555;
-        }
+.comment-content {
+    margin-top: 8px;
+    color: #555;
+}
+.comment-box {
+    position: relative;
+    width: 100%; /* Điều chỉnh chiều rộng của khung */
+}
+
+.comment-box textarea {
+    width: 100%;
+    padding-right: 60px; /* Tạo khoảng trống bên phải cho nút gửi */
+    box-sizing: border-box;
+    resize: none;
+}
+
+.comment-box button {
+    position: absolute;
+    right: 10px; /* Khoảng cách từ phải */
+    bottom: 10px; /* Khoảng cách từ dưới */
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.comment-box button:hover {
+    background-color: #0056b3;
+}
     </style>
 </head>
-
 <body>
     <div class="super_container">
         <?php include 'web_sections/navbar.php'; ?>
@@ -160,14 +225,14 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="single_product_thumbnails">
                                     <ul>
                                         <?php foreach (explode(' ', $product['other_images']) as $image): ?>
-                                            <li><img src="<?= htmlspecialchars($image) ?>" class="thumbnail-image" data-large="<?= htmlspecialchars($image) ?>"></li>
+                                            <li><img src="<?= htmlspecialchars($image) ?>" data-image="<?= htmlspecialchars($product['image']) ?>"></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-9 image_col order-lg-2 order-1">
                                 <div class="single_product_image">
-                                    <img id="main-product-image" src="<?= htmlspecialchars($product['image']) ?>" alt="Main Product Image">
+                                    <div class="single_product_image_background" style="background-image:url(<?= htmlspecialchars($product['image']) ?>)"></div>
                                 </div>
                             </div>
                         </div>
@@ -175,16 +240,18 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="col-lg-5">
-                    <div class="product_details">
-                        <div class="product_details_title">
-                            <h2><?= htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
-                            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
-                        </div>
-                        <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                            <span class="ti-truck"></span><span>free delivery</span>
-                        </div>
-                        <div class="original_price"><?= formatPrice($product['price']) ?></div>
-                        <div class="product_price"><?= formatPrice($product['discount']) ?></div>
+    <div class="product_details">
+        <div class="product_details_title">
+            <h2><?= htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
+            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
+        </div>
+
+        <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+            <span class="ti-truck"></span><span>Free delivery</span>
+        </div>
+
+        <!-- Hiển thị giá -->
+        <?= renderPriceDetails($product); ?>
                         <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                             <span>Quantity:</span>
                             <div class="quantity_selector">
@@ -207,7 +274,7 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-
+<!--this code includes tab description-->
         <div class="tabs_section_container">
             <div class="container">
                 <div class="row">
@@ -247,102 +314,95 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-                        <div id="tab_3" class="tab_container">
-                            <div class="row">
-                                <div class="col">
-                                    <h4>Reviews</h4>
-                                    <div class="comment-section">
-                                        <?php if (isset($_SESSION['user_id'])): ?>
-                                            <form method="post" action="">
-                                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId); ?>">
-                                                <div class="comment-form mb-4">
-                                                    <textarea name="comment_text" id="comment_text" rows="3" class="form-control" placeholder="Viết bình luận..." required></textarea>
-                                                    <button type="submit" name="comment" class="btn btn-primary mt-2">Gửi</button>
-                                                </div>
-                                            </form>
-                                        <?php else: ?>
-                                            <p><a href="RealLogin.php">Đăng nhập</a> để bình luận.</p>
-                                        <?php endif; ?>
+                        <!-- Tab Reviews (2) -->
+<div id="tab_3" class="tab_container">
+    <div class="row">
+        <div class="col">
+            <h4>Reviews (<?= count($comments) ?>)</h4> <!-- Hiển thị số lượng bình luận -->
+            <div class="comment-section">
+                <!-- Nếu người dùng đã đăng nhập -->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                   <form method="post" action="">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId); ?>">
+    <div class="comment-box">
+        <textarea name="comment_text" id="comment_text" rows="4" class="form-control" placeholder="Viết bình luận..." required></textarea>
+        <button type="submit" name="comment">Gửi</button>
+    </div>
+</form>
+                <?php else: ?>
+                    <p><a href="RealLogin.php">Đăng nhập</a> để bình luận.</p>
+                <?php endif; ?>
 
-                                        <?php if (!empty($comments)): ?>
-                                            <ul class="comment-list list-unstyled">
-                                                <?php foreach ($comments as $comment): ?>
-                                                    <li class="media my-3 p-3 rounded comment-item">
-                                                        <img src="<?= htmlspecialchars($comment['profile_image']) ?>" alt="<?= htmlspecialchars($comment['name']) ?>" class="mr-3 rounded-circle comment-avatar">
-                                                        <div class="media-body">
-                                                            <h5 class="mt-0 mb-1 comment-author"><?= htmlspecialchars($comment['name']) ?>
-                                                                <small class="text-muted comment-time"><?= date("F j, Y, g:i a", strtotime($comment['time'])) ?></small>
-                                                            </h5>
-                                                            <p class="comment-content"><?= htmlspecialchars($comment['content']) ?></p>
-                                                        </div>
-                                                    </li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                        <?php else: ?>
-                                            <p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
-                                        <?php endif; ?>
-                                    </div>
+                <!-- Hiển thị danh sách bình luận -->
+                <?php if (!empty($comments)): ?>
+                    <ul class="comment-list list-unstyled">
+                        <?php foreach ($comments as $comment): ?>
+                            <li class="media my-3 p-3 rounded comment-item">
+                                <img src="<?= htmlspecialchars($comment['profile_image']) ?>" alt="<?= htmlspecialchars($comment['name']) ?>" class="mr-3 rounded-circle comment-avatar">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 comment-author"><?= htmlspecialchars($comment['name']) ?>
+                                        <small class="text-muted comment-time"><?= date("F j, Y, g:i a", strtotime($comment['time'])) ?></small>
+                                    </h5>
+                                    <p class="comment-content"><?= htmlspecialchars($comment['content']) ?></p>
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
+<!--end-->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const tabs = document.querySelectorAll(".tab");
-    const tabContainers = document.querySelectorAll(".tab_container");
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabs = document.querySelectorAll(".tab");
+            const tabContainers = document.querySelectorAll(".tab_container");
 
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", function () {
-            tabs.forEach((tab) => tab.classList.remove("active"));
-            tabContainers.forEach((container) => container.classList.remove("active"));
+            tabs.forEach((tab) => {
+                tab.addEventListener("click", function () {
+                    tabs.forEach((tab) => tab.classList.remove("active"));
+                    tabContainers.forEach((container) => container.classList.remove("active"));
 
-            const activeTab = tab.getAttribute("data-active-tab");
-            document.getElementById(activeTab).classList.add("active");
-            tab.classList.add("active");
+                    const activeTab = tab.getAttribute("data-active-tab");
+                    document.getElementById(activeTab).classList.add("active");
+                    tab.classList.add("active");
+                });
+            });
+
+            const quantityValueElement = document.getElementById("quantity_value");
+            const minusButton = document.querySelector(".minus");
+            const plusButton = document.querySelector(".plus");
+            let quantity = 1;
+
+            minusButton.addEventListener("click", function () {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityValueElement.textContent = quantity;
+                }
+            });
+
+            plusButton.addEventListener("click", function () {
+                quantity++;
+                quantityValueElement.textContent = quantity;
+            });
+
+            const addToCartForm = document.querySelector("form");
+            const quantityInput = document.getElementById("quantity_input");
+
+            addToCartForm.addEventListener("submit", function () {
+                quantityInput.value = quantity;
+            });
         });
-    });
-
-    const quantityValueElement = document.getElementById("quantity_value");
-    const minusButton = document.querySelector(".minus");
-    const plusButton = document.querySelector(".plus");
-    let quantity = 1;
-
-    minusButton.addEventListener("click", function () {
-        if (quantity > 1) {
-            quantity--;
-            quantityValueElement.textContent = quantity;
-        }
-    });
-
-    plusButton.addEventListener("click", function () {
-        quantity++;
-        quantityValueElement.textContent = quantity;
-    });
-
-    const addToCartForm = document.querySelector("form");
-    const quantityInput = document.getElementById("quantity_input");
-
-    addToCartForm.addEventListener("submit", function () {
-        quantityInput.value = quantity;
-    });
-
-    const thumbnails = document.querySelectorAll(".thumbnail-image");
-    const mainImage = document.getElementById("main-product-image");
-
-    // Ensure thumbnails are properly targeting image elements
-    thumbnails.forEach((thumbnail) => {
-        thumbnail.addEventListener("click", function () {
-            const largeImageUrl = thumbnail.getAttribute("data-large"); // Get the large image URL
-            mainImage.src = largeImageUrl; // Set the main image source to the clicked thumbnail's large image
-        });
-    });
-});
-</script>
+    </script>
+</body>
 </html>
