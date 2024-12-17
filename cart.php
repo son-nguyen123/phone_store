@@ -69,6 +69,7 @@ if (isset($_SESSION['user_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Single Product</title>
     <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">

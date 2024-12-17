@@ -1,4 +1,3 @@
-header hoản hảo
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,26 +8,24 @@ header hoản hảo
     <meta name="description" content="Colo Shop Template">
     <title>Bài viết</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> 1
-    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css"> 1
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css"> 1
-    <link rel="stylesheet" href="styles/main_styles.css"> 1
-    <link rel="stylesheet" href="styles/responsive.css"> 1
-    <link rel="stylesheet" href="css/index.css"> 1
-    <link rel="stylesheet" href="css/footer.css"> 1
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="css/blog.css">
-    <link rel="stylesheet" href="css/comparison_website.css"> 1
-    <link rel="icon" href="Favicon.ico" type="image/x-icon"> 1
     <style>
-    
+        .containershort {
+            margin-top: 100px;
+        }
 
-
+        p {
+            color: black;
+        }
     </style>
 </head>
 
 <body>
-
-<?php include 'web_sections/navbar.php'; ?>
+    <?php include 'web_sections/navbar.php'; ?>
     <div class="containershort">
         <!-- Phần bài viết chính -->
         <div class="main-content">
@@ -47,6 +44,7 @@ header hoản hảo
             </p>
             <img src="images/newspaper1.jpg" alt="Apple Event">
             <p>
+                <br><br>
                 Cũng giống như sự trình làng của iPhone 14, iPhone 15, màn ra mắt của iPhone 16 cũng sẽ được ghi hình và phát trực tiếp trên internet để các tín đồ công nghệ có thể theo dõi. Tại trụ sở Apple, giới truyền thông, báo chí sẽ được mời đến để trải nghiệm thực tế các sản phẩm mới để có những đánh giá khách quan nhất.
                 <br><br>
                 <strong class="headlines">Những nâng cấp của dòng sản phẩm mới</strong>
@@ -59,6 +57,7 @@ header hoản hảo
             </p>
             <img src="images/newspaper1.jpg" alt="">
             <p>
+                <br><br>
                 Một điểm nổi bật về phần mềm trên dòng iPhone 16 mới là Apple Intelligence. Bộ công cụ trí tuệ nhân tạo (AI) mang đến hàng loạt tính năng tiện lợi như xóa vật thể khỏi ảnh, ghi âm cuộc gọi, cải tiến Siri và tích hợp cả ChatGPT. Tuy nhiên, nhiều khả năng những tính năng này sẽ không được tích hợp sẵn trên iPhone 16 lên kệ, mà sẽ có ở bản cập nhật iOS sau.
                 <br><br>
                 Ngoài dòng iPhone mới, theo dự đoán Apple cũng có thể sẽ cho trình làng Apple Watch Series 10 vào sự kiện diễn ra vào ngày 9/9 với sự nâng cấp về ngoại hình, kích thước lớn hơn (45 và 49 mm), giảm độ dày, cải tiến chip xử lý và loạt cảm biến mới.
