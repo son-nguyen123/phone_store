@@ -66,13 +66,19 @@ if (isset($_SESSION['user_id'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Colo Shop</title>
-    <link rel="stylesheet" href="LoginStyle.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Single Product</title>
+    <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/main_styles.css">
-    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" href="styles/single_styles.css">
+    <link rel="stylesheet" href="styles/single_responsive.css">
     <style>
         body {
             background-color: #f2f2f2;
@@ -323,8 +329,9 @@ if (isset($_SESSION['user_id'])) {
                                 </td>
                                 <td>" . number_format($subtotal, 0, ',', '.') . " USD</td>
                                 <td>
-                                    <button type='button' onclick='deleteItem(this)' class='delete-button' data-product-id='{$product['product_id']}'>Xóa</button>
-                                </td>
+                       <button type='button' onclick='deleteItemAndReload(this)' class='delete-button' data-product-id='{$product['product_id']}'>Xóa</button>
+
+                    </td>
                             </tr>";
                     }
                 }
@@ -431,7 +438,7 @@ function deleteItem(button) {
 
     // Gửi yêu cầu Ajax để xóa sản phẩm
     $.ajax({
-        url: '_update_cart.php',
+        url: 'delete.php', // Đường dẫn đến file delete.php
         type: 'POST',
         data: { product_id: productId, action: 'delete' },
         success: function(response) {
@@ -449,6 +456,18 @@ function deleteItem(button) {
         }
     });
 }
+
+function reloadPage() {
+    // Reload trang
+    location.reload();
+}
+
+// Hàm kết hợp cả hai hành động: xóa sản phẩm và reload trang
+function deleteItemAndReload(button) {
+    deleteItem(button);  // Gọi hàm xóa sản phẩm
+    reloadPage();         // Sau đó reload lại trang
+}
+
 
 
     </script>
