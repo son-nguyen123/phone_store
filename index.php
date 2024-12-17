@@ -71,6 +71,7 @@ $products = $productStmt->fetchAll();
     <link rel="stylesheet" href="css/comparison_website.css">
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         .comparisonTableCustom {
             width: 100%;
@@ -178,31 +179,55 @@ $products = $productStmt->fetchAll();
             </div>
 
             <div class="row">
-                <div class="col">
-                    <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-                        <?php foreach ($products as $product): ?>
-                            <div class="product-item <?= strtolower($product['brand']); ?>">
-                                <div class="product discount product_filter">
-                                    <div class="product_image">
-                                        <a href="single.php?product_id=<?= $product['product_id']; ?>">
-                                            <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" width="100" height="auto">
-                                        </a>
-                                    </div>
-                                    <div class="favorite favorite_left"></div>
-                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-                                        <span>-$20</span>
-                                    </div>
-                                    <div class="product_info">
-                                        <h6 class="product_name">
-                                            <a href="single.php?product_id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['name']); ?></a>
-                                        </h6>
-                                        <div class="product_price">
-                                            <?= number_format($product['price'] * 0.80, 0, ',', '.'); ?> VNĐ
-                                            <span><?= number_format($product['price'], 0, ',', '.'); ?> VNĐ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="red_button add_to_cart_button">
+    <div class="col">
+        <!-- Container hỗ trợ grid layout -->
+        <div class="product-grid d-flex flex-wrap" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+            <?php foreach ($products as $product): ?>
+                <!-- Mỗi sản phẩm được hiển thị trong cột -->
+                <div class="product-item col-md-4 mb-4 <?= strtolower($product['brand']); ?>">
+                    <div class="product product_filter">
+                        <div class="product_image">
+                            <a href="single.php?product_id=<?= $product['product_id']; ?>">
+                                <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" width="100%" height="auto">
+                            </a>
+                        </div>
+
+                        <!-- Hiển thị trạng thái 'new' -->
+                        <?php if (strtolower($product['state']) == 'new'): ?>
+                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center">
+                                <span>New</span>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- Hiển thị giảm giá bằng sale_percent -->
+                        <?php if ($product['sale_percent'] > 0): ?>
+                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                <span>-<?= $product['sale_percent']; ?>%</span>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="product_info">
+                            <h6 class="product_name">
+                                <a href="single.php?product_id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['name']); ?></a>
+                            </h6>
+
+                            <!-- Hiển thị giá -->
+                            <div class="product_price">
+                                <?php if ($product['sale_price'] > 0): ?>
+                                    <?= number_format($product['sale_price'], 0, ',', '.'); ?> VNĐ
+                                    <span><?= number_format($product['price'], 0, ',', '.'); ?> VNĐ</span>
+                                <?php elseif ($product['sale_percent'] > 0): ?>
+                                    <?= number_format($product['price'] * (1 - $product['sale_percent'] / 100), 0, ',', '.'); ?> VNĐ
+                                    <span><?= number_format($product['price'], 0, ',', '.'); ?> VNĐ</span>
+                                <?php else: ?>
+                                    <?= number_format($product['price'], 0, ',', '.'); ?> VNĐ
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nút "Add to Cart" -->
+                    <div class="red_button add_to_cart_button">
                                     <form method="POST" style="display:inline;">
                                         <input type="hidden" name="id" value="<?= $product['product_id']; ?>">
                                         <input type="hidden" name="quantity" value="1">
@@ -213,11 +238,9 @@ $products = $productStmt->fetchAll();
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+</div>
 
     <?php include 'web_sections/bestseller.php'; ?>
 
@@ -241,7 +264,7 @@ $products = $productStmt->fetchAll();
             </div>
         </div>
     </div>
-
+    </div>
     <?php include 'web_sections/footer.php'; ?>
 
     <script src="js/jquery-3.2.1.min.js"></script>

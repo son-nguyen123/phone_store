@@ -1,16 +1,18 @@
 <?php
 include 'db.php';
 
+// Check if user is logged in
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
+    // Get the cart items from the database
     $stmt = $pdo->prepare("SELECT cart FROM users WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->execute();
 
     $cartItems = $stmt->fetchColumn();
-
     $cart = [];
+    
     if ($cartItems) {
         $itemsArray = explode(' ', trim($cartItems));
         foreach ($itemsArray as $item) {
@@ -20,6 +22,41 @@ if (isset($_SESSION['user_id'])) {
     } else {
         echo "No cart items found.";
     }
+
+    // Process order when form is submitted
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Get form data
+        $nameUser = $_POST['name_user'];
+        $phoneNumber = $_POST['number'];
+        $address = $_POST['address_shipping'];
+        $notes = $_POST['note'];
+
+        // Calculate total price
+        $totalAmount = 0;
+        foreach ($cart as $cartItem) {
+            $stmt = $pdo->prepare("SELECT price FROM products WHERE product_id = :product_id");
+            $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
+            $stmt->execute();
+            $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($product) {
+                $subtotal = $product['price'] * $cartItem['quantity'];
+                $totalAmount += $subtotal;
+            }
+        }
+
+        // Save order details to users table
+        $stmt = $pdo->prepare("UPDATE users SET order_price = :order_price, name_user = :name_user, number = :number, address_shipping = :address_shipping, note = :note WHERE user_id = :user_id");
+        $stmt->bindParam(':order_price', $totalAmount);
+        $stmt->bindParam(':name_user', $nameUser);
+        $stmt->bindParam(':number', $phoneNumber);
+        $stmt->bindParam(':address_shipping', $address);
+        $stmt->bindParam(':note', $notes);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        echo "<script>alert('Order placed successfully!');</script>";
+    }
 } else {
     echo "User is not logged in.";
 }
@@ -27,23 +64,22 @@ if (isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Colo Shop</title>
 
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Single Product</title>
+    <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" href="styles/main_styles.css">
-    <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="icon" href="icon.png" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" href="styles/single_styles.css">
+    <link rel="stylesheet" href="styles/single_responsive.css">
     <style>
         body {
             background-color: #f2f2f2;
@@ -72,9 +108,9 @@ if (isset($_SESSION['user_id'])) {
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #adb3b8;
+            background-color:rgb(255, 250, 250);
             margin-bottom: 5%;
-            color: white;
+            color: black;
         }
 
         th,
@@ -232,18 +268,37 @@ if (isset($_SESSION['user_id'])) {
                 padding: 40px;
             }
         }
+        .reload-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .reload-button:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
-
 <body>
     <?php include 'web_sections/navbar.php'; ?>
-
     <div class="cart">
         <div class="profile-container">
+        <div class="cart-container">
+      
+    </div>
             <h2>Giỏ hàng</h2>
 
             <table>
-                <tr class="table1">
+            <tr class="table1">
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
                     <th>Ảnh sản phẩm</th>
@@ -255,7 +310,6 @@ if (isset($_SESSION['user_id'])) {
 
                 <?php
                 $totalAmount = 0;
-
                 foreach ($cart as $index => $cartItem) {
                     $stmt = $pdo->prepare("SELECT product_id, name, price, image FROM products WHERE product_id = :product_id");
                     $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
@@ -276,9 +330,9 @@ if (isset($_SESSION['user_id'])) {
                                 </td>
                                 <td>" . number_format($subtotal, 0, ',', '.') . " USD</td>
                                 <td>
-                                    <input type='hidden' name='product_id' value='{$product['product_id']}'>
-                                    <button type='button' onclick='deleteItem(this)' class='delete-button'>Xóa</button>
-                                </td>
+                       <button type='button' onclick='deleteItemAndReload(this)' class='delete-button' data-product-id='{$product['product_id']}'>Xóa</button>
+
+                    </td>
                             </tr>";
                     }
                 }
@@ -289,20 +343,21 @@ if (isset($_SESSION['user_id'])) {
                     <td class="total"><?php echo number_format($totalAmount, 0, ',', '.') . ' USD'; ?></td>
                     <td></td>
                 </tr>
+                <button class="reload-button" onclick="reloadPage()">Reload Giỏ Hàng</button>
             </table>
 
-            <form class="profile-form">
+            <form class="profile-form" method="POST">
                 <label>Người nhận:</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name_user" required>
 
                 <label>Điện thoại:</label>
-                <input type="text" name="phone" required>
+                <input type="text" name="number" required>
 
                 <label>Địa chỉ:</label>
-                <input type="text" name="address" required>
+                <input type="text" name="address_shipping" required>
 
                 <label>Ghi chú:</label>
-                <textarea name="notes"></textarea>
+                <textarea name="note"></textarea>
 
                 <div class="thanh">
                     <div class="delivery-status">
@@ -324,79 +379,99 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
                 </div>
+                <button class="order" type="submit" action="payment.php" method="POST"><a href="payment.php">Đặt Hàng</button>
+                </form>
 
-                <button class="order" type="submit">Đặt hàng</button>
-            </form>
+                
+
+            
         </div>
     </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function deleteItem(button) {
-            var row = button.closest('tr');
-            var productId = row.querySelector('input[name="product_id"]').value;
-
-            $.ajax({
-                url: '_remove_from_cart.php',
-                type: 'POST',
-                data: {
-                    product_id: productId
-                },
-                success: function(response) {
-                    if (response === 'success') {
-                        row.remove();
-                        updateTotalAmount();
-                        alert('Item removed from cart!');
-                    } else {
-                        alert('Failed to remove item.');
-                    }
-                },
-                error: function() {
-                    alert('An error occurred while removing the item.');
-                }
-            });
-        }
-
         function updateQuantity(input) {
-            var row = input.closest('tr');
-            var productId = row.querySelector('input[name="product_id"]').value;
-            var newQuantity = input.value;
+    var productId = input.getAttribute('data-product-id');
+    var newQuantity = input.value;
 
-            $.ajax({
-                url: '_update_cart.php',
-                type: 'POST',
-                data: {
-                    product_id: productId,
-                    quantity: newQuantity
-                },
-                success: function(response) {
-                    if (response === 'success') {
-                        var price = parseFloat(row.querySelector('.total').innerText.replace(' USD', '').replace(',', ''));
-                        var newSubtotal = price * newQuantity;
-                        row.querySelector('td:nth-child(6)').innerText = newSubtotal.toFixed(2) + ' USD';
-                        updateTotalAmount();
-                    } else {
-                        alert('Failed to update quantity.');
-                    }
-                },
-                error: function() {
-                    alert('An error occurred while updating the quantity.');
-                }
-            });
+    // Check if quantity is valid
+    if (newQuantity <= 0) {
+        alert('Số lượng phải lớn hơn 0.');
+        input.value = 1; // Reset to 1 if the quantity is less than 1
+        newQuantity = 1;
+    }
+
+    // Change the reload button color to red when quantity is updated
+    document.querySelector('.reload-button').style.backgroundColor = '#dc3545';
+
+    $.ajax({
+        url: '_update_cart.php',
+        type: 'POST',
+        data: { product_id: productId, quantity: newQuantity },
+        success: function(response) {
+            var data = JSON.parse(response);
+
+            if (data.status === 'success') {
+                // Reload the page to update the cart
+                location.reload();
+            } else {
+                alert(data.message || 'Lỗi khi cập nhật số lượng.');
+            }
+        },
+        error: function() {
+            alert('Lỗi khi gửi yêu cầu.');
         }
+    });
+}
 
-        function updateTotalAmount() {
-            var totalAmount = 0;
-            document.querySelectorAll('tr').forEach(function(row) {
-                var subtotalCell = row.querySelector('td:nth-child(6)');
-                if (subtotalCell) {
-                    totalAmount += parseFloat(subtotalCell.innerText.replace(' USD', '').replace(',', ''));
-                }
-            });
+function reloadPage() {
+    // Reload the page
+    location.reload();
+}
 
-            document.querySelector('.total').innerText = totalAmount.toFixed(2) + ' USD';
+// Reset the button color back to blue when the page is fully loaded
+$(document).ready(function() {
+    document.querySelector('.reload-button').style.backgroundColor = '#007bff';
+});
+function deleteItem(button) {
+    var productId = button.getAttribute('data-product-id');
+
+    // Gửi yêu cầu Ajax để xóa sản phẩm
+    $.ajax({
+        url: 'delete.php', // Đường dẫn đến file delete.php
+        type: 'POST',
+        data: { product_id: productId, action: 'delete' },
+        success: function(response) {
+            var data = JSON.parse(response);
+
+            if (data.status === 'success') {
+                // Xóa sản phẩm khỏi DOM
+                button.closest('tr').remove();
+            } else {
+                alert(data.message || 'Lỗi khi xóa sản phẩm.');
+            }
+        },
+        error: function() {
+            alert('Lỗi khi gửi yêu cầu xóa.');
         }
+    });
+}
+
+function reloadPage() {
+    // Reload trang
+    location.reload();
+}
+
+// Hàm kết hợp cả hai hành động: xóa sản phẩm và reload trang
+function deleteItemAndReload(button) {
+    deleteItem(button);  // Gọi hàm xóa sản phẩm
+    reloadPage();         // Sau đó reload lại trang
+}
+
+
+
     </script>
-</body>
 
+</body>
 </html>

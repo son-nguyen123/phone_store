@@ -4,6 +4,8 @@ include 'db.php';
 $productId = (int)($_GET['product_id'] ?? 1);
 
 // Truy vấn sản phẩm
+// Khởi tạo câu lệnh cơ sở
+$query = "SELECT * FROM products WHERE 1";
 $query = "SELECT * FROM products WHERE product_id = :productId";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
@@ -12,8 +14,9 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
     'name' => 'Product',
     'storage' => 'N/A',
     'description' => 'No description available.',
-    'price' => 0,
-    'discount' => 0,
+    'price' => null, // Đặt null làm mặc định
+    'sale_price' => null, // Đặt null làm mặc định
+    'sale_percent' => null, // Đặt null làm mặc định
     'image' => 'default-image.jpg',
     'other_images' => 'default-image.jpg',
     'long_description' => '',
@@ -29,10 +32,37 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
 
 // Hàm định dạng giá
 function formatPrice($price) {
-    return number_format($price) . ' VND';
+    if ($price === null || $price === '') {
+        return 'N/A'; // Giá trị mặc định nếu giá trị không hợp lệ
+    }
+    return number_format((float)$price, 0, ',', '.') . ' VND';
 }
 
-// Xử lý yêu cầu POST
+// Xử lý logic hiển thị giá
+function renderPriceDetails($product) {
+    $price = $product['price'] ?? null;
+    $sale_price = $product['sale_price'] ?? null;
+    $sale_percent = $product['sale_percent'] ?? null;
+
+    if ($price !== null) {
+        if ($sale_price !== null) {
+            // Có cả price và sale_price
+            return '<div class="original_price">' . formatPrice($price) . '</div>' .
+                   '<div class="product_price">' . formatPrice($sale_price) . '</div>';
+        } elseif ($sale_percent !== null) {
+            // Có price và sale_percent
+            $discounted_price = $price - ($price * $sale_percent / 100);
+            return '<div class="original_price">' . formatPrice($price) . '</div>' .
+                   '<div class="product_price">' . formatPrice($discounted_price) . '</div>';
+        } else {
+            // Chỉ có price
+            return '<div class="product_price">' . formatPrice($price) . '</div>';
+        }
+    }
+    return '<div class="product_price">Price not available</div>'; // Trường hợp không có giá
+}
+
+// Truy vấn danh sách bình luận
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
     $commentText = trim($_POST['comment_text']);
     if (!empty($commentText) && isset($_SESSION['user_id'])) {
@@ -139,6 +169,34 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     margin-top: 8px;
     color: #555;
 }
+.comment-box {
+    position: relative;
+    width: 100%; /* Điều chỉnh chiều rộng của khung */
+}
+
+.comment-box textarea {
+    width: 100%;
+    padding-right: 60px; /* Tạo khoảng trống bên phải cho nút gửi */
+    box-sizing: border-box;
+    resize: none;
+}
+
+.comment-box button {
+    position: absolute;
+    right: 10px; /* Khoảng cách từ phải */
+    bottom: 10px; /* Khoảng cách từ dưới */
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.comment-box button:hover {
+    background-color: #0056b3;
+}
     </style>
 </head>
 <body>
@@ -182,16 +240,18 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="col-lg-5">
-                    <div class="product_details">
-                        <div class="product_details_title">
-                            <h2><?= htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
-                            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
-                        </div>
-                        <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                            <span class="ti-truck"></span><span>free delivery</span>
-                        </div>
-                        <div class="original_price"><?= formatPrice($product['price']) ?></div>
-                        <div class="product_price"><?= formatPrice($product['discount']) ?></div>
+    <div class="product_details">
+        <div class="product_details_title">
+            <h2><?= htmlspecialchars($product['name']) . ' ' . htmlspecialchars($product['storage']); ?></h2>
+            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
+        </div>
+
+        <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+            <span class="ti-truck"></span><span>Free delivery</span>
+        </div>
+
+        <!-- Hiển thị giá -->
+        <?= renderPriceDetails($product); ?>
                         <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                             <span>Quantity:</span>
                             <div class="quantity_selector">
@@ -254,20 +314,21 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-                        <div id="tab_3" class="tab_container">
+                        <!-- Tab Reviews (2) -->
+<div id="tab_3" class="tab_container">
     <div class="row">
         <div class="col">
-            <h4>Reviews</h4>
+            <h4>Reviews (<?= count($comments) ?>)</h4> <!-- Hiển thị số lượng bình luận -->
             <div class="comment-section">
                 <!-- Nếu người dùng đã đăng nhập -->
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <form method="post" action="">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId); ?>">
-                        <div class="comment-form mb-4">
-                            <textarea name="comment_text" id="comment_text" rows="3" class="form-control" placeholder="Viết bình luận..." required></textarea>
-                            <button type="submit" name="comment" class="btn btn-primary mt-2">Gửi</button>
-                        </div>
-                    </form>
+                   <form method="post" action="">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId); ?>">
+    <div class="comment-box">
+        <textarea name="comment_text" id="comment_text" rows="4" class="form-control" placeholder="Viết bình luận..." required></textarea>
+        <button type="submit" name="comment">Gửi</button>
+    </div>
+</form>
                 <?php else: ?>
                     <p><a href="RealLogin.php">Đăng nhập</a> để bình luận.</p>
                 <?php endif; ?>
@@ -295,13 +356,14 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 <!--end-->
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", function () {
             const tabs = document.querySelectorAll(".tab");
             const tabContainers = document.querySelectorAll(".tab_container");
