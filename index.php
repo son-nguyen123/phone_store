@@ -52,6 +52,7 @@ $products = $productStmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,21 +72,65 @@ $products = $productStmt->fetchAll();
     <link rel="icon" href="Favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/navbar.css">
     <style>
-        .comparisonTableCustom { width: 100%; border-collapse: collapse; }
-        .comparisonTableCustom th, .comparisonTableCustom td { border: 1px solid black; padding: 8px; text-align: left; }
+        .comparisonTableCustom {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparisonTableCustom th,
+        .comparisonTableCustom td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
         /* Đảm bảo chữ ẩn đi và chỉ hiện khi hover */
-.boxRect .content {
-    opacity: 0; /* Ẩn nội dung */
-    transition: opacity 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động khi hiển thị */
-}
+        .boxRect .content {
+            opacity: 0;
+            /* Ẩn nội dung */
+            transition: opacity 0.3s ease-in-out;
+            /* Thêm hiệu ứng chuyển động khi hiển thị */
+        }
 
-.boxRect:hover .content {
-    opacity: 1; /* Hiển thị chữ khi hover */
-}
+        .boxRect:hover .content {
+            opacity: 1;
+            /* Hiển thị chữ khi hover */
+        }
 
+        .banner {
+            vertical-align: middle;
+			display: flex;
+			font-family: 'Calibri', sans-serif !important;
+			background-color: #eee;
+		}
 
+		.mt-100 {
+			margin-top: 100px;
+		}
+
+		.carousel .carousel-indicators li {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			text-indent: -99px;
+			cursor: pointer;
+			border: 1px solid #fff;
+			background: #fff;
+			border-radius: 2px;
+		}
+
+		.banner {
+			margin-top: 11%;
+		}
+
+		.carousel-inner img {
+			width: 100vw;
+			height: auto;
+			object-fit: cover;
+		}
     </style>
 </head>
+
 <body id="page-top">
     <?php include 'web_sections/navbar.php'; ?>
     <?php include 'web_sections/banner.html'; ?>
@@ -207,9 +252,15 @@ $products = $productStmt->fetchAll();
                 loop: true,
                 nav: true,
                 responsive: {
-                    0: { items: 1 },
-                    768: { items: 3 },
-                    1024: { items: 5 }
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 3
+                    },
+                    1024: {
+                        items: 5
+                    }
                 }
             });
         });
@@ -218,5 +269,14 @@ $products = $productStmt->fetchAll();
     <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
     <script src="plugins/easing/easing.js"></script>
     <script src="scrolledPosition.js"></script>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

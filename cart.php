@@ -34,7 +34,7 @@ if (isset($_SESSION['user_id'])) {
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Colo Shop</title>
-    <link rel="stylesheet" href="LoginStyle.css">
+
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">

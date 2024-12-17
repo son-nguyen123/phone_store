@@ -4,12 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
     <title>Bài viết</title>
-    <link rel="stylesheet" href="style_tt.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <style>
+        .containershort {
+            margin-top: 100px;
+        }
+
+        p {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
+    <?php include 'web_sections/navbar.php'; ?>
+    <div class="containershort">
         <!-- Phần bài viết chính -->
         <div class="main-content">
             <h1>iPhone 16 Series chính thức lộ diện, có gì nổi bật ở dòng iPhone mới này?</h1>

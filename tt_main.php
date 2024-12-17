@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Tin tức và Khuyến mãi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/responsive.css">
     <style>
         /* Reset mặc định */
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
@@ -22,8 +25,9 @@
         .containerr {
             display: flex;
             justify-content: space-between;
-            margin: 20px;
             gap: 20px;
+            margin: 20px;
+            margin-top: 120px;
         }
 
         .content {
@@ -38,7 +42,7 @@
             font-size: 30px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #3a3a3a;
         }
 
         .news,
@@ -77,7 +81,7 @@
         .news-info h3 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: #007bff;
+            color: #3a3a3a;
         }
 
         .news-info p {
@@ -86,7 +90,7 @@
         }
 
         .news-info a {
-            color: #007bff;
+            color: #3a3a3a;
             text-decoration: none;
         }
 
@@ -109,7 +113,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            color: #007bff;
+            color: #3a3a3a;
             text-decoration: none;
         }
 
@@ -120,6 +124,7 @@
 </head>
 
 <body>
+    <?php include 'web_sections/navbar.php'; ?>
     <div class="containerr">
         <div class="content">
             <h2 class="section-title">Tin tức</h2>
