@@ -93,6 +93,235 @@ $products = $productStmt->fetchAll();
             /* Thêm hiệu ứng chuyển động khi hiển thị */
         }
 
+<<<<<<< HEAD
+.boxRect:hover .content {
+    opacity: 1; /* Hiển thị chữ khi hover */
+}
+.filters-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Each filter container */
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Title of the filter section */
+        .filter-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Filter options (links) */
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-option {
+            text-decoration: none;
+            color: #666;  /* Tăng độ xám cho màu chữ */
+            font-size: 14px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background-color: #e0e0e0;  /* Tăng độ xám cho nền */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .filter-option:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .filter-option.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Price filter form */
+        .price-filter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .form-control {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 120px;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn-apply {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-apply:hover {
+            background-color: #0056b3;
+        }
+         /* Căn giữa nút Xem thêm */
+         .custom-container_tb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          /* Chiếm toàn bộ chiều cao màn hình */
+            flex-direction: column;
+        }
+
+        /* Nút Xem thêm dài 10cm */
+        .custom-btn-view-more_tb {
+            padding: 10px 40px;  /* Thêm padding trái phải để tạo chiều dài */
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-align: center;
+            width: auto;  /* Giữ chiều rộng tự động */
+            min-width: 10cm; /* Đảm bảo nút có chiều dài 10cm */
+        }
+
+        .custom-btn-view-more_tb:hover {
+            background-color: #0056b3;
+        }
+
+        /* Khung nội dung (ẩn theo mặc định) */
+        .custom-comparison-content_tb {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            
+            margin: 20px auto; /* Căn giữa theo chiều ngang */
+        }
+
+        /* Tùy chọn hiển thị nội dung */
+        .custom-comparison-content_tb.show {
+            display: block;
+        }
+        .comparisonSectionCustom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px auto;
+        max-width: 800px; /* Giới hạn chiều rộng */
+    }
+
+    .comparisonSectionCustom div {
+        position: relative;
+        flex: 1;
+        margin: 0 10px; /* Khoảng cách giữa 2 thanh */
+    }
+
+    .comparisonSectionCustom input[type="text"] {
+        width: 100%;
+        padding: 10px; /* Trả về padding đầy đủ */
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comparisonTitleCustom {
+        text-align: center;
+        font-size: 24px; /* Làm nổi bật hơn */
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .comparisonTableCustom {
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+    }
+
+    .comparisonTableCustom th {
+        background-color: #4CAF50;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        border-bottom: 2px solid #388E3C;
+    }
+
+    .comparisonTableCustom td {
+        text-align: center;
+        padding: 8px;
+        font-size: 12px;
+        border-bottom: 1px solid #f1f1f1;
+        color: #555;
+        word-break: break-word;
+    }
+
+    .comparisonTableCustom td:first-child {
+        font-weight: bold;
+        background-color: #f8f9fa;
+        color: #333;
+        text-align: left;
+        padding-left: 8px;
+    }
+
+    .comparisonTableCustom img {
+        width: 60px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .comparisonTableCustom tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .comparisonTableCustom tbody tr:hover {
+        background-color: #f1f3f5;
+        transition: background-color 0.3s ease;
+    }
+=======
         .boxRect:hover .content {
             opacity: 1;
             /* Hiển thị chữ khi hover */
@@ -104,6 +333,7 @@ $products = $productStmt->fetchAll();
 			font-family: 'Calibri', sans-serif !important;
 			background-color: #eee;
 		}
+>>>>>>> 49bdd43066f77c27fdf591607f3a8b3c25d65234
 
 		.mt-100 {
 			margin-top: 100px;
@@ -139,6 +369,15 @@ $products = $productStmt->fetchAll();
     <?php include 'web_sections/video.php'; ?>
     <?php include 'web_sections/ability.php'; ?>
     <?php include 'web_sections/comparison.php'; ?>
+    <div class="custom-container_tb">
+    <!-- Nút Xem thêm -->
+    <button class="custom-btn-view-more_tb" onclick="toggleComparison()">Lựa Chọn So Sánh</button>
+
+    <!-- Nội dung so sánh, sẽ ẩn ban đầu -->
+    <div id="comparison" class="custom-comparison-content_tb">
+        <?php include 'web_sections/comparison_choice.php'; ?>
+    </div>
+</div>
     <?php include '_add_to_card.php'; ?>
 
     <div class="new_arrivals">
@@ -147,36 +386,41 @@ $products = $productStmt->fetchAll();
                 <h2 class="section-heading text-uppercase rainbow">Products</h2>
             </div>
 
-            <div class="sort-container">
-                <span>Sắp xếp theo</span>
-                <div class="sort-options">
-                    <a href="?order=" class="sort-option <?= $order == '' ? 'active' : '' ?>">All</a>
-                    <a href="?order=low-high" class="sort-option <?= $order == 'low-high' ? 'active' : '' ?>">Thấp đến cao</a>
-                    <a href="?order=high-low" class="sort-option <?= $order == 'high-low' ? 'active' : '' ?>">Cao đến thấp</a>
-                </div>
-            </div>
+            <div class="filters-container">
+    <!-- Sort Options -->
+    <div class="filter-container">
+        <span class="filter-title">Sắp xếp theo</span>
+        <div class="filter-options">
+            <a href="?order=" class="filter-option <?= $order == '' ? 'active' : '' ?>">Tất cả</a>
+            <a href="?order=low-high" class="filter-option <?= $order == 'low-high' ? 'active' : '' ?>">Thấp đến cao</a>
+            <a href="?order=high-low" class="filter-option <?= $order == 'high-low' ? 'active' : '' ?>">Cao đến thấp</a>
+        </div>
+    </div>
 
-            <div class="sort-container">
-                <span>Chọn thương hiệu</span>
-                <div class="sort-options">
-                    <a href="?brand=" class="sort-option <?= $brand_filter == '' ? 'active' : '' ?>">All</a>
-                    <a href="?brand=apple" class="sort-option <?= $brand_filter == 'apple' ? 'active' : '' ?>">Apple</a>
-                    <a href="?brand=samsung" class="sort-option <?= $brand_filter == 'samsung' ? 'active' : '' ?>">Samsung</a>
-                    <a href="?brand=xiaomi" class="sort-option <?= $brand_filter == 'xiaomi' ? 'active' : '' ?>">Xiaomi</a>
-                </div>
-            </div>
+    <!-- Brand Filter -->
+    <div class="filter-container">
+        <span class="filter-title">Chọn thương hiệu</span>
+        <div class="filter-options">
+            <a href="?brand=" class="filter-option <?= $brand_filter == '' ? 'active' : '' ?>">Tất cả</a>
+            <a href="?brand=apple" class="filter-option <?= $brand_filter == 'apple' ? 'active' : '' ?>">Apple</a>
+            <a href="?brand=samsung" class="filter-option <?= $brand_filter == 'samsung' ? 'active' : '' ?>">Samsung</a>
+            <a href="?brand=xiaomi" class="filter-option <?= $brand_filter == 'xiaomi' ? 'active' : '' ?>">Xiaomi</a>
+        </div>
+    </div>
 
-            <div class="sort-container">
-                <span>Lọc theo giá</span>
-                <form method="GET" class="price-filter-form">
-                    <div class="d-flex">
-                        <input type="number" name="min_price" placeholder="Min Price" value="<?= isset($min_price) ? $min_price : ''; ?>" class="form-control">
-                        <span>-</span>
-                        <input type="number" name="max_price" placeholder="Max Price" value="<?= isset($max_price) ? $max_price : ''; ?>" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-2">Apply</button>
-                </form>
+    <!-- Price Filter -->
+    <div class="filter-container">
+        <span class="filter-title">Lọc theo giá</span>
+        <form method="GET" class="price-filter-form">
+            <div class="price-inputs">
+                <input type="number" name="min_price" placeholder="Min Price" value="<?= isset($min_price) ? $min_price : ''; ?>" class="form-control">
+                <span>-</span>
+                <input type="number" name="max_price" placeholder="Max Price" value="<?= isset($max_price) ? $max_price : ''; ?>" class="form-control">
             </div>
+            <button type="submit" class="btn-apply">Áp dụng</button>
+        </form>
+    </div>
+</div>
 
             <div class="row">
     <div class="col">
@@ -292,6 +536,15 @@ $products = $productStmt->fetchAll();
     <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
     <script src="plugins/easing/easing.js"></script>
     <script src="scrolledPosition.js"></script>
+<<<<<<< HEAD
+    <script>
+    // Hàm hiển thị và ẩn nội dung khi nhấn nút
+    function toggleComparison() {
+        var comparisonContent = document.getElementById('comparison');
+        comparisonContent.classList.toggle('show');
+    }
+</script>
+=======
     <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
@@ -300,6 +553,7 @@ $products = $productStmt->fetchAll();
 
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+>>>>>>> 49bdd43066f77c27fdf591607f3a8b3c25d65234
 </body>
 
 </html>
