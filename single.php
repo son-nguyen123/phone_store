@@ -283,7 +283,7 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                             <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
                                 <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
                                 <li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
-                                <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
+                                <li class="tab" data-active-tab="tab_3"><span>Reviews </span></li>
                             </ul>
                         </div>
                     </div>
