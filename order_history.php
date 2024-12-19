@@ -4,41 +4,50 @@ include 'db.php';
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
+    // Xử lý yêu cầu POST khi nhấn nút Cancel Order
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
         $orderId = $_POST['order_id'];
-        $stmt = $pdo->prepare("UPDATE orders SET status = 'Cancelled' WHERE order_id = :order_id");
-        $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
-        $stmt->execute();
-        echo "<script>alert('Order has been cancelled successfully.'); window.location.href = window.location.href;</script>";
+
+        try {
+            // Sử dụng câu lệnh DELETE để xóa đơn hàng
+            $stmt = $pdo->prepare("DELETE FROM orders WHERE order_id = :order_id AND customer_id = :customer_id");
+            $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+            $stmt->bindParam(':customer_id', $userId, PDO::PARAM_INT);
+
+            if ($stmt->execute()) {
+                echo "<script>alert('Order has been deleted successfully.'); window.location.href = window.location.href;</script>";
+            } else {
+                echo "<script>alert('Failed to delete the order. Please try again later.'); window.location.href = window.location.href;</script>";
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM orders WHERE customer_id = :user_id ORDER BY order_date DESC");
-    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Truy vấn danh sách đơn hàng của người dùng
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM orders WHERE customer_id = :user_id ORDER BY order_date DESC");
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        $orders = [];
+    }
 } else {
     header('Location: RealLogin.php');
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Colo Shop Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap4/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="styles/single_styles.css">
     <link rel="stylesheet" href="styles/single_responsive.css">
 </head>
@@ -84,12 +93,10 @@ if (isset($_SESSION['user_id'])) {
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <?php if ($order['status'] !== 'Cancelled'): ?>
-                    <form method="POST" action="" onsubmit="return confirm('Are you sure you want to cancel this order?');">
+                    <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete this order?');">
                         <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
                         <button type="submit" class="btn btn-danger">Cancel Order</button>
                     </form>
-                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
