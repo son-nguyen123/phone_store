@@ -319,9 +319,10 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>           
             <!-- Nút đặt hàng -->
-            <form action="process_order.php" method="POST">
-                <button class="button" type="submit">Đặt Hàng</button>
-            </form>
+            <form action="order_history.php" method="POST">
+    <!-- Các trường dữ liệu khác của đơn hàng -->
+    <button class="button" type="submit">Đặt Hàng</button>
+</form>
         </div>
     </div>
 </body>
