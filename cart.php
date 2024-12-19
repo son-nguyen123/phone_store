@@ -30,11 +30,16 @@ if (isset($_SESSION['user_id'])) {
         $phoneNumber = $_POST['number'];
         $address = $_POST['address_shipping'];
         $notes = $_POST['note'];
-
+        $paymentMethod = "Cash on Delivery"; // Example payment method
+        $paymentStatus = "Pending";
+        $status = "Processing";
+        $orderDate = date("Y-m-d H:i:s");
+        
         // Calculate total price
         $totalAmount = 0;
+        $items = []; // To store items for the orders table
         foreach ($cart as $cartItem) {
-            $stmt = $pdo->prepare("SELECT price FROM products WHERE product_id = :product_id");
+            $stmt = $pdo->prepare("SELECT product_id, name, price FROM products WHERE product_id = :product_id");
             $stmt->bindParam(':product_id', $cartItem['item_id'], PDO::PARAM_INT);
             $stmt->execute();
             $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,10 +47,20 @@ if (isset($_SESSION['user_id'])) {
             if ($product) {
                 $subtotal = $product['price'] * $cartItem['quantity'];
                 $totalAmount += $subtotal;
+
+                $items[] = [
+                    'product_id' => $product['product_id'],
+                    'name' => $product['name'],
+                    'quantity' => $cartItem['quantity'],
+                    'price' => $product['price']
+                ];
             }
         }
 
-        // Save order details to users table
+        // Convert items to JSON for storage in the orders table
+        $itemsJson = json_encode($items);
+
+        // Save order details to the users table
         $stmt = $pdo->prepare("UPDATE users SET order_price = :order_price, name_user = :name_user, number = :number, address_shipping = :address_shipping, note = :note WHERE user_id = :user_id");
         $stmt->bindParam(':order_price', $totalAmount);
         $stmt->bindParam(':name_user', $nameUser);
@@ -55,13 +70,28 @@ if (isset($_SESSION['user_id'])) {
         $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $stmt->execute();
 
+        // Save order details to the orders table
+        $stmt = $pdo->prepare("INSERT INTO orders (customer_id, order_date, status, total_amount, address, payment_method, payment_status, items, name_user, number, note, address_shipping) VALUES (:customer_id, :order_date, :status, :total_amount, :address, :payment_method, :payment_status, :items, :name_user, :number, :note, :address_shipping)");
+        $stmt->bindParam(':customer_id', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':order_date', $orderDate);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':total_amount', $totalAmount);
+        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':payment_method', $paymentMethod);
+        $stmt->bindParam(':payment_status', $paymentStatus);
+        $stmt->bindParam(':items', $itemsJson);
+        $stmt->bindParam(':name_user', $nameUser);
+        $stmt->bindParam(':number', $phoneNumber);
+        $stmt->bindParam(':note', $notes);
+        $stmt->bindParam(':address_shipping', $address);
+        $stmt->execute();
+
         echo "<script>alert('Order placed successfully!');</script>";
     }
 } else {
     echo "User is not logged in.";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

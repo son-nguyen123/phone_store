@@ -36,8 +36,8 @@
     <tbody>
         <tr>
             <td>Image</td>
-            <td><img id="product1-image" src="default.jpg" alt="Product 1 Image" /></td>
-            <td><img id="product2-image" src="default.jpg" alt="Product 2 Image" /></td>
+            <td><img id="product1-image" src="images/icon_smartphone.jpg" alt="Product 1 Image" /></td>
+            <td><img id="product2-image" src="images/icon_smartphone.jpg" alt="Product 2 Image" /></td>
         </tr>
         <tr>
             <td>Price</td>

@@ -14,7 +14,7 @@
                             <li><a href="index.php">Cửa Hàng</a></li>
                             <li><a href="iphone.php">Sản phẩm</a></li>
                             <li><a href="samsung.php">Tin tức</a></li>
-                            <li><a href="xiaomi.php">Liên hệ</a></li>
+                            <li><a href="contact.php">Liên hệ</a></li>
                             <li><a href="contact.php">Về Chúng Tôi</a></li>
                         </ul>
                     </nav>
