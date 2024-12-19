@@ -486,11 +486,31 @@ $products = $productStmt->fetchAll();
     </div>
 </div>
 
-    <?php include 'web_sections/bestseller.php'; ?>
+<?php include 'web_sections/bestseller.php'; ?>
 
-    <?php include 'web_sections/news.php'; ?>
+						<!-- Slider Navigation -->
 
+						<div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+							<i class="fa fa-chevron-left" aria-hidden="true"></i>
+						</div>
+						<div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+							<i class="fa fa-chevron-right" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <div class="newsletter">
+        <div class="container">
+            <div class="row">
+                
+            </div>
+        </div>
+    </div>
+    </div>
+    <?php include 'web_sections/news.php'; ?>
+ <div class="newsletter">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left">
@@ -511,7 +531,10 @@ $products = $productStmt->fetchAll();
     </div>
     <?php include 'web_sections/footer.php'; ?>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
+    
+
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -554,6 +577,14 @@ $products = $productStmt->fetchAll();
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 >>>>>>> 49bdd43066f77c27fdf591607f3a8b3c25d65234
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+
+<script src="js/custom.js"></script>
 </body>
 
 </html>
