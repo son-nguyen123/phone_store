@@ -10,20 +10,25 @@ if (isset($_SESSION['user_id'])) {
     if (isset($_GET['order_id'])) {
         $orderId = (int) $_GET['order_id'];
 
-        // Kiểm tra xem đơn hàng này có thuộc về người dùng hiện tại không
-        $stmt = $pdo->prepare("SELECT customer_id FROM orders WHERE order_id = :order_id");
+        // Lấy thông tin đơn hàng của người dùng hiện tại từ bảng orders
+        $stmt = $pdo->prepare("SELECT * FROM orders WHERE order_id = :order_id AND customer_id = :user_id");
         $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $stmt->execute();
         $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($order && $order['customer_id'] == $userId) {
+        // Kiểm tra xem đơn hàng có tồn tại và thuộc về người dùng này không
+        if ($order) {
             // Xóa đơn hàng khỏi bảng orders
             $stmt = $pdo->prepare("DELETE FROM orders WHERE order_id = :order_id");
             $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+
             if ($stmt->execute()) {
                 echo "<script>alert('Order deleted successfully!'); window.location.href = 'order_history.php';</script>";
             } else {
-                echo "<script>alert('Failed to delete the order.'); window.location.href = 'order_history.php';</script>";
+                // Hiển thị lỗi nếu không thể xóa
+                $error = $stmt->errorInfo();
+                echo "<script>alert('Failed to delete the order. Error: " . $error[2] . "'); window.location.href = 'order_history.php';</script>";
             }
         } else {
             // Người dùng không có quyền xóa đơn hàng này
