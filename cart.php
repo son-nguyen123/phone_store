@@ -110,6 +110,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="styles/single_styles.css">
     <link rel="stylesheet" href="styles/single_responsive.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         body {
             background-color: #f2f2f2;
@@ -418,7 +419,7 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
     
-
+   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function updateQuantity(input) {

@@ -38,6 +38,7 @@ $title = htmlspecialchars($blog['news']);
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -89,6 +90,7 @@ $title = htmlspecialchars($blog['news']);
             <?php endforeach; ?>
         </aside>
     </div>
+    <?php include 'web_sections/footer.php'; ?>
 </body>
 
 </html>

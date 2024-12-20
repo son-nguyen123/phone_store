@@ -364,7 +364,7 @@ $products = $productStmt->fetchAll();
 
 <body id="page-top">
     <?php include 'web_sections/navbar.php'; ?>
-    <?php include 'web_sections/banner.html'; ?>
+    <?php include 'web_sections/banner.php'; ?>
     <?php include 'web_sections/benefit.html'; ?>
     <?php include 'web_sections/video.php'; ?>
     <?php include 'web_sections/ability.php'; ?>

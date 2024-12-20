@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         .floating-icons {
             position: fixed;
@@ -157,6 +158,7 @@
             </div>
         </div>
     </div>
+    <?php include 'web_sections/footer.php'; ?>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="styles/bootstrap4/popper.js"></script>

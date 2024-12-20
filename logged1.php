@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" href="styles/main_styles.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         body {
             background-color: #f2f2f2;
@@ -216,6 +217,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post"><button type="submit" name="logout" class="sign-out-button">Sign Out</button></form>
         </div>
     </div>
+    <?php include 'web_sections/footer.php'; ?>
+
 </body>
 
 </html>
