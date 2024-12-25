@@ -47,12 +47,13 @@ if (isset($_POST['new_password']) && isset($_SESSION['email'])) {
 
         echo "<script>alert('Password successfully changed.');</script>";
         
-        $stmt = $pdo->prepare("SELECT user_id, profile_image FROM users WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT name, user_id, profile_image FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         $_SESSION["user_id"] = $user['user_id'];
         $_SESSION["email"] = $email;
+        $_SESSION["username"] = $user['name'];
         $_SESSION['profile_image'] = $user['profile_image'];
         $_SESSION['verified'] = false;
 
